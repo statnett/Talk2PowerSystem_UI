@@ -1,0 +1,80 @@
+= User Interface (UI) for Talk to the Power System
+v0.1.0-alpha, 2025-06-23
+:toc:  
+:toclevels: 2  
+
+== Overview  
+
+Talk2PowerSystem UI is the user interface for interacting with the Talk2PowerSystem platform. It simplifies access to complex power system models, knowledge graphs, and LLM-based semantic services.
+
+This interface is tailored for:
+- Energy professionals
+- Domain experts
+- Data scientists
+
+It enables intuitive exploration and querying of CIM, CGMES, and BIM-aligned data.
+
+== Features
+
+* Natural Language Interface (NLI) for querying CIM Knowledge Graph.
+* Knowledge Graph Explorer with filtering and semantic linking.
+* Power System Model Visualization and navigation between World View (Frame and Models) and one or more substation as single-line diagram.
+* Dataset, Catalogue, Profile and validation report browser with metadata view
+* General TriG / JSON-LD / SPARQL Viewer
+* 📦 Modular Panels for:
+** SHACL Validator (select validation engine)
+** Profile Loader
+** SchemaOps (Schema version comparison)
+** ModelOps (Model/dataset version comparison)
+** Simulation (primely for validation) Setup
+
+== Tech Stack
+
+*Frontend Framework:*:: (TBD) (e.g. React (TypeScript))
+*UI Libraries:*:: (TBD) (e.g. TailwindCSS, ShadCN, Lucide Icons)
+*Graph Visualization:*:: (TBD) (e.g. Recharts, D3.js, Cytoscape.js)
+*Data Standards:*:: JSON-LD, TriG, CIM-XML, SPARQL
+*API Layer:*:: REST and GraphQL (to Talk2PowerSystem Core)
+
+== Setup
+TBD
+
+=== Prerequisites
+TBD
+
+=== Installation
+TBD
+
+== Project
+[source, text]
+----
+/src
+  /components       → UI elements (buttons, modals, etc.)
+  /features         → Page-specific modules (GraphExplorer, ModelViewer)
+  /hooks            → React custom hooks
+  /services         → API and query builders
+  /types            → Global types and interfaces
+  /views            → Page layouts
+/public             → Static assets (logos, icons, manifest)
+----
+
+== Relevant Resources
+
+The project will assess different approaches for querying and accessing SPARQL endpoints, including:
+
+* link:https://github.com/RDFLib/sparqlwrapper[SPARQLWrapper]
+* link:https://graphql.org/[GraphQL-based access]  
+
+
+* RDFLib: link:https://github.com/RDFLib/rdflib[RDFLib GitHub]
+* SHACL Library for RDFLib: link:https://github.com/RDFLib/pySHACL[pySHACL]
+* LinkML Documentation: link:https://linkml.io/LinkML/[LinkML]
+* RDF4J: link:https://rdf4j.org/[RDF4J]
+
+* SVG diagrams generation: single-line substation diagrams and network graph diagrams: link:https://github.com/powsybl/powsybl-diagram [PoweSysBl-Diagram]
+
+== Accreditation  
+
+We acknowledge and accredit link:https://cimug.ucaiug.org/[UCA CIMug] and the team responsible for the development of *Common Information Model (CIM)*.  
+
+This repository and its contents are **made available under the Apache License 2.0**, ensuring open access, modification, and redistribution under the terms outlined in the `LICENSE` file.
