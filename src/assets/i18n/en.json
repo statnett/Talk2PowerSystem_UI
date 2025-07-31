@@ -1,0 +1,109 @@
+{
+  "tt2ps": {
+    "title": "Talk to Power System"
+  },
+  "chat_panel": {
+    "hint": "Simply ask a question!",
+    "btn": {
+      "regenerate": {
+        "tooltip": "Regenerate"
+      },
+      "explain_response": {
+        "tooltip": "Explain response"
+      },
+      "derive_answer": {
+        "label": "How did you derive this answer?",
+        "hint": "<b>Hint</b>: you can also ask the model, for example"
+      },
+      "copy_answer": {
+        "tooltip": "Copy answer"
+      },
+      "copy_raw_query": {
+        "tooltip": "Copy raw query"
+      },
+      "copy_sparql": {
+        "tooltip": "Copy SPARQL query"
+      },
+      "copy_json": {
+        "tooltip": "Copy JSON query"
+      },
+      "copy_other": {
+        "tooltip": "Copy query"
+      },
+      "copy_error_message": {
+        "tooltip": "Copy error message"
+      },
+      "open_in_sparql_editor": {
+        "tooltip": "Open in SPARQL editor"
+      },
+      "open_sidebar": {
+        "tooltip": "Show question list"
+      },
+      "close_sidebar": {
+        "tooltip": "Hide question list"
+      }
+    },
+    "placeholder": {
+      "ask-input": "Ask anything"
+    },
+    "labels": {
+      "query_method": "Query method",
+      "args": "Arguments",
+      "sparql_query": "SPARQL query",
+      "question_asked": "{{date}} at {{time}}",
+      "json": "JSON",
+      "error_message": "Error message sent to model",
+      "explain_no_methods": "No query methods were called.",
+      "called": "Called {{('chat_panel.query_name.' + name) | translate}}",
+      "no_query": "There is no query."
+    },
+    "query_colon": ":",
+    "query_name": {
+      "sparql_query": "SPARQL",
+      "fts_search": "Full-text search",
+      "similarity_search": "Similarity search",
+      "retrieval_search": "ChatGPT Retrieval",
+      "iri_discovery": "FTS for IRI discovery",
+      "now": "the Now function",
+      "autocomplete_iri_discovery_search": "Autocomplete for IRI discovery",
+      "autocomplete_search": "GraphDB Autocomplete Search",
+      "sample_sparql_queries": "Sample SPARQL Queries aka N-Shot Learning",
+      "retrieve_time_series": "Retrieve timeseries from Cognite",
+      "retrieve_data_points": "Retrieve datapoints from Cognite"
+    },
+    "query_desc": {
+      "sparql_query": "Direct query",
+      "fts_search": "Full-text search via SPARQL",
+      "similarity_search": "Similarity search via SPARQL",
+      "retrieval_search": "Direct JSON query",
+      "iri_discovery": "Full-text search via SPARQL",
+      "now": "Returns the system time",
+      "autocomplete_iri_discovery_search": "Autocomplete search via SPARQL",
+      "autocomplete_search": "Search by name and class for IRIs of named entities mentioned in the users' questions",
+      "sample_sparql_queries": "Given a user question, fetch similar questions by vector similarity, and provide the corresponding SPARQL queries as examples to the LLM agent.",
+      "retrieve_time_series": "Retrieve one or more time series. Optionally, the time series can be filtered by mrid.",
+      "retrieve_data_points": "Retrieve datapoints for one or more time series"
+    },
+    "token_usage_info": {
+      "title": "Tokens usage",
+      "prompt_tokens_info": "{{promptTokens}} prompt tokens",
+      "prompt_tokens_info_description": "Tokens used to process instructions, chat history and user input.",
+      "completion_tokens_info": "{{completionTokens}} completion tokens",
+      "completion_tokens_info_description": "Tokens used to generate the response"
+    },
+    "messages": {
+      "explain_response_failure": "Failed to retrieve the explanation for the response."
+    },
+    "error": {
+      "create_chat_failure": "Failed to create chat session.",
+      "unprocessable_entity": "Validation failed",
+      "conversation_not_found": "Conversation not found",
+      "ask_question_failure": "Failed to ask the question. Please try again."
+    }
+  },
+  "copy_to_clipboard": {
+    "messages": {
+      "copied_to_clipboard": "Copied to clipboard"
+    }
+  }
+}

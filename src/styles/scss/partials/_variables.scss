@@ -1,0 +1,55 @@
+/*-------------------------------------------------------------
+	Variables
+-------------------------------------------------------------*/
+:root {
+    --main-font: 'Roboto', 'Helvetica Neue', Arial, sans-serif;
+    --main-font-weight: 300;
+    --mono-font: 'JetBrains Mono', Menlo, Consolas, 'Ubuntu Mono', monospace;
+    --fa-style: 400;
+
+    --primary-color-hue: 13.4;
+    --primary-color-saturation: 87.9%;
+    --primary-color-lightness: 33%;
+    --secondary-color-hue: 207.3;
+    --secondary-color-saturation: 100%;
+    --secondary-color-lightness: 19.4%;
+    --tertiary-color-hue: 174.6;
+    --tertiary-color-saturation: 97.7%;
+    --tertiary-color-lightness: 33.5%;
+    --icon-on-primary-color: rgba(255, 255, 255, 0.8);
+    --gray-color: #97999C;
+    --gray-color-dark: #575757;
+    --color-danger-dark: hsl(353, 78%, 36%);
+    --color-success-dark: hsl(174.6, 97.7%, calc(33.5%*0.5));
+    --color-warning-dark: var(--primary-color-dark);
+    --color-info-dark: var(--secondary-color-light);
+    --color-danger-light: #a4142433;
+    --color-success-light: hsla(var(--tertiary-color-hsl), 0.15);
+    --color-warning-light: hsla(var(--primary-color-hsl), 0.07);
+    --color-info-light: hsla(var(--tertiary-color-hsl), 0.15);
+    --color-help-light: hsla(var(--secondary-color-hsl), 0.1);
+    --color-danger-medium: hsl(353, 78%, 83%);
+    --color-warning-medium: hsl(var(--primary-color-hue), var(--primary-color-saturation), 83%);
+    --logo-color: var(--primary-color-light);
+    --logo-text-color: white;
+    --logo-background-color: var(--secondary-color-dark);
+    --primary-color-hsl: var(--primary-color-hue), var(--primary-color-saturation), var(--primary-color-lightness);
+    --primary-color: hsl(var(--primary-color-hsl));
+    --primary-color-light: hsl(13.4, 87.9%, calc(33%*1.2));
+    --primary-color-dark: hsl(13.4, 87.9%, calc(33%*0.8));
+    --secondary-color-hsl: var(--secondary-color-hue), var(--secondary-color-saturation), var(--secondary-color-lightness);
+    --secondary-color: hsl(var(--secondary-color-hsl));
+    --secondary-color-light: hsl(207.3, 100%, calc(19.4%*1.2));
+    --secondary-color-dark: hsl(207.3, 100%, calc(19.4%*0.8));
+    --tertiary-color-hsl: var(--tertiary-color-hue), var(--tertiary-color-saturation), var(--tertiary-color-lightness);
+    --tertiary-color: hsl(var(--tertiary-color-hsl));
+    --tertiary-color-light: hsl(174.6, 97.7%, calc(33.5%*1.2));
+    --tertiary-color-dark: hsl(174.6, 97.7%, calc(33.5%*0.8));
+    /* The base background color that is used for panels and other similar elements */
+    --base-background-color: #f7f7f7;
+    /* The base background color that is used for selected panels or elements */
+    --base-background-selected-color: #dcdcdc;
+
+    --statenate-red-color: #e30613;
+    --statenett-green-color: #05ce74;
+}

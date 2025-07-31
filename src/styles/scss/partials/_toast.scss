@@ -1,0 +1,38 @@
+#toast-container {
+  > :hover {
+    box-shadow: 0 0 12px rgba(0, 0, 0, 0.5);
+  }
+
+  .toast {
+      font-size: 1.2rem;
+      opacity: 1;
+      padding: 25px 25px 25px 60px;
+      width: 450px;
+    }
+
+  .toast-title {
+    font-weight: 500;
+  }
+}
+
+@media (max-width: 1439px) {
+  #toast-container .toast {
+    width: 400px;
+  }
+}
+
+.toast-error {
+  background-color: var(--color-danger-dark);
+}
+
+.toast-warning {
+  background-color: var(--color-warning-dark);
+}
+
+.toast-info {
+  background-color: var(--color-info-dark);
+}
+
+.toast-success {
+  background-color: var(--color-success-dark);
+}

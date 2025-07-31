@@ -1,0 +1,15 @@
+<div class="copy-to-clipboard">
+    <button
+            class="btn btn-link btn-sm copy-btn"
+            ng-if="!customTooltipStyle"
+            tt2ps-tooltip="{{tooltipText | translate}}"
+            ng-click="copyToClipboard($event)">
+        <i class="fa fa-clone link-icon" aria-hidden="true"></i>
+    </button>
+    <button
+            class="btn btn-link btn-sm copy-btn"
+            ng-if="customTooltipStyle"
+            ng-click="copyToClipboard($event)">
+        <i class="fa fa-clone custom-link-icon" aria-hidden="true"></i>
+    </button>
+</div>

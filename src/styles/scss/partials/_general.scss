@@ -1,0 +1,60 @@
+body {
+  font-family: var(--main-font), serif;
+  font-weight: var(--main-font-weight);
+  margin: 0;
+  padding: 0;
+  line-height: 1.5;
+  color: #373a3c;
+
+  display: flex;
+  height: 100vh;
+
+  .left-sidebar {
+    flex: 1 1 20%;
+    max-width: 20rem;
+    padding: 1rem;
+
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 2rem;
+
+    .statnett-logo {
+      display: block;
+      max-height: 2rem;
+    }
+
+    .chat-questions {
+      flex: 1 1 auto;
+      overflow-y: auto;
+      background-color: var(--base-background-color);
+    }
+  }
+
+  header {
+    padding: 1rem;
+  }
+
+  .view-content {
+    flex: 1 1 80%;
+    display: flex;
+    flex-direction: column;
+    min-width: 320px;
+
+    [ng-view] {
+      max-height: 88vh;
+      height: 100%;
+    }
+  }
+
+  code,
+  kbd,
+  pre,
+  samp {
+    font-family: var(--mono-font), serif;
+  }
+
+  .footer {
+    width: 100%;
+  }
+}

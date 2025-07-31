@@ -1,0 +1,29 @@
+.copy-to-clipboard {
+  display: inline-block;
+
+  .copy-btn {
+    line-height: 0.75;
+    position: relative;
+
+  }
+
+  .custom-link-icon {
+    opacity: 0;
+    margin-left: 5px;
+    transition: opacity 0.2s ease-in-out;
+    color: var(--secondary-color);
+
+  }
+
+  .copy-btn:hover {
+    .custom-link-icon {
+      opacity: 1;
+    }
+  }
+
+  .copy-btn:hover {
+    .custom-link-icon {
+      opacity: 1;
+    }
+  }
+}

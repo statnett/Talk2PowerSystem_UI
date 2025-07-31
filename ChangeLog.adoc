@@ -1,6 +1,6 @@
 = Changelog
 
-== [0.1.0] (2025-01-15)
+== [x.x.x] (yyyy-mm-dd)
 [Rebase Version and release date]
 
 === ⚠ BREAKING CHANGES
@@ -20,3 +20,18 @@
 
 * [Miscellaneous change list]
 
+
+== [1.0.0] (2025-07-31)
+
+=== Features
+
+* link:https://github.com/statnett/Talk2PowerSystem_PM/issues/135[Talk2PowerSystem-135]: Introduces the initial version
+of the Chatbot web application.
+
+  The application is a prototype, allowing the users to have a conversation with the chat service developed for the Talk
+  2 Power System project.
+
+* link:https://github.com/statnett/Talk2PowerSystem_PM/issues/130[Talk2PowerSystem-130]: Introduces Dockerfile and Helm
+Chart for the Chatbot web application.
+
+  The resources will help for easier deployment on Kubernetes environment(s).
