@@ -1,0 +1,19 @@
+<div class="token-usage-dialog">
+    <h4 class="title">{{'chat_panel.token_usage_info.title' | translate}}</h4>
+
+    <span class="token-info-number">
+              {{tokensData.promptTokens | formatNumberToLocaleString}}
+    </span>
+    {{'chat_panel.token_usage_info.prompt_tokens_info' | translate}}
+    <div class="description">
+        {{'chat_panel.token_usage_info.prompt_tokens_info_description' | translate}}
+    </div>
+
+    <span class="token-info-number">
+              {{tokensData.completionTokens | formatNumberToLocaleString}}
+    </span>
+    {{'chat_panel.token_usage_info.completion_tokens_info' | translate}}
+    <div class="description">
+        {{'chat_panel.token_usage_info.completion_tokens_info_description' | translate}}
+    </div>
+</div>

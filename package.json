@@ -1,0 +1,42 @@
+{
+  "name": "talk-2-power-system-ui",
+  "version": "1.0.0",
+  "description": "The web application for Talk 2 Power System APIs",
+  "scripts": {
+    "start": "webpack serve --mode development",
+    "build": "webpack --mode production"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "Apache-2.0",
+  "engines": {
+    "node": ">=22.0.0"
+  },
+  "dependencies": {
+    "angular": "^1.8.3",
+    "angular-route": "^1.8.3",
+    "angular-toastr": "^2.1.1",
+    "angular-translate": "^2.19.1",
+    "angular-translate-loader-static-files": "^2.19.1",
+    "lodash": "^4.17.21",
+    "markdown-it": "^14.1.0",
+    "markdown-it-code-copy": "^0.2.2",
+    "oclazyload": "^1.1.0",
+    "tippy.js": "^6.3.7"
+  },
+  "devDependencies": {
+    "clean-webpack-plugin": "^4.0.0",
+    "copy-webpack-plugin": "^13.0.0",
+    "css-loader": "^7.1.2",
+    "css-minimizer-webpack-plugin": "^7.0.2",
+    "html-loader": "^4.2.0",
+    "html-webpack-plugin": "^5.5.0",
+    "mini-css-extract-plugin": "^2.9.2",
+    "sass": "^1.89.2",
+    "sass-loader": "^16.0.5",
+    "style-loader": "^4.0.0",
+    "webpack": "^5.88.1",
+    "webpack-cli": "^5.1.4",
+    "webpack-dev-server": "^4.15.1"
+  }
+}

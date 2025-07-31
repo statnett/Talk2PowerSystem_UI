@@ -1,0 +1,10 @@
+@use './scss/partials/variables';
+@use './scss/partials/general';
+@use './scss/partials/buttons';
+@use './scss/partials/forms';
+@use './scss/partials/headings';
+@use './scss/partials/text';
+@use './scss/partials/media';
+@use './scss/partials/alert';
+@use './scss/partials/toast';
+@import "~angular-toastr/dist/angular-toastr.min.css";

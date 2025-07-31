@@ -1,0 +1,71 @@
+export class ChatAnswerModel {
+    constructor(data = {}) {
+        /**
+         * @type {string | undefined}
+         */
+        this._chatId = data.chatId;
+
+        /**
+         * @type {ChatMessageModel[]}
+         */
+        this._messages = data.messages || [];
+
+        /**
+         * @type {string}
+         */
+        this._continueRunId = data.continueRunId;
+
+        /**
+         * Holds information about the number of tokens used for this answer, including prompt and completion tokens.
+         *
+         * @type {TokenUsageInfo}
+         */
+        this.tokenUsageInfo = data.tokenUsageInfo;
+    }
+
+    get chatId() {
+        return this._chatId;
+    }
+
+    set chatId(value) {
+        this._chatId = value;
+    }
+
+    get messages() {
+        return this._messages;
+    }
+
+    set messages(value) {
+        this._messages = value;
+    }
+
+    get continueRunId() {
+        return this._continueRunId;
+    }
+
+    set continueRunId(value) {
+        this._continueRunId = value;
+    }
+}
+
+/**
+ * Represents information on continuing the chat run, i.e., fetching answers iteratively after
+ * asking until the last answer is received.
+ */
+export class ContinueChatRun {
+    constructor(chatItem, runId) {
+        this._chatItem = chatItem;
+        this._runId = runId;
+    }
+
+    get chatId() {
+        return this._chatItem.chatId;
+    }
+
+    toContinueRunRequestPayload() {
+        return {
+            conversationId: this.chatId,
+            runId: this._runId
+        };
+    }
+}

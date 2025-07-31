@@ -1,0 +1,100 @@
+<div class="chat-item-detail">
+    <div class="user-message" ng-if="chatItemDetail.question">
+        <div class="question alert-help">
+            <markdown-content class="question-text"
+                              content="{{chatItemDetail.question.message}}"></markdown-content>
+        </div>
+    </div>
+    <div class="answers" ng-repeat="answer in chatItemDetail.answers">
+        <div class="assistant">
+            <div class="assistant-icon alert-help">
+                <i class="fa fa-lg fa-message-bot"></i>
+            </div>
+            <div class="assistant-message">
+                <markdown-content class="answer" content="{{answer.message}}" options="markdownContentOptions"></markdown-content>
+                <div class="actions" ng-class="{'hidden-actions': !explainResponseModel[answer.id].expanded && (!showActions || !$last)}">
+                    <button class="btn btn-link btn-sm regenerate-question-btn"
+                            ng-click="regenerateQuestion()"
+                            ng-disabled="disabled"
+                            tt2ps-tooltip="{{'chat_panel.btn.regenerate.tooltip' | translate}}">
+                        <i class="fa fa-arrows-rotate"></i>
+                    </button>
+                    <copy-to-clipboard tooltip-text="chat_panel.btn.copy_answer.tooltip"
+                                       text-to-copy="{{answer.message}}">
+                    </copy-to-clipboard>
+                    <button ng-if="answer.tokenUsageInfo"
+                         class="btn btn-link btn-sm token-usage-info-btn"
+                         ng-click="onTokenUsageInfo($event)"
+                            tokens-usage-info tokens-data="answer.tokenUsageInfo">
+                        <i class="fa fa-coin-blank"></i>
+                    </button>
+                    <button class="btn btn-link btn-link-only-icons btn-sm explain-response-btn"
+                            ng-click="explainResponse(answer.id)"
+                            ng-disabled="disabled && !explainResponseModel[answer.id]"
+                            tt2ps-tooltip="{{'chat_panel.btn.explain_response.tooltip' | translate}}">
+                        <i class="fa fa-wand-magic-sparkles"></i>
+                        <i class="fa fa-chevron-up toggle-explain-response-icon"
+                           ng-class="{expanded: explainResponseModel[answer.id] && explainResponseModel[answer.id].expanded}"></i>
+                    </button>
+                </div>
+                <div class="derived-answer-hint"
+                     ng-if="showActions && $last && explainResponseModel[answer.id].expanded">
+                    <div ng-bind-html="'chat_panel.btn.derive_answer.hint' | translate | trustAsHtml"></div>
+                    <button class="btn btn-secondary deliver-answer-btn" ng-click="onAskHowAnswerWasDerived()">
+                        {{ 'chat_panel.btn.derive_answer.label' | translate }}
+                    </button>
+                </div>
+                <div ng-if="loadingExplainResponse[answer.id]" tt2ps-loader size="40"></div>
+                <div class="explain-responses" ng-if="explainResponseModel[answer.id] && explainResponseModel[answer.id].expanded">
+                    <div ng-if="!explainResponseModel[answer.id].queryMethods.items.length"
+                         class="explain-response">
+                        {{ 'chat_panel.labels.explain_no_methods' | translate }}
+                    </div>
+                    <div ng-if="explainResponseModel[answer.id].queryMethods.items"
+                         class="explain-response"
+                         ng-repeat="queryMethod in explainResponseModel[answer.id].queryMethods.items">
+                        <div class="explain-call">
+                            <div class="header" tt2ps-tooltip="">
+                                <div class="label">
+                                    <span class="query-method" ng-bind-html="'chat_panel.labels.called' | translate:{name: queryMethod.name} | trustAsHtml">
+                                    </span>{{ 'chat_panel.query_colon' | translate }}
+                                    <span class="query-method-details" ng-bind="('chat_panel.query_desc.' + queryMethod.name) | translate">
+                                    </span>
+                                </div>
+                                <div ng-if="queryMethod.query" class="actions">
+                                    <open-in-sparql-editor
+                                        ng-if="queryMethod.queryType === ExplainQueryType.SPARQL"
+                                        execute-query="{{!queryMethod.errorMessage}}"
+                                        repository-id="{{repositoryId}}"
+                                        query="{{queryMethod.query}}">
+                                    </open-in-sparql-editor>
+                                    <copy-to-clipboard tooltip-text="chat_panel.btn.copy_{{ queryMethod.queryType }}.tooltip"
+                                                       text-to-copy="{{queryMethod.query}}"></copy-to-clipboard>
+                                </div>
+                            </div>
+                            <div class="query">
+                                <div ng-if="!queryMethod.query" class="mb-1">{{ 'chat_panel.labels.no_query' | translate }}</code></div>
+                                <pre ng-if="queryMethod.query"><code>{{queryMethod.query}}</code></pre>
+                            </div>
+                            <div ng-if="queryMethod.args" class="raw-query">
+                                <span class="label">{{'chat_panel.labels.args' | translate}}:</span>
+                                <markdown-content class="content" content="{{queryMethod.args}}" options="markdownContentOptions"></markdown-content>
+                                <copy-to-clipboard class="copy-to-clipboard-btn" tooltip-text="chat_panel.btn.copy_raw_query.tooltip"
+                                                   text-to-copy="{{queryMethod.args}}"></copy-to-clipboard>
+                            </div>
+                            <div ng-if="queryMethod.errorMessage" class="alert no-icon alert-warning error-message">
+                                <div class="error-header">
+                                    <div class="label">{{'chat_panel.labels.error_message' | translate}}:</div>
+                                    <copy-to-clipboard class="copy-to-clipboard-btn" tooltip-text="chat_panel.btn.copy_error_message.tooltip"
+                                                       text-to-copy="{{queryMethod.errorMessage}}"></copy-to-clipboard>
+                                </div>
+                                <div class="error-content">{{queryMethod.errorMessage}}</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div ng-if="asking" tt2ps-loader size="40"></div>
+</div>

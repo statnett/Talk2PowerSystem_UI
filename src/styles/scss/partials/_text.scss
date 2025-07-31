@@ -1,0 +1,52 @@
+.multiline-text {
+  line-height: 0.75em;
+  display: inline-block;
+  vertical-align: middle;
+  text-align: left;
+}
+
+.multiline-text small {
+  font-weight: 300;
+  font-size: 0.75em;
+  margin-top: 0.3em;
+  display: inline-block;
+  max-width: 120px;
+  text-overflow: ellipsis;
+  overflow: hidden;
+}
+
+.text-primary {
+  color: var(--primary-color) !important;
+}
+
+.text-secondary {
+  color: var(--secondary-color) !important;
+}
+
+.text-tertiary {
+  color: var(--tertiary-color-dark) !important;
+}
+
+.text-info {
+  color: var(--tertiary-color) !important;
+}
+
+.text-danger {
+  color: var(--color-danger-dark) !important;
+}
+
+.text-success {
+  color: var(--color-success-dark) !important;
+}
+
+.text-warning {
+  color: var(--color-warning-dark) !important;
+}
+
+.text-info {
+  color: var(--color-info-dark) !important;
+}
+
+.text-muted {
+  color: rgba(0, 0, 0, 0.66) !important
+}

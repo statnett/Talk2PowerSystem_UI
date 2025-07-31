@@ -1,0 +1,46 @@
+<div ng-if="chat" class="chat-panel" ng-class="chat.chatHistory.isEmpty() && !askingChatItem ? 'no-content' : ''">
+    <div class="chat-panel-content">
+        <div class="messages-hint text-muted" ng-if="chat.chatHistory.isEmpty() && !waitingForLastMessage" ng-cloak>
+            <div class="hint" ng-bind="'chat_panel.hint' | translate"></div>
+        </div>
+        <div class="chat-details" ng-class="{'hidden': !chat}">
+            <div ng-repeat="chatItemDetail in chat.chatHistory.items">
+                <chat-item-detail
+                        chat-item-detail="chatItemDetail"
+                        show-actions="!waitingForLastMessage && $last"
+                        on-regenerate-question="regenerateQuestion(chatItem)"
+                        on-copy-answer-to-clipboard="copyAnswerToClipboard(chatItem)"
+                        on-ask-how-delivered-answer="onAskHowDeliveredAnswer(chatItem)"
+                        asking="!askingChatItem && waitingForLastMessage && $last"
+                        disabled="waitingForLastMessage">
+                </chat-item-detail>
+            </div>
+
+            <chat-item-detail ng-if="askingChatItem"
+                              chat-item-detail="askingChatItem"
+                              asking="!!askingChatItem">
+            </chat-item-detail>
+        </div>
+
+        <div class="new-question">
+            <div class="form-control">
+                <editable-content
+                        placeholder="{{'chat_panel.placeholder.ask-input' | translate}}"
+                        ng-model="chatItem.question.message"
+                        ng-keypress="onKeypressOnInput($event)"
+                        class="question-input">
+                </editable-content>
+                <div class="new-question-actions">
+                    <div class="left-side-actions"></div>
+                    <div class="right-side-actions">
+                        <button class="btn btn-primary ask-button"
+                                ng-disabled="!chatItem.question.message || waitingForLastMessage"
+                                ng-click="ask()">
+                            <i class="fa fa-arrow-up"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

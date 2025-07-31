@@ -1,0 +1,31 @@
+:root {
+    --tooltip-blue: #003663;
+}
+
+.angular-tooltip {
+    background-color: var(--tooltip-blue);
+
+    &.angular-tooltip-top:after,
+    &.angular-tooltip-top-left:after,
+    &.angular-tooltip-top-right:after {
+        border-top-color: var(--tooltip-blue);
+    }
+
+    &.angular-tooltip-right:after,
+    &.angular-tooltip-right-top:after,
+    &.angular-tooltip-right-bottom:after {
+        border-right-color: var(--tooltip-blue);
+    }
+
+    &.angular-tooltip-bottom:after,
+    &.angular-tooltip-bottom-left:after,
+    &.angular-tooltip-bottom-right:after {
+        border-bottom-color: var(--tooltip-blue);
+    }
+
+    &.angular-tooltip-left:after,
+    &.angular-tooltip-left-top:after,
+    &.angular-tooltip-left-bottom:after {
+        border-left-color: var(--tooltip-blue);
+    }
+}

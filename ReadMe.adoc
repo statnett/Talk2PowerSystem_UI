@@ -30,48 +30,15 @@ It enables intuitive exploration and querying of CIM, CGMES, and BIM-aligned dat
 
 == Tech Stack
 
-*Frontend Framework:*:: (TBD) (e.g. React (TypeScript))
+*Frontend Framework:*:: AngularJS
 *UI Libraries:*:: (TBD) (e.g. TailwindCSS, ShadCN, Lucide Icons)
-*Graph Visualization:*:: (TBD) (e.g. Recharts, D3.js, Cytoscape.js)
-*Data Standards:*:: JSON-LD, TriG, CIM-XML, SPARQL
-*API Layer:*:: REST and GraphQL (to Talk2PowerSystem Core)
+*Graph Visualization:*:: webpack, lodash, oclazyload and various Angular utilities
+*Data Standards:*:: JSON, JSON-LD, SPARQL
+*API Layer:*:: REST (to Talk2PowerSystem Core)
 
 == Setup
-TBD
 
-=== Prerequisites
-TBD
-
-=== Installation
-TBD
-
-== Project
-[source, text]
-----
-/src
-  /components       → UI elements (buttons, modals, etc.)
-  /features         → Page-specific modules (GraphExplorer, ModelViewer)
-  /hooks            → React custom hooks
-  /services         → API and query builders
-  /types            → Global types and interfaces
-  /views            → Page layouts
-/public             → Static assets (logos, icons, manifest)
-----
-
-== Relevant Resources
-
-The project will assess different approaches for querying and accessing SPARQL endpoints, including:
-
-* link:https://github.com/RDFLib/sparqlwrapper[SPARQLWrapper]
-* link:https://graphql.org/[GraphQL-based access]  
-
-
-* RDFLib: link:https://github.com/RDFLib/rdflib[RDFLib GitHub]
-* SHACL Library for RDFLib: link:https://github.com/RDFLib/pySHACL[pySHACL]
-* LinkML Documentation: link:https://linkml.io/LinkML/[LinkML]
-* RDF4J: link:https://rdf4j.org/[RDF4J]
-
-* SVG diagrams generation: single-line substation diagrams and network graph diagrams: link:https://github.com/powsybl/powsybl-diagram [PoweSysBl-Diagram]
+Check the link:docs/developers-guide.md[Development Guide].
 
 == Accreditation  
 

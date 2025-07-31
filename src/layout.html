@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="tt2ps">
+<head>
+    <meta charset="UTF-8"/>
+    <title>Talk to the Power System</title>
+    <base href="/"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+</head>
+    <body ng-controller="mainCtrl">
+        <div class="left-sidebar">
+            <img class="statnett-logo" src="/images/statnett-logo-primary-green.svg" alt="Statnett company logo"/>
+            <chat-questions class="chat-questions"></chat-questions>
+        </div>
+        <main class="view-content" role="main">
+            <header>
+                <tt2ps-header></tt2ps-header>
+            </header>
+            <div ng-view></div>
+            <footer>
+                <!-- Footer content/component -->
+            </footer>
+        </main>
+    </body>
+</html>
