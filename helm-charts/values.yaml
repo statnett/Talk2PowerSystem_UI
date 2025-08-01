@@ -75,7 +75,7 @@ image:
   registry: ghcr.io
 
   # The repository name of the application image.
-  repository: t2ps-chatbot-ui
+  repository: statnett/Talk2PowerSystem_UI
 
   # Image tag that corresponds to the version of application.
   # By default, the chart uses .Chart.AppVersion to construct the full image name.
