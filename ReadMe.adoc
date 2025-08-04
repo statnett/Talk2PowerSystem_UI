@@ -31,8 +31,7 @@ It enables intuitive exploration and querying of CIM, CGMES, and BIM-aligned dat
 == Tech Stack
 
 *Frontend Framework:*:: AngularJS
-*UI Libraries:*:: (TBD) (e.g. TailwindCSS, ShadCN, Lucide Icons)
-*Graph Visualization:*:: webpack, lodash, oclazyload and various Angular utilities
+*UI Libraries:*:: webpack, lodash, oclazyload and various Angular utilities
 *Data Standards:*:: JSON, JSON-LD, SPARQL
 *API Layer:*:: REST (to Talk2PowerSystem Core)
 
