@@ -75,7 +75,7 @@ image:
   registry: ghcr.io
 
   # The repository name of the application image.
-  repository: statnett/Talk2PowerSystem_UI
+  repository: statnett/talk2powersystem_ui
 
   # Image tag that corresponds to the version of application.
   # By default, the chart uses .Chart.AppVersion to construct the full image name.
