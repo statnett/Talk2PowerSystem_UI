@@ -1,6 +1,6 @@
 export default [
     {
-        path: '/chat',
+        path: '/',
         controller: 'chatCtrl',
         template: './views/chat/chat.html',
         lazyModule: './views/chat/chat.controller.js',

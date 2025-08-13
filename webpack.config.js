@@ -5,16 +5,18 @@ const CopyWebpackPlugin = require('copy-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const CssMinimizerPlugin = require('css-minimizer-webpack-plugin');
 const webpack = require('webpack');
+const {BaseHrefWebpackPlugin} = require("base-href-webpack-plugin");
 
 module.exports = (env, argv) => {
     const isProd = argv.mode === 'production';
+    const baseHref = env.baseHref || '/';
     return {
         entry: './src/app.js',
         output: {
             filename: 'main.[contenthash].js',
             path: path.resolve(__dirname, 'dist'),
             clean: true,
-            publicPath: '/',
+            publicPath: baseHref,
         },
         devtool: isProd ? false : 'source-map',
         module: {
@@ -81,6 +83,7 @@ module.exports = (env, argv) => {
                     minifyJS: true,
                 } : false,
             }),
+            new BaseHrefWebpackPlugin({ baseHref: baseHref }),
             new CopyWebpackPlugin({
                 patterns: [
                     {
@@ -117,11 +120,19 @@ module.exports = (env, argv) => {
             ],
         },
         devServer: {
-            static: './dist',
+            static: {
+                directory: path.resolve(__dirname, 'dist'),
+                publicPath: baseHref,
+            },
             port: 3000,
             open: true,
             hot: true,
-            historyApiFallback: true,
+            devMiddleware: {
+                publicPath: baseHref,
+            },
+            historyApiFallback: {
+                index: `${baseHref}index.html`,
+            },
             watchFiles: ['src/**/*']
         },
     };
