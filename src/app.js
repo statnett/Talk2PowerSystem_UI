@@ -71,7 +71,7 @@ angular.module('tt2ps', dependencies)
              */
             const setupTranslation = () => {
                 $translateProvider.useStaticFilesLoader({
-                    prefix: '/assets/i18n/',
+                    prefix: 'assets/i18n/',
                     suffix: '.json',
                 });
 
@@ -98,7 +98,7 @@ angular.module('tt2ps', dependencies)
                     });
                 });
 
-                $routeProvider.otherwise({redirectTo: '/chat'});
+                $routeProvider.otherwise({redirectTo: '/'});
             };
 
             const configureToastr = () => {
