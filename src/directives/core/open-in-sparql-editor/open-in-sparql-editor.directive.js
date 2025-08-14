@@ -42,6 +42,11 @@ function OpenInSparqlEditorDirective() {
         scope: {
             query: '@',
             executeQuery: '@'
+        },
+        link: function($scope) {
+            if (!$scope.executeQuery) {
+                $scope.executeQuery = false;
+            }
         }
     };
 }

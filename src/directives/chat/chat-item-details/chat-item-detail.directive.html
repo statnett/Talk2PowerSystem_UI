@@ -64,7 +64,6 @@
                                 <div ng-if="queryMethod.query" class="actions">
                                     <open-in-sparql-editor
                                         ng-if="queryMethod.queryType === ExplainQueryType.SPARQL"
-                                        execute-query="{{!queryMethod.errorMessage}}"
                                         repository-id="{{repositoryId}}"
                                         query="{{queryMethod.query}}">
                                     </open-in-sparql-editor>
