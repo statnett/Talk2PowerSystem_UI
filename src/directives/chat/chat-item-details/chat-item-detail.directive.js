@@ -4,6 +4,7 @@ import {ExplainQueryType} from "../../../models/chat/explain-query-type";
 import MarkdownServiceModule from "../../../services/markdown/markdown.service";
 import MarkdownContentModule from "../../core/markdown-content/markdown-content.directive";
 import TokensUsageInfoModule from "../token-usage-popover/token-usage-popover.directive";
+import {ChatContextEventName} from "../../../services/chat/chat-context-event-name";
 
 const modules = [
     MarkdownServiceModule.name,
@@ -87,7 +88,7 @@ function ChatItemDetailDirective(toastr, $translate, ChatContextService, ChatSer
                         })
                         .catch((error) => {
                             if (error.status === 400) {
-                                toastr.error($translate.instant('chat_panel.error.conversation_not_found'));
+                                ChatContextService.emit(ChatContextEventName.CONVERSATION_EXPIRED);
                             } else if (error.status === 422) {
                                 toastr.error($translate.instant('chat_panel.error.unprocessable_entity'));
                             } else {

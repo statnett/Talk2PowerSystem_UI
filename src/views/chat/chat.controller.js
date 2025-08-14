@@ -59,7 +59,7 @@ function ChatCtrl($scope, $translate, toastr, ChatService, ChatContextService) {
                 ChatContextService.emit(ChatEventName.CREATE_CHAT_FAILURE);
                 console.error(error);
                 if (status === 400) {
-                    toastr.error($translate.instant('chat_panel.error.conversation_not_found'));
+                    ChatContextService.emit(ChatContextEventName.CONVERSATION_EXPIRED);
                 } else if (status === 422) {
                     toastr.error($translate.instant('chat_panel.error.unprocessable_entity'));
                 } else {
@@ -79,13 +79,18 @@ function ChatCtrl($scope, $translate, toastr, ChatService, ChatContextService) {
                 ChatContextService.emit(ChatEventName.ASK_QUESTION_FAILURE);
                 console.error(error);
                 if (status === 400) {
-                    toastr.error($translate.instant('chat_panel.error.conversation_not_found'));
+                    ChatContextService.emit(ChatContextEventName.CONVERSATION_EXPIRED);
                 } else if (status === 422) {
                     toastr.error($translate.instant('chat_panel.error.unprocessable_entity'));
                 } else {
                     toastr.error($translate.instant('chat_panel.error.ask_question_failure'));
                 }
             });
+    }
+
+    const onConversationExpired = (chatQuestion) => {
+        toastr.error($translate.instant('chat_panel.error.conversation_not_found'));
+        ChatContextService.selectChat(new ChatModel());
     }
 
     const updateChatAnswersFirstResponse = (selectedChat, chatItem, chatAnswer) => {
@@ -118,6 +123,7 @@ function ChatCtrl($scope, $translate, toastr, ChatService, ChatContextService) {
 
     subscriptions.push(ChatContextService.subscribe(ChatContextEventName.CREATE_CHAT, onCreateNewChat));
     subscriptions.push(ChatContextService.subscribe(ChatContextEventName.ASK_QUESTION, onAskQuestion));
+    subscriptions.push(ChatContextService.subscribe(ChatContextEventName.CONVERSATION_EXPIRED, onConversationExpired));
 
     // Deregister the watcher when the scope/directive is destroyed
     $scope.$on('$destroy', removeAllSubscribers);

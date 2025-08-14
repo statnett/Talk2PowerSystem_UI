@@ -97,7 +97,7 @@
     "error": {
       "create_chat_failure": "Failed to create chat session.",
       "unprocessable_entity": "Validation failed",
-      "conversation_not_found": "Conversation not found",
+      "conversation_not_found": "Conversation expired: previous questions are not taken into account.",
       "ask_question_failure": "Failed to ask the question. Please try again."
     }
   },

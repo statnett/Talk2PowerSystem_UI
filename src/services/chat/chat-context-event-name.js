@@ -64,4 +64,9 @@ export const ChatContextEventName = {
      * This event will be emitted when a question is selected.
      */
     SELECT_CHAT_QUESTION: "selectChatQuestion",
+
+    /**
+     * This event is emitted when the conversation has expired.
+     */
+    CONVERSATION_EXPIRED: "conversationExpired",
 };
