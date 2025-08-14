@@ -66,6 +66,13 @@
       flex-direction: column;
       gap: 1.5rem;
       padding-right: 10px;
+
+      .header {
+        text-align: left;
+        .query-method {
+          font-weight: 600;
+        }
+      }
     }
 
     // Markdown-derived HTML tweaks
