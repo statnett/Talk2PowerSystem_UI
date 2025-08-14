@@ -47,7 +47,6 @@ function ChatQuestionListComponent(ChatContextService) {
             // Private functions
             // =========================
             const onChatQuestionsChanged = (questions) => {
-                console.log(questions);
                 $scope.questions = questions;
             };
 
