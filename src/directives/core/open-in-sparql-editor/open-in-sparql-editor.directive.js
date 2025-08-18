@@ -47,6 +47,7 @@ function OpenInSparqlEditorDirective() {
             if (!$scope.executeQuery) {
                 $scope.executeQuery = false;
             }
+            $scope.encodedQuery = encodeURIComponent($scope.query);
         }
     };
 }
