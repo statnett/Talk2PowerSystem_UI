@@ -50,9 +50,9 @@ spec:
         {{- include "t2ps-chatbot-ui.combinedImagePullSecrets" . | nindent 8 }}
       {{- end }}
       volumes:
-        - name: {{ include "t2ps-chatbot.service.proxy.configuration" . }}
+        - name: {{ include "t2ps-chatbot.services.proxy.configuration" . }}
           configMap:
-            name: {{ include "t2ps-chatbot.service.proxy.configuration" . }}
+            name: {{ include "t2ps-chatbot.services.proxy.configuration" . }}
       {{- with .Values.extraVolumes }}
         {{- tpl (toYaml .) $ | nindent 8 }}
       {{- end }}
@@ -91,9 +91,9 @@ spec:
           env: {{- tpl (toYaml .) $ | nindent 12 }}
           {{- end }}
           volumeMounts:
-            - name: {{ include "t2ps-chatbot.service.proxy.configuration" . }}
-              mountPath: /etc/nginx/conf.d/chatbot-service-proxy.conf
-              subPath: chatbot-service-proxy.conf
+            - name: {{ include "t2ps-chatbot.services.proxy.configuration" . }}
+              mountPath: /etc/nginx/conf.d/chatbot-services-proxy.conf
+              subPath: chatbot-services-proxy.conf
           {{- with .Values.extraVolumeMounts }}
             {{- toYaml . | nindent 12 }}
           {{- end }}

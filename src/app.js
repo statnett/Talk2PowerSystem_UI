@@ -21,7 +21,6 @@ import {NumberUtils} from "./services/utils/number-utils";
 import HeaderModule from "./directives/tt2ps-header/tt2ps-header.directive";
 import TT2PSLoaderModule from "./directives/core/tt2ps-loader/tt2ps-loader.directive";
 import OpenInSparqlEditorModule from "./directives/core/open-in-sparql-editor/open-in-sparql-editor.directive";
-import ChatQuestionListModule from "./directives/chat/chat-question-list/chat-question-list.directive";
 
 // $translate.instant converts <b> from strings to &lt;b&gt
 // and $sce.trustAsHtml could not recognise that this is valid html

@@ -111,15 +111,11 @@ replicas: 1
 # Application Configurations #
 ##############################
 
-# TODO: the application doesn't support environment variables, but it should. Otherwise we can't connect the service.
-
 # Application runtime configuration settings.
 configuration:
 
-  # Example:
-  # properties:
-  #   key: value
-  properties: {}
+  # The context path of the application
+  contextPath: /chat/
 
   # The URL of the backend chatbot service.
   backend:

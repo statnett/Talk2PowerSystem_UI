@@ -74,6 +74,6 @@ Returns the namespace of the release.
 {{/*
 Returns the name of the ConfigMap resource used to provide the nginx configuration for the backend service.
 */}}
-{{- define "t2ps-chatbot.service.proxy.configuration" -}}
-  {{- printf "t2ps-chatbot-service-proxy-configuration" -}}
+{{- define "t2ps-chatbot.services.proxy.configuration" -}}
+  {{- printf "t2ps-chatbot-services-proxy-configuration" -}}
 {{- end -}}
