@@ -14,20 +14,19 @@ const modules = [
     ChatServiceModule.name
 ];
 
-const ChatModule = angular
-    .module('tt2ps.chat.controllers.chat-ctrl', modules);
+const ChatModule = angular.module('tt2ps.controllers.chat-ctrl', modules);
 ChatModule
     .controller('chatCtrl', ChatCtrl)
 
 ChatCtrl.$inject = [
     '$scope',
     '$translate',
-    'toastr',
+    'ToastrService',
     'ChatService',
     'ChatContextService'
 ]
 
-function ChatCtrl($scope, $translate, toastr, ChatService, ChatContextService) {
+function ChatCtrl($scope, $translate, ToastrService, ChatService, ChatContextService) {
     const init = () => {
         loadChatQuestionList();
         ChatContextService.selectChat(new ChatModel());
@@ -61,9 +60,9 @@ function ChatCtrl($scope, $translate, toastr, ChatService, ChatContextService) {
                 if (status === 400) {
                     ChatContextService.emit(ChatContextEventName.CONVERSATION_EXPIRED);
                 } else if (status === 422) {
-                    toastr.error($translate.instant('chat_panel.error.unprocessable_entity'));
+                    ToastrService.error($translate.instant('chat_panel.error.unprocessable_entity'));
                 } else {
-                    toastr.error($translate.instant('chat_panel.error.create_chat_failure'));
+                    ToastrService.error($translate.instant('chat_panel.error.create_chat_failure'));
                 }
             });
     };
@@ -81,15 +80,15 @@ function ChatCtrl($scope, $translate, toastr, ChatService, ChatContextService) {
                 if (status === 400) {
                     ChatContextService.emit(ChatContextEventName.CONVERSATION_EXPIRED);
                 } else if (status === 422) {
-                    toastr.error($translate.instant('chat_panel.error.unprocessable_entity'));
+                    ToastrService.error($translate.instant('chat_panel.error.unprocessable_entity'));
                 } else {
-                    toastr.error($translate.instant('chat_panel.error.ask_question_failure'));
+                    ToastrService.error($translate.instant('chat_panel.error.ask_question_failure'));
                 }
             });
     }
 
     const onConversationExpired = (chatQuestion) => {
-        toastr.error($translate.instant('chat_panel.error.conversation_not_found'));
+        ToastrService.error($translate.instant('chat_panel.error.conversation_not_found'));
         ChatContextService.selectChat(new ChatModel());
     }
 

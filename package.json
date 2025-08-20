@@ -13,6 +13,7 @@
     "node": ">=22.0.0"
   },
   "dependencies": {
+    "@azure/msal-browser": "^4.19.0",
     "angular": "^1.8.3",
     "angular-route": "^1.8.3",
     "angular-toastr": "^2.1.1",

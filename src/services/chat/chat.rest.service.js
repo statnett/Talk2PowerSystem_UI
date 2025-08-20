@@ -1,4 +1,5 @@
 import {ChatRestServiceFakeBackend} from './chat.rest.service.fake.backend';
+import {DEVELOPMENT} from "../../configurations/app-configurations";
 
 const ChatRestServiceModule = angular
     .module('tt2ps.services.chat.chat-rest-service', []);
@@ -10,8 +11,6 @@ ChatRestService.$inject = ['$http'];
 const CONVERSATIONS_ENDPOINT = 'rest/chat/conversations';
 const EXPLAIN_RESPONSE_ENDPOINT = `${CONVERSATIONS_ENDPOINT}/explain`;
 const LOAD_QUESTIONS_ENDPOINT = 'assets/data/questions.json';
-
-const DEVELOPMENT = false;
 
 function ChatRestService($http) {
 
