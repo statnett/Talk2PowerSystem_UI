@@ -9,7 +9,6 @@ import angular from 'angular';
 import ngRoute from 'angular-route';
 import ocLazyLoad from 'oclazyload';
 import ngTranslate from 'angular-translate';
-import toastr from 'angular-toastr';
 import ngTranslateLoaderStaticFiles from 'angular-translate-loader-static-files';
 
 import mainModule from './main.controller';
@@ -21,6 +20,14 @@ import {NumberUtils} from "./services/utils/number-utils";
 import HeaderModule from "./directives/tt2ps-header/tt2ps-header.directive";
 import TT2PSLoaderModule from "./directives/core/tt2ps-loader/tt2ps-loader.directive";
 import OpenInSparqlEditorModule from "./directives/core/open-in-sparql-editor/open-in-sparql-editor.directive";
+import UnauthorizedInterceptorModule from "./interceptors/unauthorized.interceptor";
+import AuthenticationInterceptorModule from "./interceptors/authentication.interceptor";
+import SecurityServiceModule from "./services/security/security.service";
+import SecurityContextServiceModule from "./services/security/security-context.service";
+import {SecurityConfigurationModel} from "./models/security/security-configuration";
+import AuthenticationModule from "./services/security/authentication.service";
+import {UserModel} from "./models/security/user";
+import ToastrServiceModule from "./services/toast.service";
 
 // $translate.instant converts <b> from strings to &lt;b&gt
 // and $sce.trustAsHtml could not recognise that this is valid html
@@ -34,7 +41,6 @@ let dependencies = [
     ngRoute,
     ocLazyLoad,
     ngTranslate,
-    toastr,
     ngTranslateLoaderStaticFiles,
     mainModule.name,
     EditableContentModule.name,
@@ -42,78 +48,142 @@ let dependencies = [
     CopyToClipboardModule.name,
     HeaderModule.name,
     TT2PSLoaderModule.name,
-    OpenInSparqlEditorModule.name
+    OpenInSparqlEditorModule.name,
+    UnauthorizedInterceptorModule.name,
+    AuthenticationInterceptorModule.name,
+    SecurityServiceModule.name,
+    SecurityContextServiceModule.name,
+    AuthenticationModule.name,
+    ToastrServiceModule.name
 ];
 
-angular.module('tt2ps', dependencies)
-    .config([
-        '$routeProvider',
-        '$locationProvider',
-        '$translateProvider',
-        'toastrConfig',
-        function ($routeProvider, $locationProvider, $translateProvider, toastrConfig) {
+const TT2PSModule = angular.module('tt2ps', dependencies);
 
-            /**
-             * Initializes the configuration by setting routing and translations.
-             * Enables HTML5 routing and registers routes and translation settings.
-             */
-            const init = () => {
-                // Enables HTML5 mode for routing, removing the hashbang (#!) from URLs.
-                $locationProvider.html5Mode(true);
-                setupTranslation();
-                registerRoutes();
-                configureToastr();
-            };
+TT2PSModule.$inject = [
+    '$httpProvider',
+    '$routeProvider',
+    '$locationProvider',
+    '$translateProvider'
+]
 
-            /**
-             * Configures the translation provider to load language files via HTTP from static JSON files.
-             */
-            const setupTranslation = () => {
-                $translateProvider.useStaticFilesLoader({
-                    prefix: 'assets/i18n/',
-                    suffix: '.json',
-                });
-
-                $translateProvider.preferredLanguage('en');
-                // Sets strategy to 'escape' to HTML-escape the translation values for security.
-                $translateProvider.useSanitizeValueStrategy('escape');
-            };
-
-            /**
-             * Registers application routes and sets up lazy-loaded modules.
-             */
-            const registerRoutes = () => {
-                routes.forEach(route => {
-                    const template = require(`${route.template}`);
-                    $routeProvider.when(route.path, {
-                        template: template.default || template,
-                        controller: route.controller,
-                        resolve: {
-                            load: [
-                                '$ocLazyLoad',
-                                $ocLazyLoad => import(`${route.lazyModule}`).then(mod => $ocLazyLoad.inject(mod.default.name))
-                            ]
-                        }
-                    });
-                });
-
-                $routeProvider.otherwise({redirectTo: '/'});
-            };
-
-            const configureToastr = () => {
-                angular.extend(toastrConfig, {
-                    timeOut: 5000,
-                    positionClass: 'toast-bottom-right',
-                    tapToDismiss: false,
-                    extendedTimeOut: 5000
-                });
-            }
-
-            init();
-        }
-    ])
+TT2PSModule.config(TT2PS)
     .filter('trustAsHtml', ['$translate', '$sce', ($translate, $sce) => (message) => $sce.trustAsHtml(decodeHTML(message))])
-    .filter('formatNumberToLocaleString', ['$translate', ($translate) => (number) => NumberUtils.formatNumberToLocaleString(number, $translate.use())]);;
+    .filter('formatNumberToLocaleString', ['$translate', ($translate) => (number) => NumberUtils.formatNumberToLocaleString(number, $translate.use())]);
+
+
+function TT2PS($httpProvider, $routeProvider, $locationProvider, $translateProvider) {
+    /**
+     * Initializes the configuration by setting routing and translations.
+     * Enables HTML5 routing and registers routes and translation settings.
+     */
+    const init = () => {
+        // Enables HTML5 mode for routing, removing the hashbang (#!) from URLs.
+        $locationProvider.html5Mode(true);
+        setupTranslation();
+        registerRoutes();
+        initInterceptors();
+    };
+
+    /**
+     * Configures the translation provider to load language files via HTTP from static JSON files.
+     */
+    const setupTranslation = () => {
+        $translateProvider.useStaticFilesLoader({
+            prefix: 'assets/i18n/',
+            suffix: '.json',
+        });
+
+        $translateProvider.preferredLanguage('en');
+        // Sets strategy to 'escape' to HTML-escape the translation values for security.
+        $translateProvider.useSanitizeValueStrategy('escape');
+    };
+
+    /**
+     * Registers application routes and sets up lazy-loaded modules.
+     */
+    const registerRoutes = () => {
+        routes.forEach(route => {
+            const template = require(`${route.template}`);
+            $routeProvider.when(route.path, {
+                template: template.default || template,
+                controller: route.controller,
+                resolve: {
+                    load: [
+                        '$ocLazyLoad',
+                        $ocLazyLoad => import(`${route.lazyModule}`).then(mod => $ocLazyLoad.inject(mod.default.name))
+                    ]
+                }
+            });
+        });
+
+        $routeProvider.otherwise({redirectTo: '/'});
+    };
+
+    const initInterceptors = () => {
+        $httpProvider.interceptors.push('UnauthorizedInterceptor');
+        $httpProvider.interceptors.push('AuthenticationInterceptor');
+    };
+
+    init();
+}
+
+TT2PSModule.run([
+    '$rootScope',
+    '$location',
+    '$q',
+    'SecurityService',
+    'SecurityContextService',
+    'AuthenticationService',
+    '$route',
+    function ($rootScope, $location, $q, SecurityService, SecurityContextService, AuthenticationService, $route) {
+
+        const unregisterRouteDisabling = $rootScope.$on('$routeChangeStart', (event, next, current) => {
+            event.preventDefault();
+        });
+
+        const setAuthenticatedUser = () => {
+            AuthenticationService.getActiveAccount()
+                .then((activeAccount) => {
+                    const user = new UserModel({
+                        username: activeAccount.username,
+                        name: activeAccount.name
+                    });
+                    SecurityContextService.updateAuthenticatedUser(user);
+                });
+        };
+
+        const setupSecurityConfiguration = () => {
+            return SecurityService.getConfiguration()
+                .then((securityConfiguration) => {
+                    SecurityContextService.updateSecurityConfiguration(securityConfiguration);
+                    return securityConfiguration;
+                });
+        };
+
+        const authenticateUser = (securityConfiguration) => {
+            return AuthenticationService.initialize(securityConfiguration)
+                .then(() => AuthenticationService.isAuthenticated())
+                .then((isAuthenticated) => !isAuthenticated ? $location.path('login') : setAuthenticatedUser());
+        };
+
+        const init = () => {
+            setupSecurityConfiguration()
+                .then((securityConfiguration) => securityConfiguration.enabled ? authenticateUser(securityConfiguration) : $q.resolve())
+                .catch((err) => {
+                    console.error('Failed to load security config:', err);
+                    SecurityContextService.updateSecurityConfiguration(new SecurityConfigurationModel());
+                })
+                .finally(() => {
+                    // After security configuration is ready, allow routing
+                    unregisterRouteDisabling();
+                    // Force route reload to apply registered routes
+                    $route.reload();
+                });
+        }
+
+        init();
+    }
+]);
 
 if (module.hot) {
     module.hot.accept();

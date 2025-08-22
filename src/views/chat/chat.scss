@@ -1,7 +1,14 @@
 .chat-view {
   height: 100%;
   width: 100%;
+  display: flex;
+
+  .chat-questions {
+    flex: 1 1 20.5%;
+  }
+
   chat-panel {
     height: 100%;
+    width: 100%;
   }
 }

@@ -183,4 +183,16 @@ export class ChatRestServiceFakeBackend {
         // return new Promise((resolve, reject) => setTimeout(() => reject({status: 422,}), ASK_DELAY));
         // return new Promise((resolve, reject) => setTimeout(() => reject({status: 425,}), ASK_DELAY));
     }
+
+    getConfiguration() {
+        const securityConfig = {
+            enabled: true,
+            clientId: '<client_id>',
+            authority: 'https://login.microsoftonline.com/<tenant_id>',
+            logout: 'https://login.microsoftonline.com/<tenant_id>/oauth2/logout',
+            loginRedirect: 'http://localhost:3000',
+            logoutRedirect: 'http://localhost:3000/login'
+        };
+        return new Promise((resolve) => setTimeout(() => resolve({data: securityConfig}), EXPLAIN_DELAY));
+    }
 }

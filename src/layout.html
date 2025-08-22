@@ -7,14 +7,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 </head>
     <body ng-controller="mainCtrl">
-        <div class="left-sidebar">
-            <img class="statnett-logo" src="images/statnett-logo-primary-green.svg" alt="Statnett company logo"/>
-            <chat-questions class="chat-questions"></chat-questions>
-        </div>
-        <main class="view-content" role="main">
-            <header>
-                <tt2ps-header></tt2ps-header>
-            </header>
+        <header>
+            <tt2ps-header></tt2ps-header>
+        </header>
+        <main class="view-content" role="main" ng-if="!logging">
             <div ng-view></div>
             <footer>
                 <!-- Footer content/component -->

@@ -9,7 +9,6 @@ import ChatItemDetailModule from '../chat-item-details/chat-item-detail.directiv
 import ChatQuestionListModule from "../chat-question-list/chat-question-list.directive";
 
 let modules = [
-    'toastr',
     ChatContextServiceModule.name,
     ChatItemDetailModule.name,
     ChatQuestionListModule.name
@@ -17,7 +16,7 @@ let modules = [
 const chatPanelModule = angular.module('tt2ps.components.chat.chat-panel', modules);
 chatPanelModule.directive('chatPanel', ChatPanelDirective);
 
-ChatPanelDirective.$inject = ['toastr', '$translate', 'ChatContextService'];
+ChatPanelDirective.$inject = ['$translate', 'ChatContextService'];
 
 /**
  * @ngdoc directive
@@ -29,7 +28,7 @@ ChatPanelDirective.$inject = ['toastr', '$translate', 'ChatContextService'];
  * @example
  * <chat-panel></chat-panel>
  */
-function ChatPanelDirective(toastr, $translate, ChatContextService) {
+function ChatPanelDirective($translate, ChatContextService) {
 
     return {
         template,

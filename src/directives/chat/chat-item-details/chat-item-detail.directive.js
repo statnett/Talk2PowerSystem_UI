@@ -16,7 +16,7 @@ const ChatItemDetailModule = angular
     .module('tt2ps.directives.chat.chat-item-detail', modules)
     .directive('chatItemDetail', ChatItemDetailDirective);
 
-ChatItemDetailDirective.$inject = ['toastr', '$translate', 'ChatContextService', 'ChatService', '$filter'];
+ChatItemDetailDirective.$inject = ['ToastrService', '$translate', 'ChatContextService', 'ChatService', '$filter'];
 
 /**
  * @ngdoc directive
@@ -90,9 +90,9 @@ function ChatItemDetailDirective(toastr, $translate, ChatContextService, ChatSer
                             if (error.status === 400) {
                                 ChatContextService.emit(ChatContextEventName.CONVERSATION_EXPIRED);
                             } else if (error.status === 422) {
-                                toastr.error($translate.instant('chat_panel.error.unprocessable_entity'));
+                                ToastrService.error($translate.instant('chat_panel.error.unprocessable_entity'));
                             } else {
-                                toastr.error($translate.instant('chat_panel.messages.explain_response_failure'));
+                                ToastrService.error($translate.instant('chat_panel.messages.explain_response_failure'));
                             }
                         })
                         .finally(() => $scope.loadingExplainResponse[messageId] = false);

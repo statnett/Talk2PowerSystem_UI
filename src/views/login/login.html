@@ -1,0 +1,32 @@
+<div class="login-container">
+    <div ng-if="isSecurityEnabled">
+        <div class="login-content" ng-if="authenticationState === 'AUTHENTICATED'">
+            <div class="title">{{ 'tt2ps.login.already_logged_in' | translate }}</div>
+            <p>{{ 'tt2ps.login.you_are_already_logged_in' | translate }}</p>
+            <div class="login-actions">
+                <a class="btn btn-primary" href="/">{{ 'tt2ps.login.go_to_chatbot' | translate }}</a>
+            </div>
+        </div>
+
+        <div class="login-content" ng-if="authenticationState === 'AUTHENTICATION_IN_PROGRESS'">
+            <div tt2ps-loader size="40"></div>
+        </div>
+
+        <div class="login-content" ng-if="authenticationState === 'NOT_AUTHENTICATED'">
+            <div class="title">{{ 'tt2ps.login.not_logged_in' | translate }}</div>
+            <p>{{ 'tt2ps.login.login_required' | translate }}</p>
+            <div class="login-actions">
+                <login-button></login-button>
+            </div>
+        </div>
+    </div>
+    <div ng-if="!isSecurityEnabled">
+        <div class="login-content">
+            <div class="title">{{ 'tt2ps.login.security_not_enabled' | translate }}</div>
+            <p>{{ 'tt2ps.login.security_not_enabled_description' | translate }}</p>
+            <div class="login-actions">
+                <a class="btn btn-primary" href="/">{{ 'tt2ps.login.go_to_chatbot' | translate }}</a>
+            </div>
+        </div>
+    </div>
+</div>

@@ -7,39 +7,15 @@ body {
   color: #373a3c;
 
   display: flex;
+  flex-direction: column;
   height: 100vh;
-
-  .left-sidebar {
-    flex: 1 1 20%;
-    max-width: 20rem;
-    padding: 1rem;
-
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 2rem;
-
-    .statnett-logo {
-      display: block;
-      max-height: 2rem;
-    }
-
-    .chat-questions {
-      flex: 1 1 auto;
-      overflow-y: auto;
-      background-color: var(--base-background-color);
-    }
-  }
-
-  header {
-    padding: 1rem;
-  }
 
   .view-content {
     flex: 1 1 80%;
     display: flex;
     flex-direction: column;
     min-width: 320px;
+    padding: 1rem;
 
     [ng-view] {
       max-height: 88vh;
@@ -52,6 +28,10 @@ body {
   pre,
   samp {
     font-family: var(--mono-font), serif;
+  }
+
+  .logging-message {
+    padding: 1rem;
   }
 
   .footer {
