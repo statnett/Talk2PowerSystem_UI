@@ -1,49 +1,61 @@
-body {
-  font-family: var(--main-font), serif;
-  font-weight: var(--main-font-weight);
+html, body {
+  height: 100%;
   margin: 0;
   padding: 0;
+}
+
+
+body {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  font-family: var(--main-font), serif;
+  font-weight: var(--main-font-weight);
   line-height: 1.5;
   color: #373a3c;
 
-  display: flex;
-  height: 100vh;
-
-  .left-sidebar {
-    flex: 1 1 20%;
-    max-width: 20rem;
-    padding: 1rem;
-
+  .page {
     display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 2rem;
+    flex: 1;
+    /*
+      important: allows children to shrink
+    */
+    min-height: 0;
 
-    .statnett-logo {
-      display: block;
-      max-height: 2rem;
+    .left-sidebar {
+      flex: 0 0 20%;
+      max-width: 20rem;
+      padding-top: 1rem;
+      display: flex;
+      flex-direction: column;
+      gap: 2rem;
+
+      .statnett-logo {
+        max-height: 2rem;
+      }
+
+      .chat-questions {
+        flex: 1;
+        overflow-y: auto;
+        background-color: var(--base-background-color);
+      }
     }
 
-    .chat-questions {
-      flex: 1 1 auto;
-      overflow-y: auto;
-      background-color: var(--base-background-color);
+    header {
+      padding: 1rem;
     }
-  }
 
-  header {
-    padding: 1rem;
-  }
+    .view-content {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      min-width: 320px;
 
-  .view-content {
-    flex: 1 1 80%;
-    display: flex;
-    flex-direction: column;
-    min-width: 320px;
-
-    [ng-view] {
-      max-height: 88vh;
-      height: 100%;
+      [ng-view] {
+        padding-bottom: 1rem;
+        flex: 1;
+        overflow-y: auto;
+      }
     }
   }
 
@@ -55,6 +67,13 @@ body {
   }
 
   .footer {
-    width: 100%;
+    /*
+      footer stays fixed
+    */
+    flex-shrink: 0;
+    padding: 0.75rem 1rem;
+    background: #f9f9f9;
+    border-top: 1px solid #ddd;
+    font-size: 0.85rem;
   }
 }
