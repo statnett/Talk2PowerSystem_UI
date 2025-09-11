@@ -7,18 +7,22 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 </head>
     <body ng-controller="mainCtrl">
-        <div class="left-sidebar">
-            <img class="statnett-logo" src="images/statnett-logo-primary-green.svg" alt="Statnett company logo"/>
-            <chat-questions class="chat-questions"></chat-questions>
+        <div class="page">
+            <div class="left-sidebar">
+                <img class="statnett-logo" src="images/statnett-logo-primary-green.svg" alt="Statnett company logo"/>
+                <chat-questions class="chat-questions"></chat-questions>
+            </div>
+            <main class="view-content" role="main">
+                <header>
+                    <tt2ps-header></tt2ps-header>
+                </header>
+                <div ng-view></div>
+            </main>
         </div>
-        <main class="view-content" role="main">
-            <header>
-                <tt2ps-header></tt2ps-header>
-            </header>
-            <div ng-view></div>
-            <footer>
-                <!-- Footer content/component -->
-            </footer>
-        </main>
+        <footer class="footer">
+            <div>
+                {{'tt2ps.footer.security_disclaimer' | translate}}
+            </div>
+        </footer>
     </body>
 </html>
