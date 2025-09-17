@@ -1,0 +1,12 @@
+<div ng-if="authenticatedUser" class="user-menu" ng-class="{'expanded': menuOpen}">
+    <div class="user-menu-toggle" ng-click="toggleMenu($event)">
+        <i class="user-icon fa-solid fa-user"></i>
+        <span class="username">{{authenticatedUser.username }}</span>
+        <i class="dropdown-icon fa-light fa-angle-down"></i>
+    </div>
+    <ul class="user-menu-dropdown" ng-if="menuOpen">
+        <li class="menu-item">
+            <logout-button></logout-button>
+        </li>
+    </ul>
+</div>

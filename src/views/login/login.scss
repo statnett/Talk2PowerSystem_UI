@@ -1,0 +1,23 @@
+.login-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 50vh;
+  padding: 20px;
+  text-align: center;
+
+  .login-content {
+    max-width: 500px;
+    width: 100%;
+
+    .title {
+      font-size: 2rem;
+    }
+  }
+
+  .login-actions {
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 20px;
+  }
+}

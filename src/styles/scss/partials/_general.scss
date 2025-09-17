@@ -22,27 +22,8 @@ body {
     */
     min-height: 0;
 
-    .left-sidebar {
-      flex: 0 0 20%;
-      max-width: 20rem;
-      padding-top: 1rem;
-      display: flex;
-      flex-direction: column;
-      gap: 2rem;
-
-      .statnett-logo {
-        max-height: 2rem;
-      }
-
-      .chat-questions {
-        flex: 1;
-        overflow-y: auto;
-        background-color: var(--base-background-color);
-      }
-    }
-
     header {
-      padding: 1rem;
+      padding-bottom: 1rem;
     }
 
     .view-content {

@@ -3,6 +3,30 @@
     "title": "Talk to Power System",
     "footer": {
       "security_disclaimer": "This is a demo version and we cannot guarantee the accuracy of results, nor the availability or security of the system. Please don't include any kind of sensitive data in your questions"
+    },
+    "login-errors": {
+      "popup_window_error": "Error opening popup window. This can happen if popups are blocked in your browser. <br>Please enable popups for this site and try again.",
+      "user_cancelled": "Sign-in was cancelled."
+    },
+    "login": {
+      "already_logged_in": "You are already signed in",
+      "you_are_already_logged_in": "You are authenticated and can use the chatbot.",
+      "go_to_chatbot": "Go to Chatbot",
+      "logout": "Sign out",
+      "not_logged_in": "You are not signed in",
+      "login_required": "Please sign in before using the Talk to Power System chatbot.",
+      "security_not_enabled": "Security is not enabled",
+      "security_not_enabled_description": "You can access the chatbot directly without signing in."
+    }
+  },
+  "header": {
+    "btn": {
+      "logout": {
+        "label": "Sign out"
+      },
+      "login": {
+        "label": "Sign in"
+      }
     }
   },
   "chat_panel": {
