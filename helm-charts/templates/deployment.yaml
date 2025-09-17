@@ -92,7 +92,7 @@ spec:
           {{- end }}
           volumeMounts:
             - name: {{ include "t2ps-chatbot.services.proxy.configuration" . }}
-              mountPath: /etc/nginx/conf.d/chatbot-services-proxy.conf
+              mountPath: /etc/nginx/includes/backend-proxy/chatbot-services-proxy.conf
               subPath: chatbot-services-proxy.conf
           {{- with .Values.extraVolumeMounts }}
             {{- toYaml . | nindent 12 }}
