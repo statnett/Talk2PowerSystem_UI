@@ -1,6 +1,7 @@
 // Delay for askQuestion()
 const ASK_DELAY = 2;
 const EXPLAIN_DELAY = 2;
+const CONFIGURATION_DELAY = 2;
 
 export class ChatRestServiceFakeBackend {
 
@@ -182,5 +183,17 @@ export class ChatRestServiceFakeBackend {
         // return new Promise((resolve, reject) => setTimeout(() => reject({status: 400,}), ASK_DELAY));
         // return new Promise((resolve, reject) => setTimeout(() => reject({status: 422,}), ASK_DELAY));
         // return new Promise((resolve, reject) => setTimeout(() => reject({status: 425,}), ASK_DELAY));
+    }
+
+    getConfiguration() {
+        const securityConfig = {
+            enabled: true,
+            clientId: '<client_id>',
+            authority: 'https://login.microsoftonline.com/<tenant_id>',
+            logout: 'https://login.microsoftonline.com/<tenant_id>/oauth2/logout',
+            loginRedirect: 'http://localhost:3000',
+            logoutRedirect: 'http://localhost:3000/login'
+        };
+        return new Promise((resolve) => setTimeout(() => resolve({data: securityConfig}), CONFIGURATION_DELAY));
     }
 }

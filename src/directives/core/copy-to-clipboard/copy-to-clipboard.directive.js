@@ -4,7 +4,7 @@ import template from './copy-to-clipboard.directive.html';
 const CopyToClipboardModule = angular.module('tt2ps.directives.core.copy-to-clipboard.copy-to-clipboard', []);
 CopyToClipboardModule.directive('copyToClipboard', CopyToClipboardDirective);
 
-CopyToClipboardDirective.$inject = ['$translate', 'toastr'];
+CopyToClipboardDirective.$inject = ['$translate', 'ToastrService'];
 
 /**
  * @ngdoc directive
@@ -45,7 +45,7 @@ CopyToClipboardDirective.$inject = ['$translate', 'toastr'];
  *   </copy-to-clipboard>
  * </div>
  */
-function CopyToClipboardDirective($translate, toastr) {
+function CopyToClipboardDirective($translate, ToastrService) {
     return {
         template,
         restrict: 'E',
@@ -101,7 +101,7 @@ function CopyToClipboardDirective($translate, toastr) {
                 if ($scope.customTooltipStyle) {
                     showCustomTooltip();
                 } else {
-                    toastr.success($translate.instant('copy_to_clipboard.messages.copied_to_clipboard'));
+                    ToastrService.success($translate.instant('copy_to_clipboard.messages.copied_to_clipboard'));
                 }
             }
 
