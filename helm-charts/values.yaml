@@ -121,6 +121,10 @@ configuration:
   backend:
     url: http://t2ps-chatbot-llm:8000
 
+  # The URL of the GraphDB instance. Should include context path as it is used for redirects.
+  graphdb:
+    url: http://my-domain.com/graphdb
+
 ##########################
 # Ingress Configurations #
 ##########################
