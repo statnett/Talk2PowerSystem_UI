@@ -22,6 +22,7 @@ import TT2PSLoaderModule from "./directives/core/tt2ps-loader/tt2ps-loader.direc
 import OpenInSparqlEditorModule from "./directives/core/open-in-sparql-editor/open-in-sparql-editor.directive";
 import UnauthorizedInterceptorModule from "./interceptors/unauthorized.interceptor";
 import AuthenticationInterceptorModule from "./interceptors/authentication.interceptor";
+import UserDatetimeHeaderInterceptor from './interceptors/user-datetime-header.interceptor';
 import SecurityServiceModule from "./services/security/security.service";
 import SecurityContextServiceModule from "./services/security/security-context.service";
 import {SecurityConfigurationModel} from "./models/security/security-configuration";
@@ -51,6 +52,7 @@ let dependencies = [
     OpenInSparqlEditorModule.name,
     UnauthorizedInterceptorModule.name,
     AuthenticationInterceptorModule.name,
+    UserDatetimeHeaderInterceptor.name,
     SecurityServiceModule.name,
     SecurityContextServiceModule.name,
     AuthenticationModule.name,
@@ -122,6 +124,7 @@ function TT2PS($httpProvider, $routeProvider, $locationProvider, $translateProvi
     const initInterceptors = () => {
         $httpProvider.interceptors.push('UnauthorizedInterceptor');
         $httpProvider.interceptors.push('AuthenticationInterceptor');
+        $httpProvider.interceptors.push('UserDatetimeInterceptor');
     };
 
     init();
@@ -137,7 +140,7 @@ TT2PSModule.run([
     '$route',
     function ($rootScope, $location, $q, SecurityService, SecurityContextService, AuthenticationService, $route) {
 
-        const unregisterRouteDisabling = $rootScope.$on('$routeChangeStart', (event, next, current) => {
+        const unregisterRouteDisabling = $rootScope.$on('$routeChangeStart', (event) => {
             event.preventDefault();
         });
 
