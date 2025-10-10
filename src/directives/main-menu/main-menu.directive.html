@@ -1,0 +1,18 @@
+<div class="main-menu">
+    <div class="toggle-buttons">
+        <button class="btn btn-link btn-open-menu fa-solid fa-chevron-right" ng-click="toggleMainMenu()"></button>
+        <button class="btn btn-link btn-close-menu btn-link fa-solid fa-chevron-left"
+                ng-click="toggleMainMenu()"></button>
+    </div>
+    <div class="menu-items">
+        <main-menu-item
+                class="menu-item"
+                ng-class="{'active': isActive(route.path)}"
+                ng-repeat="route in routes"
+                icon-class="{{route.iconClass}}"
+                label="{{'main_menu.btn.' + route.labelKey + '.label' | translate}}"
+                url="{{route.path}}">
+        </main-menu-item>
+
+    </div>
+</div>

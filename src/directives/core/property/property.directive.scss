@@ -1,0 +1,13 @@
+.property {
+  display: flex;
+  gap: 1rem;
+  margin: 1rem;
+
+  .label {
+    flex: 0 0 20%
+  }
+
+  .value {
+    flex: auto;
+  };
+}

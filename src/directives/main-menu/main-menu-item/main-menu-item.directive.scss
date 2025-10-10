@@ -1,0 +1,23 @@
+.main-menu-item {
+  text-decoration: none;
+  height: 100%;
+
+  i {
+    color: var(--primary-color);
+    font-size: 2.5rem;
+    width: 2.5rem;
+    vertical-align: middle;
+    text-align: center;
+    transform: scale(0.9);
+    display: inline-block;
+    transition: all 0.18s ease-out;
+    pointer-events: none;
+    padding-right: 0.5rem;
+  }
+
+  .label {
+    font-size: 1.1rem;
+    line-height: 2.5rem;
+    white-space: nowrap;
+  }
+}

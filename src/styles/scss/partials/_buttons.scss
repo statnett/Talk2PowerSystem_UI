@@ -16,7 +16,7 @@
   -moz-user-select: none;
   -ms-user-select: none;
   user-select: none;
-  border: 1px solid transparent;
+  border: none;
   padding: .5rem 1rem;
   font-size: 1rem;
   border-radius: 0;
@@ -43,7 +43,7 @@
 .btn-primary {
   background-color: var(--primary-color);
   border-color: var(--primary-color);
-  color: #fff;
+  color: var(--color-on-primary-background-color);
 }
 
 .btn-link,

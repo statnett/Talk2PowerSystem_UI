@@ -17,6 +17,139 @@
       "login_required": "Please sign in before using the Talk to Power System chatbot.",
       "security_not_enabled": "Security is not enabled",
       "security_not_enabled_description": "You can access the chatbot directly without signing in."
+    },
+    "components": {
+      "ontologies": {
+        "title": "Ontologies",
+        "table_headers": {
+          "ontology-name": "Ontology Name",
+          "version": "Version",
+          "last-update-date": "Last Update Date"
+        }
+      },
+      "datasets": {
+        "title": "Datasets",
+        "table_headers": {
+          "dataset-name": "Dataset Name",
+          "last-update-date": "Last Update Date"
+        }
+      },
+      "agent": {
+        "title": "Agent",
+        "property": {
+          "assistantInstructions": "Assistant Instructions",
+          "llm": {
+            "type": "Type",
+            "model": "Model",
+            "temperature": "Temperature",
+            "seed": "Seed"
+          },
+          "tools": {
+            "label": "Agent tools",
+            "enabled": "Enabled",
+            "sparql_query": {
+              "name": "SPARQL query"
+            },
+            "autocomplete_search": {
+              "name": "Autocomplete search",
+              "property_path": "Property Path",
+              "sparql_query_template": "SPARQL query template"
+            },
+            "sample_sparql_queries": {
+              "name": "Sample SPARQL Queries",
+              "sparql_query_template": "SPARQL query template",
+              "connector_name": "Connector name"
+            },
+            "retrieve_data_points": {
+              "name": "Retrieve data points",
+              "base_url": "Base URL",
+              "project": "Project",
+              "client_name": "Client name"
+            },
+            "retrieve_time_series": {
+              "name": "Retrieve time series",
+              "base_url": "Base URL",
+              "project": "Project",
+              "client_name": "Client name"
+            },
+            "now": {
+              "name": "Now"
+            }
+          }
+        }
+      },
+      "graphdb": {
+        "title": "GraphDB",
+        "property": {
+          "version": "Version",
+          "repository": "Repository",
+          "baseUrl": "Base URL",
+          "numberOfExplicitTriples": "Number of Explicit Triples",
+          "numberOfTriples": "Number of Triples",
+          "autocompleteIndexStatus": {
+            "label": "Autocomplete Status",
+            "ready": "Ready",
+            "none": "Index not built yet.",
+            "building": "Building...",
+            "canceled": "Index building was cancelled.",
+            "ready_config": "Indexing options have changed but they have not been applied yet."
+          },
+          "rdfRankStatus": {
+            "label": "RDF Rank Status",
+            "computed": "Computed",
+            "canceled": "Computation canceled",
+            "config-changed": "Configuration changed",
+            "outdated": "Outdated",
+            "computing": "Computing...",
+            "empty": "RDFRank not built yet"
+          }
+        }
+      },
+      "backend": {
+        "title": "Backend",
+        "property": {
+          "description": "Description",
+          "version": "Version",
+          "buildDate": "Build Date",
+          "buildBranch": "Build Branch",
+          "gitSHA": "Git SHA",
+          "pythonVersion": "Python Version",
+          "dependencies": {
+            "label": "Dependencies",
+            "table_headers": {
+              "package-name": "Dependency name"
+            }
+          }
+        }
+      },
+      "frontend": {
+        "title": "Frontend",
+        "property": {
+          "framework": {
+            "label": "Framework"
+          },
+          "project": {
+            "version": "Version"
+          },
+          "runtime": {
+            "label": "JavaScript runtime"
+          },
+          "dependencies": {
+            "label": "Dependencies",
+            "table_headers": {
+              "package-name": "Dependency name"
+            }
+          }
+        }
+      },
+      "dependencies": {
+        "table_headers": {
+          "version": "Version"
+        }
+      },
+      "software-versions": {
+        "title": "Software Versions"
+      }
     }
   },
   "header": {
@@ -26,6 +159,18 @@
       },
       "login": {
         "label": "Sign in"
+      }
+    }
+  },
+  "main_menu": {
+    "btn": {
+      "chatbot": {
+        "label": "Chatbot",
+        "tooltip": "Open Chatbot"
+      },
+      "components": {
+        "label": "Components",
+        "tooltip": "Open Components"
       }
     }
   },

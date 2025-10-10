@@ -1,0 +1,15 @@
+<table class="dependencies-table">
+    <thead>
+    <tr>
+        <th class="dependency-header">{{dependencyNameHeader}}</th>
+        <th class="dependency-header">{{'tt2ps.components.dependencies.table_headers.version' | translate}}</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr class="dependency" ng-repeat="dependency in listDependencies">
+        <td class="dependency-cell">{{ dependency.name }}</td>
+        <td class="dependency-cell">{{ dependency.version }}</td>
+    </tr>
+    </tbody>
+</table>
+

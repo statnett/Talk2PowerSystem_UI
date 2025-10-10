@@ -32,9 +32,23 @@ body {
       flex-direction: column;
       min-width: 320px;
 
-      [ng-view] {
+      .page-body {
         flex: 1;
-        overflow-y: auto;
+        overflow-y: hidden;
+        display: flex;
+        gap: 1rem;
+
+        .main-menu {
+          flex: 0;
+          overflow: hidden;
+        }
+
+        [ng-view] {
+          flex: auto;
+          overflow-x: auto;
+          overflow-y: auto;
+          min-width: 0;
+        }
       }
     }
   }

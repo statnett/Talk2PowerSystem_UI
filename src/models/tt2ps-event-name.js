@@ -1,6 +1,6 @@
 /**
  * Constants representing event names used in the TT2PS application.
- * These events can be emitted and listened to for reacting to changes in security and authentication state.
+ * These events can be emitted and listened to for reacting to changes in application state.
  */
 export const TT2PSEventName = {
     /**
@@ -17,4 +17,9 @@ export const TT2PSEventName = {
      * Emitted when the authentication state changes (e.g., from not authenticated to authenticated).
      */
     AUTHENTICATION_STATE_CHANGED: 'authenticationStateChanged',
+
+    /**
+     * Emitted when the components information has changed.
+     */
+    COMPONENTS_INFO_CHANGED: 'componentsInfoChanged'
 };

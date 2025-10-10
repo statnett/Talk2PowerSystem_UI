@@ -1,0 +1,101 @@
+<div class="graphdb" xmlns="http://www.w3.org/1999/html" xmlns="http://www.w3.org/1999/html">
+    <property-input label-key="tt2ps.components.graphdb.property.version"
+                    value="{{graphdb.version}}">
+    </property-input>
+
+    <property-input label-key="tt2ps.components.graphdb.property.repository"
+                    value="{{graphdb.repository}}">
+    </property-input>
+
+    <property-input label-key="tt2ps.components.graphdb.property.baseUrl"
+                    value="{{graphdb.baseUrl}}">
+    </property-input>
+
+    <property-input label-key="tt2ps.components.graphdb.property.numberOfExplicitTriples"
+                    value="{{graphdb.numberOfExplicitTriples}}">
+    </property-input>
+
+    <property-input label-key="tt2ps.components.graphdb.property.numberOfTriples"
+                    value="{{graphdb.numberOfTriples}}">
+    </property-input>
+
+    <!-- Autocomplete -->
+    <property-html ng-if="graphdb.autocompleteIndexStatus === 'READY_CONFIG'"
+                   label-key="tt2ps.components.graphdb.property.autocompleteIndexStatus.label"
+                   html="true"
+                   value="{{'<span class=\'tag tag-danger\'><i class=\'rdf-rank-status-icon fa fa-lg fa-circle-check\'></i>' + ('tt2ps.components.graphdb.property.autocompleteIndexStatus.ready_config' | translate) + '</span>'}}">
+    </property-html>
+
+    <property-html ng-if="graphdb.autocompleteIndexStatus.indexOf('READY') === 0"
+                   label-key="tt2ps.components.graphdb.property.autocompleteIndexStatus.label"
+                   html="true"
+                   value="{{'<span class=\'tag tag-success\'><i class=\'rdf-rank-status-icon fa fa-lg fa-circle-check\'></i>' + ('tt2ps.components.graphdb.property.autocompleteIndexStatus.ready' | translate) + '</span>'}}">
+    </property-html>
+
+    <property-html ng-if="graphdb.autocompleteIndexStatus.indexOf('ERROR') === 0"
+                   label-key="tt2ps.components.graphdb.property.autocompleteIndexStatus.label"
+                   html="true"
+                   value="{{'<span class=\'tag tag-danger\'><i class=\'rdf-rank-status-icon fa fa-lg fa-warning\'></i>' + graphdb.autocompleteIndexStatus + '</span>'}}">
+    </property-html>
+
+    <property-html ng-if="graphdb.autocompleteIndexStatus === 'NONE'"
+                   label-key="tt2ps.components.graphdb.property.autocompleteIndexStatus.label"
+                   html="true"
+                   value="{{'<span class=\'tag tag-danger\'><i class=\'rdf-rank-status-icon fa fa-lg fa-info-circle\'></i>' + ('tt2ps.components.graphdb.property.autocompleteIndexStatus.none' | translate) + '</span>'}}">
+    </property-html>
+
+    <property-html ng-if="graphdb.autocompleteIndexStatus === 'BUILDING'"
+                   label-key="tt2ps.components.graphdb.property.autocompleteIndexStatus.label"
+                   html="true"
+                   value="{{'<span class=\'tag tag-info\'><i class=\'rdf-rank-status-icon fa fa-lg fa-refresh fa-spin\'></i>' + ('tt2ps.components.graphdb.property.autocompleteIndexStatus.building' | translate) + '</span>'}}">
+    </property-html>
+
+    <property-html ng-if="graphdb.autocompleteIndexStatus === 'CANCELED'"
+                   label-key="tt2ps.components.graphdb.property.autocompleteIndexStatus.label"
+                   html="true"
+                   value="{{'<span class=\'tag tag-danger\'><i class=\'rdf-rank-status-icon fa fa-lg fa-warning\'></i>' + ('tt2ps.components.graphdb.property.autocompleteIndexStatus.canceled' | translate) + '</span>'}}">
+    </property-html>
+
+    <!-- RDF Rank -->
+    <property-html ng-if="graphdb.rdfRankStatus.indexOf('COMPUTED') === 0"
+                   label-key="tt2ps.components.graphdb.property.rdfRankStatus.label"
+                   html="true"
+                   value="{{'<span class=\'tag tag-success\'><i class=\'rdf-rank-status-icon fa fa-lg fa-circle-check\'></i>' + ('tt2ps.components.graphdb.property.rdfRankStatus.computed' | translate) + '</span>'}}">
+    </property-html>
+
+    <property-html ng-if="graphdb.rdfRankStatus.indexOf('ERROR') === 0"
+                   label-key="tt2ps.components.graphdb.property.rdfRankStatus.label"
+                   html="true"
+                   value="{{'<span class=\'tag tag-danger\'><i class=\'rdf-rank-status-icon fa fa-lg fa-warning\'></i>' + graphdb.rdfRankStatus + '</span>'}}">
+    </property-html>
+
+    <property-html ng-if="graphdb.rdfRankStatus === 'CANCELED'"
+                   label-key="tt2ps.components.graphdb.property.rdfRankStatus.label"
+                   html="true"
+                   value="{{'<span class=\'tag tag-danger\'><i class=\'rdf-rank-status-icon fa fa-lg fa-warning\'></i>' + ('tt2ps.components.graphdb.property.rdfRankStatus.canceled' | translate) + '</span>'}}">
+    </property-html>
+
+    <property-html ng-if="graphdb.rdfRankStatus === 'CONFIG_CHANGED'"
+                   label-key="tt2ps.components.graphdb.property.rdfRankStatus.label"
+                   html="true"
+                   value="{{'<span class=\'tag tag-danger\'><i class=\'rdf-rank-status-icon fa fa-lg fa-warning\'></i>' + ('tt2ps.components.graphdb.property.rdfRankStatus.config-changed' | translate) + '</span>'}}">
+    </property-html>
+
+    <property-html ng-if="graphdb.rdfRankStatus === 'OUTDATED'"
+                   label-key="tt2ps.components.graphdb.property.rdfRankStatus.label"
+                   html="true"
+                   value="{{'<span class=\'tag tag-danger\'><i class=\'rdf-rank-status-icon fa fa-lg fa-warning\'></i>' + ('tt2ps.components.graphdb.property.rdfRankStatus.outdated' | translate) + '</span>'}}">
+    </property-html>
+
+    <property-html ng-if="graphdb.rdfRankStatus === 'COMPUTING'"
+                   label-key="tt2ps.components.graphdb.property.rdfRankStatus.label"
+                   html="true"
+                   value="{{'<span class=\'tag tag-info\'><i class=\'rdf-rank-status-icon fa fa-lg fa-refresh fa-spin\'></i>' + ('tt2ps.components.graphdb.property.rdfRankStatus.computing' | translate) + '</span>'}}">
+    </property-html>
+
+    <property-html ng-if="graphdb.rdfRankStatus === 'EMPTY'"
+                   label-key="tt2ps.components.graphdb.property.rdfRankStatus.label"
+                   html="true"
+                   value="{{'<span class=\'tag tag-danger\'><i class=\'rdf-rank-status-icon fa fa-lg fa-info-circle\'></i>' + ('tt2ps.components.graphdb.property.rdfRankStatus.empty' | translate) + '</span>'}}">
+    </property-html>
+</div>

@@ -1,0 +1,17 @@
+<div class="frontend">
+    <property-input label-key="tt2ps.components.frontend.property.project.version"
+                    value="{{frontend.project.version}}"></property-input>
+
+    <property-input label-key="tt2ps.components.frontend.property.framework.label"
+                    value="{{frontend.framework.name}}"></property-input>
+
+    <property-input label-key="tt2ps.components.frontend.property.runtime.label"
+                    value="{{frontend.runtime.name}} {{frontend.runtime.version}}"></property-input>
+
+    <collapsible-fieldset fieldset-legend="{{'tt2ps.components.frontend.property.dependencies.label' | translate}}"
+                    collapsed="true">
+        <dependencies list-dependencies="frontend.dependencies"
+                      dependency-name-header="{{'tt2ps.components.frontend.property.dependencies.table_headers.package-name' | translate}}">
+        </dependencies>
+    </collapsible-fieldset>
+</div>

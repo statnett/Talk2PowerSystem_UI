@@ -73,6 +73,8 @@ This project is built using **AngularJS** (version 1.8.3), a structural framewor
 The source code is organized under the `src/` directory, alongside several key application-level files:
 
 ```
+scripts
+└── generate-project-info.js # Script that generates project-info
 src/
 ├── assets/                  # Static assets like images, fonts, icons, and data files
 │   └── data/
@@ -126,3 +128,21 @@ src/assets/data/questions.json
 ```
 
 This file contains a structured list of questions used within the `chat-questions` component. Make sure the format remains consistent when updating the content.
+
+## Project Info Generation
+### Overview
+The generate-porject-info.js script generates a project-info.js file that contains project metadata, framework and runtime information, and a list of all dependencies.
+The output is structured as an object and is imported and used in the application.
+
+### When to Run
+The script must be run whenever project dependencies change — for example:
+- After installing a new package;
+- After updating an existing dependency
+- After removing a dependency
+
+Running the script ensures that project-info.js reflects the exact versions used in the project.
+
+### How to Run
+```shell
+npm run generate-project-info
+```
