@@ -12,7 +12,9 @@ COPY . .
 ARG APP_CONTEXT_PATH
 
 # Updates dependencies and builds the app
-RUN npm clean-install && npm run build --env baseHref=${APP_CONTEXT_PATH}
+RUN npm clean-install && \
+    npm run generate-project-info && \
+    npm run build --env baseHref=${APP_CONTEXT_PATH}
 
 
 # Bundle up
@@ -25,6 +27,6 @@ ARG APP_CONTEXT_PATH
 COPY nginx/ /etc/nginx/
 
 # Apply context path to the proxy config
-RUN sed -i "s|{%APP_CTX_PATH%}|$APP_CONTEXT_PATH|g" /etc/nginx/conf.d/chatbot-ui.conf
+RUN sed -i "s|{%APP_CTX_PATH%}|$APP_CONTEXT_PATH|g" /etc/nginx/conf.d/default.conf
 
 COPY --from=build-stage /t2ps-chatbot-ui/dist/ /usr/share/nginx/html${APP_CONTEXT_PATH}
