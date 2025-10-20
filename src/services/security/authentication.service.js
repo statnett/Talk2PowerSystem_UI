@@ -140,19 +140,21 @@ function AuthenticationService($q, $rootScope, $location, $window, SecurityConte
      * @returns {angular.Promise<string>} Promise resolving with the access token.
      * @throws Will throw an error if no active account is available or token acquisition fails.
      */
-    const getAccessToken = () =>
+    const getIdToken = () =>
         wrapAsync(async () => {
             const account = msalInstance.getActiveAccount();
-            if (!account) throw new Error('No active account');
+            if (!account) {
+                throw new Error('No active account');
+            }
 
             const request = {account};
             try {
                 const res = await msalInstance.acquireTokenSilent(request);
-                return res.accessToken;
+                return res.idToken;
             } catch (err) {
                 if (err instanceof InteractionRequiredAuthError) {
                     const res = await msalInstance.acquireTokenPopup(request);
-                    return res.accessToken;
+                    return res.idToken;
                 }
                 throw err;
             }
@@ -218,7 +220,7 @@ function AuthenticationService($q, $rootScope, $location, $window, SecurityConte
         getActiveAccount,
         login,
         logout,
-        getAccessToken
+        getIdToken
     };
 }
 
