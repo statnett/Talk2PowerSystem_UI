@@ -16,7 +16,7 @@
     --tertiary-color-hue: 174.6;
     --tertiary-color-saturation: 97.7%;
     --tertiary-color-lightness: 33.5%;
-    --icon-on-primary-color: rgba(255, 255, 255, 0.8);
+    --color-on-primary-background-color: rgba(255, 255, 255, 0.8);
     --gray-color: #97999C;
     --gray-color-dark: #575757;
     --color-danger-dark: hsl(353, 78%, 36%);
@@ -31,7 +31,7 @@
     --color-danger-medium: hsl(353, 78%, 83%);
     --color-warning-medium: hsl(var(--primary-color-hue), var(--primary-color-saturation), 83%);
     --logo-color: var(--primary-color-light);
-    --logo-text-color: white;
+    --logo-text-color: var(--color-on-primary-background-color);
     --logo-background-color: var(--secondary-color-dark);
     --primary-color-hsl: var(--primary-color-hue), var(--primary-color-saturation), var(--primary-color-lightness);
     --primary-color: hsl(var(--primary-color-hsl));

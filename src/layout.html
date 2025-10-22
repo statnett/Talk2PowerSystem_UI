@@ -12,7 +12,10 @@
                 <header>
                     <tt2ps-header></tt2ps-header>
                 </header>
-                <div ng-view></div>
+                <div class="page-body">
+                    <main-menu ng-if="showMainMenu"></main-menu>
+                    <div ng-view></div>
+                </div>
             </main>
         </div>
         <footer class="footer">

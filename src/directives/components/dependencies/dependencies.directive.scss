@@ -1,0 +1,39 @@
+.dependencies-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-left: 1rem;
+
+  .dependency-header {
+    position: sticky;
+    top: 0;
+    background-color: #fff;
+    z-index: 2;
+    font-size: 1.1rem;
+    font-weight: 700;
+  }
+
+  .dependency-header,
+  .dependency-cell {
+    padding: 8px;
+    text-align: left;
+  }
+
+  .dependency {
+    &:hover {
+      background-color: rgba(0, 0, 0, .075);
+    }
+
+    .dependency-cell {
+      border-top: 1px solid #ddd;
+
+      .dependency-link {
+        text-decoration: none;
+        color: var(--secondary-color);
+      }
+    }
+  }
+
+  .dependency:nth-child(even) {
+    background-color: rgba(0, 0, 0, .05);
+  }
+}

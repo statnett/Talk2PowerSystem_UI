@@ -1,7 +1,7 @@
 .form-control {
   display: block;
   padding: .5rem .75rem;
-  font-size: 1rem;
+  font: inherit;
   line-height: 1.25;
   color: #55595c;
   background-color: #fff;
@@ -10,4 +10,11 @@
   background-clip: padding-box;
   border: 1px solid rgba(0, 0, 0, .15);
   border-radius: .25rem;
+}
+
+.form-control:focus {
+  color: #55595c;
+  background-color: #fff;
+  border-color: hsla(var(--secondary-color-hsl), 0.5);
+  outline: 0;
 }

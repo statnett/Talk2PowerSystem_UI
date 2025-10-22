@@ -1,0 +1,19 @@
+<table class="datasets-table">
+    <thead>
+    <tr>
+        <th class="dataset-header">{{'tt2ps.components.datasets.table_headers.dataset-name' | translate}}</th>
+        <th class="dataset-header">{{'tt2ps.components.datasets.table_headers.last-update-date' | translate}}</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr class="dataset" ng-repeat="dataset in datasets">
+        <td class="dataset-cell">
+            <a class="dataset-link"
+               href="graphdb/resource?uri={{dataset.uri}}"
+               tt2ps-tooltip="{{dataset.uri}}"
+               target="_blank">{{ dataset.name }}</a>
+        </td>
+        <td class="dataset-cell">{{ dataset.date }}</td>
+    </tr>
+    </tbody>
+</table>

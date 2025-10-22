@@ -1,0 +1,25 @@
+<div class="backend">
+    <property-input label-key="tt2ps.components.backend.property.description"
+                    value="{{backend.description}}"></property-input>
+
+    <property-input label-key="tt2ps.components.backend.property.version"
+                    value="{{backend.version}}"></property-input>
+
+    <property-input label-key="tt2ps.components.backend.property.buildDate"
+                    value="{{backend.buildDate}}"></property-input>
+
+    <property-input label-key="tt2ps.components.backend.property.buildBranch"
+                    value="{{backend.buildBranch}}"></property-input>
+
+    <property-input label-key="tt2ps.components.backend.property.gitSHA"
+                    value="{{backend.gitSHA}}"></property-input>
+
+    <property-input label-key="tt2ps.components.backend.property.pythonVersion"
+                    value="{{backend.pythonVersion}}"></property-input>
+
+    <collapsible-fieldset fieldset-legend="{{'tt2ps.components.backend.property.dependencies.label' | translate}}"
+                    collapsed="true">
+        <dependencies list-dependencies="backend.dependencies"
+                      dependency-name-header="{{'tt2ps.components.backend.property.dependencies.table_headers.package-name' | translate}}">
+    </collapsible-fieldset>
+</div>

@@ -1,0 +1,38 @@
+.ontologies-table {
+  width: 100%;
+  border-collapse: collapse;
+
+  .ontology-header {
+    position: sticky;
+    top: 0;
+    background-color: #fff;
+    z-index: 2;
+    font-size: 1.1rem;
+    font-weight: 700;
+  }
+
+  .ontology-header,
+  .ontology-cell {
+    padding: 8px;
+    text-align: left;
+  }
+
+  .ontology {
+    &:hover {
+      background-color: rgba(0, 0, 0, .075);
+    }
+
+    .ontology-cell {
+      border-top: 1px solid #ddd;
+
+      .ontology-link {
+        text-decoration: none;
+        color: var(--secondary-color);
+      }
+    }
+  }
+
+  .ontology:nth-child(even) {
+    background-color: rgba(0, 0, 0, .05);
+  }
+}

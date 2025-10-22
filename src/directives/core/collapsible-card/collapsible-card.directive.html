@@ -1,0 +1,7 @@
+<div class="collapsible-card">
+    <div class="card-header" ng-click="toggle()">
+        <i class="fa" ng-class="collapsed ? 'fa-chevron-right' : 'fa-chevron-down'"></i>
+        <div class="card-title">{{cardTitle}}</div>
+    </div>
+    <div class="card-body" ng-show="!collapsed" ng-transclude></div>
+</div>

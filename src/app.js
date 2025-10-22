@@ -29,6 +29,7 @@ import {SecurityConfigurationModel} from "./models/security/security-configurati
 import AuthenticationModule from "./services/security/authentication.service";
 import {UserModel} from "./models/security/user";
 import ToastrServiceModule from "./services/toast.service";
+import MainMenuModule from './directives/main-menu/main-menu.directive';
 
 // $translate.instant converts <b> from strings to &lt;b&gt
 // and $sce.trustAsHtml could not recognise that this is valid html
@@ -56,7 +57,8 @@ let dependencies = [
     SecurityServiceModule.name,
     SecurityContextServiceModule.name,
     AuthenticationModule.name,
-    ToastrServiceModule.name
+    ToastrServiceModule.name,
+    MainMenuModule.name,
 ];
 
 const TT2PSModule = angular.module('tt2ps', dependencies);

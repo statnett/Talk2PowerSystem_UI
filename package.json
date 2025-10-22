@@ -4,7 +4,8 @@
   "description": "The web application for Talk 2 Power System APIs",
   "scripts": {
     "start": "webpack serve --mode development --env baseHref=/",
-    "build": "webpack --mode production --env baseHref=/chat/"
+    "build": "webpack --mode production --env baseHref=/chat/",
+    "generate-project-info": "node scripts/generate-project-info.js"
   },
   "keywords": [],
   "author": "",

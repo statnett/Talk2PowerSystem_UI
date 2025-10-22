@@ -1,0 +1,21 @@
+<table class="ontologies-table">
+    <thead>
+    <tr>
+        <th class="ontology-header">{{'tt2ps.components.ontologies.table_headers.ontology-name' | translate}}</th>
+        <th class="ontology-header">{{'tt2ps.components.ontologies.table_headers.version' | translate}}</th>
+        <th class="ontology-header">{{'tt2ps.components.ontologies.table_headers.last-update-date' | translate}}</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr class="ontology" ng-repeat="ontology in ontologies">
+        <td class="ontology-cell">
+            <a class="ontology-link"
+               href="graphdb/resource?uri={{ontology.uri}}"
+               tt2ps-tooltip="{{ontology.uri}}"
+               target="_blank">{{ ontology.name }}</a>
+        </td>
+        <td class="ontology-cell">{{ ontology.version }}</td>
+        <td class="ontology-cell">{{ ontology.date }}</td>
+    </tr>
+    </tbody>
+</table>
