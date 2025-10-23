@@ -95,8 +95,11 @@ spec:
           {{- with .Values.extraEnvFrom }}
             {{- tpl (toYaml .) $ | nindent 12 }}
           {{- end }}
+          env:
+            - name: CONTEXT_PATH
+              value: {{ .Values.configuration.contextPath }}
           {{- with .Values.extraEnv }}
-          env: {{- tpl (toYaml .) $ | nindent 12 }}
+            {{- tpl (toYaml .) $ | nindent 12 }}
           {{- end }}
           volumeMounts:
             - name: nginx-cache
