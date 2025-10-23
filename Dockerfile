@@ -1,6 +1,3 @@
-# Variables in global scope
-ARG APP_CONTEXT_PATH=${APP_CONTEXT_PATH:-"/chat/"}
-
 # Intermediate stage used for application building
 FROM node:24-alpine AS build-stage
 
@@ -8,25 +5,23 @@ WORKDIR /t2ps-chatbot-ui/
 
 COPY . .
 
-# Consume into local stage scope
-ARG APP_CONTEXT_PATH
-
 # Updates dependencies and builds the app
 RUN npm clean-install && \
     npm run generate-project-info && \
-    npm run build --env baseHref=${APP_CONTEXT_PATH}
+    npm run build --env baseHref=/chat/
 
 
 # Bundle up
 FROM nginx:stable-alpine-slim
 
-# Consume into local stage scope
-ARG APP_CONTEXT_PATH
+# Setting default CONTEXT_PATH
+ENV CONTEXT_PATH=/chat/
 
-# Copy proxy config template
+# Copy proxy config templates
 COPY nginx/ /etc/nginx/
 
-# Apply context path to the proxy config
-RUN sed -i "s|{%APP_CTX_PATH%}|$APP_CONTEXT_PATH|g" /etc/nginx/conf.d/default.conf
+# Copy initialization scripts that will be executed during container startup
+COPY docker/scripts/ /docker-entrypoint.d/
+RUN chmod +x /docker-entrypoint.d/context-path-adapter.sh
 
-COPY --from=build-stage /t2ps-chatbot-ui/dist/ /usr/share/nginx/html${APP_CONTEXT_PATH}
+COPY --from=build-stage /t2ps-chatbot-ui/dist/ /usr/share/nginx/html/

@@ -2,10 +2,9 @@ server {
   listen 8080 default_server;
 
   # Serve static files
-  # The {%APP_CTX_PATH%} placeholder is handled within the Dockerfile
-  location {%APP_CTX_PATH%} {
+  location ${CONTEXT_PATH} {
     autoindex on;
-    root /usr/share/nginx/html;
+    alias /usr/share/nginx/html/;
     try_files $uri $uri/ /index.html;
   }
 
