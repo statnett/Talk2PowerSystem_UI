@@ -219,10 +219,39 @@ service:
 # Persistence Configurations #
 ##############################
 
+# Configurations for an emptyDir volume for a run folder in the container.
+# Because the default security context in .Values.securityContext configures the root filesystem to be in read-only
+# mode, certain Nginx features cannot create and write files in the run folder.
+runVolume:
+  # Toggles the mounting of the default run volume.
+  enabled: true
+
+  # Configurations for an emptyDir volume to be used for '/run'.
+  # Ref: https://kubernetes.io/docs/concepts/storage/ephemeral-volumes/
+  emptyDir:
+    # Default limit, override to your needs.
+    sizeLimit: 128Mi
+
+# Configurations for an emptyDir volume for a /nginx/conf.d folder in the container.
+# Because the default security context in .Values.securityContext configures the root filesystem to be in read-only
+# mode, certain Nginx features cannot create and write files in the conf.d folder.
+configVolume:
+  # Toggles the mounting of the default conf.d volume.
+  enabled: true
+
+  # Configurations for an emptyDir volume to be used for '/nginx/conf.d'.
+  # Ref: https://kubernetes.io/docs/concepts/storage/ephemeral-volumes/
+  emptyDir:
+    # Default limit, override to your needs.
+    sizeLimit: 128Mi
+
 # Configurations for an emptyDir volume for a cache folder in the container.
 # Because the default security context in .Values.securityContext configures the root filesystem to be in read-only
 # mode, certain Nginx features cannot create and write files in the cache folder.
 cacheVolume:
+  # Toggles the mounting of the default cache volume.
+  enabled: true
+
   # Configurations for an emptyDir volume to be used for '/var/cache/nginx'.
   # Ref: https://kubernetes.io/docs/concepts/storage/ephemeral-volumes/
   emptyDir:
