@@ -1,5 +1,6 @@
 import angular from 'angular';
 import ChatQuestionListModule from './directives/chat/chat-question-list/chat-question-list.directive';
+import {AuthenticationState} from './models/security/authentication-state';
 
 const dependencies = [ChatQuestionListModule.name];
 
@@ -7,9 +8,9 @@ const MainControllerModule = angular.module('tt2ps.controllers.mainCtrl', depend
 
 MainControllerModule.controller('mainCtrl', MainController);
 
-MainController.$inject = ['$scope', 'SecurityContextService'];
+MainController.$inject = ['$scope', '$location', 'SecurityContextService'];
 
-function MainController($scope, SecurityContextService) {
+function MainController($scope, $location, SecurityContextService) {
   // =========================
   // Public variables
   // =========================
@@ -57,6 +58,12 @@ function MainController($scope, SecurityContextService) {
     updateMainMenuVisibility();
   };
 
+  const onAuthenticationStateChanged = (newConfigurationState) => {
+    if (newConfigurationState === AuthenticationState.NOT_AUTHENTICATED) {
+      $location.path('/login');
+    }
+  };
+
   const updateMainMenuVisibility = () => {
     $scope.showMainMenu = securityConfig && (!securityConfig.enabled || authenticatedUser);
   }
@@ -73,6 +80,7 @@ function MainController($scope, SecurityContextService) {
   // =========================
   subscriptions.push(SecurityContextService.onSecurityConfigurationChanged(onSecurityConfigurationChanged));
   subscriptions.push(SecurityContextService.onAuthenticatedUserChanged(onAuthenticatedUserChanged));
+  subscriptions.push(SecurityContextService.onAuthenticationStateChanged(onAuthenticationStateChanged));
 
   // Deregister the watcher when the scope/directive is destroyed
   $scope.$on('$destroy', removeAllSubscribers);
