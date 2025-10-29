@@ -10,7 +10,7 @@
     <tr class="ontology" ng-repeat="ontology in ontologies">
         <td class="ontology-cell">
             <a class="ontology-link"
-               href="graphdb/resource?uri={{ontology.uri}}"
+               href="graphdb/resource?uri={{ ontology.uri | encodeURIComponent }}"
                tt2ps-tooltip="{{ontology.uri}}"
                target="_blank">{{ ontology.name }}</a>
         </td>
