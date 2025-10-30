@@ -5,7 +5,7 @@ server {
   location ${CONTEXT_PATH} {
     autoindex on;
     alias /usr/share/nginx/html/;
-    try_files $uri $uri/ /index.html;
+    try_files $uri $uri/ ${CONTEXT_PATH}index.html;
   }
 
   # Mocked response in order to avoid loading of JS and other files by hitting the root path
