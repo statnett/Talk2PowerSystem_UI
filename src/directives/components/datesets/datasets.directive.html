@@ -9,7 +9,7 @@
     <tr class="dataset" ng-repeat="dataset in datasets">
         <td class="dataset-cell">
             <a class="dataset-link"
-               href="graphdb/resource?uri={{dataset.uri}}"
+               href="graphdb/resource?uri={{ dataset.uri | encodeURIComponent }}"
                tt2ps-tooltip="{{dataset.uri}}"
                target="_blank">{{ dataset.name }}</a>
         </td>

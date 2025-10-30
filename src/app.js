@@ -72,7 +72,8 @@ TT2PSModule.$inject = [
 
 TT2PSModule.config(TT2PS)
     .filter('trustAsHtml', ['$translate', '$sce', ($translate, $sce) => (message) => $sce.trustAsHtml(decodeHTML(message))])
-    .filter('formatNumberToLocaleString', ['$translate', ($translate) => (number) => NumberUtils.formatNumberToLocaleString(number, $translate.use())]);
+    .filter('formatNumberToLocaleString', ['$translate', ($translate) => (number) => NumberUtils.formatNumberToLocaleString(number, $translate.use())])
+    .filter('encodeURIComponent', ()=> window.encodeURIComponent);
 
 
 function TT2PS($httpProvider, $routeProvider, $locationProvider, $translateProvider) {
