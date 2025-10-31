@@ -98,8 +98,8 @@ function AuthenticationService($q, $rootScope, $location, $window, SecurityConte
     const isAuthenticated = () => getActiveAccount().then(account => !!account);
 
     /**
-     * Logs in the user.
-     * Updates the SecurityContextService authentication state and shows toast errors if login fails.
+     * Logs in the user. Updates the SecurityContextService authentication state. Since logout is performed locally only
+     * (without ending the Entra ID session), login will always prompt the user for credentials.
      *
      * @returns {angular.Promise<Object>} Promise resolving with the authenticated account.
      * @throws Will throw an error if login fails.
@@ -110,13 +110,15 @@ function AuthenticationService($q, $rootScope, $location, $window, SecurityConte
             cleanStorage();
             await msalInstance.loginRedirect({
                 scopes: [...OIDC_SCOPES],
+                prompt: "login",
                 redirectStartPage: _securityConfiguration.loginRedirect
             });
             return msalInstance.getActiveAccount();
         });
 
     /**
-     * Logs out the currently active user.
+     * Logouts locally only, as described in MSAL docs: skipping the server sign‑out
+     * (https://github.com/AzureAD/microsoft-authentication-library-for-js/blob/dev/lib/msal-browser/docs/logout.md#skipping-the-server-sign-out)
      *
      * @returns {angular.Promise<void>} Promise resolving when logout completes.
      */
@@ -126,11 +128,15 @@ function AuthenticationService($q, $rootScope, $location, $window, SecurityConte
             if (account) {
                 await msalInstance.logoutRedirect({
                     account,
-                    postLogoutRedirectUri: _securityConfiguration.loginRedirect
+                    onRedirectNavigate: (url) => {
+                        // Return false so the navigation (and thus server-side logout) is skipped
+                        return false;
+                    }
                 });
             }
             SecurityContextService.updateAuthenticationState(AuthenticationState.NOT_AUTHENTICATED);
-            msalInstance = null;
+            SecurityContextService.updateAuthenticatedUser(undefined);
+            msalInstance.setActiveAccount(null);
             cleanStorage();
         });
 
