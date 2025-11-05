@@ -1,5 +1,16 @@
+# Trims the trailing slash from the context path and sets it to a variable
+map "${CONTEXT_PATH}" $context_path_trimmed {
+  default "_default-value_";
+  "~(.+)/$" $1;
+}
+
 server {
   listen 8080 default_server;
+
+  # Handles missing trailing slash at the end of the application root path
+  if ($context_path_trimmed = $uri) {
+    rewrite ^ ${CONTEXT_PATH} permanent;
+  }
 
   # Serve static files
   location ${CONTEXT_PATH} {
