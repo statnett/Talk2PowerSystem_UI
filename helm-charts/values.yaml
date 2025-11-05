@@ -268,6 +268,11 @@ cacheVolume:
 podSecurityContext:
   runAsNonRoot: true
 
+# Defines privilege and access control settings for the init containers, pre-configuring the application.
+# When not provided, the securityContext below will be used instead.
+# See https://kubernetes.io/docs/tasks/configure-pod-container/security-context/#set-the-security-context-for-a-container
+initContainerSecurityContext: {}
+
 # Defines privilege and access control settings for the container running the application.
 # Values are processed as Helm templates.
 # See https://kubernetes.io/docs/tasks/configure-pod-container/security-context/#set-the-security-context-for-a-container

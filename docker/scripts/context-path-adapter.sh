@@ -11,6 +11,11 @@ if [ "/chat/" == "$CONTEXT_PATH" ]; then
   exit 0
 fi
 
+if [ $(echo -n $CONTEXT_PATH | tail -c 1) != "/" ]; then
+  log "The value of CONTEXT_PATH variable should end with (/) slash! The current value is: $CONTEXT_PATH"
+  exit 1
+fi
+
 INDEX_FILE=/usr/share/nginx/html/index.html
 CSS_BUNDLE=/usr/share/nginx/html/main.*.css
 

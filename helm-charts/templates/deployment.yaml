@@ -66,6 +66,8 @@ spec:
         - name: {{ include "t2ps-chatbot.services.proxy.configuration" . }}
           configMap:
             name: {{ include "t2ps-chatbot.services.proxy.configuration" . }}
+        - name: chatbot-ui-dist
+          emptyDir: {}
       {{- with .Values.extraVolumes }}
         {{- tpl (toYaml .) $ | nindent 8 }}
       {{- end }}
@@ -81,8 +83,20 @@ spec:
       {{- with .Values.podSecurityContext }}
       securityContext: {{- toYaml . | nindent 8 }}
       {{- end }}
-      {{- with .Values.extraInitContainers }}
       initContainers:
+        - name: copy-chatbot-ui-dist-to-writable-mount
+          image: '{{ include "t2ps-chatbot-ui.image" . }}'
+          imagePullPolicy: '{{ .Values.image.pullPolicy }}'
+          {{- with (default .Values.securityContext .Values.initContainerSecurityContext) }}
+          securityContext: {{- toYaml . | nindent 12 }}
+          {{- end }}
+          volumeMounts:
+            - name: chatbot-ui-dist
+              mountPath: /tmp/usr/share/nginx/
+          command: ["/bin/sh", "-c"]
+          args:
+            - cp -a /usr/share/nginx/. /tmp/usr/share/nginx/
+      {{- with .Values.extraInitContainers }}
         {{- tpl (toYaml .) $ | nindent 8 }}
       {{- end }}
       containers:
@@ -128,6 +142,8 @@ spec:
             - name: {{ include "t2ps-chatbot.services.proxy.configuration" . }}
               mountPath: /etc/nginx/includes/backend-proxy/chatbot-services-proxy.conf
               subPath: chatbot-services-proxy.conf
+            - name: chatbot-ui-dist
+              mountPath: /usr/share/nginx/
           {{- with .Values.extraVolumeMounts }}
             {{- toYaml . | nindent 12 }}
           {{- end }}
