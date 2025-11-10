@@ -9,7 +9,7 @@ server {
 
   # Handles missing trailing slash at the end of the application root path
   if ($context_path_trimmed = $uri) {
-    rewrite ^ ${CONTEXT_PATH} permanent;
+    return 301 $scheme://$host${CONTEXT_PATH};
   }
 
   # Serve static files
