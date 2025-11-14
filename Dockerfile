@@ -1,5 +1,5 @@
 # Intermediate stage used for application building
-FROM node:24-alpine AS build-stage
+FROM node:22-alpine AS build-stage
 
 WORKDIR /t2ps-chatbot-ui/
 
