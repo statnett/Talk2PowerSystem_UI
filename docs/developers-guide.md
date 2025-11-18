@@ -127,7 +127,7 @@ The left-side panel displays context-sensitive questions that are loaded from:
 src/assets/data/questions.json
 ```
 
-This file contains a structured list of questions used within the `chat-questions` component. Make sure the format remains consistent when updating the content.
+This file contains a structured list of questions used within the `questions` component. Make sure the format remains consistent when updating the content.
 
 ## Project Info Generation
 ### Overview

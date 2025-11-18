@@ -2,10 +2,37 @@
 	Variables
 -------------------------------------------------------------*/
 :root {
-    --main-font: 'Roboto', 'Helvetica Neue', Arial, sans-serif;
-    --main-font-weight: 300;
+
+    --main-font: 'Inter', 'Roboto', 'Helvetica Neue', Arial, sans-serif;
+    --main-font-weight: 400;
     --mono-font: 'JetBrains Mono', Menlo, Consolas, 'Ubuntu Mono', monospace;
-    --fa-style: 400;
+    --base-line-height: 22px;
+
+    --gw-body-background: #ffffff;
+    --gw-body-color: #000000;
+    --gw-primary-color: #001FFF;
+    --gw-main-primary-background: #F7F8FA;
+
+    /* Primary button */
+    --gw-button-primary-active-background: var(--gw-primary-color);
+    --gw-button-primary-active-color: #FFFFFF;
+    --gw-button-primary-background: #FFFFFF;
+    --gw-button-primary-color: #111928;
+    --gw-button-primary-icon-color: #001FFF;
+
+    /* main-menu */
+    --gw-menuitem-question-color: #1F2A37;
+    --gw-menuitem-hover-background: rgba(0, 31, 255, 0.05);
+    --gw-menuitem-group-selected-background: #F7F8FA;
+    --menuitem-active-color: #1D4ED8;
+    --menuitem-active-background: #EFF6FF;
+
+    --gw-main-primary-text:  #111928;
+    --gw-main-secondary-text: #3B5C7F;
+    --divider-color:  rgba(0, 0, 0, 0.15);
+
+    --border-radius-sm: 4px;
+    --border-radius-big: 8px;
 
     --primary-color-hue: 13.4;
     --primary-color-saturation: 87.9%;

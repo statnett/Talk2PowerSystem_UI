@@ -70,6 +70,9 @@ module.exports = (env, argv) => {
                     generator: {
                         filename: 'images/[name][ext][query]'
                 }
+                },{
+                    test: /\.ya?ml$/,
+                    use: 'yaml-loader'
                 },
             ],
         },

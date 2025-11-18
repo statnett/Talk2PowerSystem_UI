@@ -1,7 +1,6 @@
 import {cloneDeep} from 'lodash';
 import EventEmitterModule from '../../services/event-emitter.service'
 import {ChatContextEventName} from "./chat-context-event-name";
-import {ChatQuestionListModel} from "../../models/chat/chat-question-list";
 
 const ChatContextServiceModule = angular
     .module('tt2ps.services.chat.chats-context', [EventEmitterModule.name]);
@@ -27,42 +26,6 @@ function ChatContextService(EventEmitterService) {
      * @type {{[key: string]: ExplainResponseModel}}
      */
     let _explainCache = {};
-
-    /**
-     * @type {ChatQuestionListModel}
-     */
-    let _chatQuestions = new ChatQuestionListModel();
-
-    /**
-     * @return {ChatQuestionListModel}
-     */
-    const getChatQuestions = () => {
-        return cloneDeep(_chatQuestions);
-    };
-
-    /**
-     * Sets the chat questions with the provided <code>chatQuestions</code> and emits the 'chatQuestionsChanged' event
-     * to notify listeners that the chat questions are changed.
-     *
-     * @param {ChatQuestionListModel} chatQuestions - The chat questions.
-     */
-    const setChatQuestions = (chatQuestions) => {
-        _chatQuestions = cloneDeep(chatQuestions);
-        emit(ChatContextEventName.CHAT_QUESTION_CHANGED, getChatQuestions());
-    };
-
-    /**
-     * Subscribes to the 'chatQuestionsChanged' event.
-     * @param {function} callback - The callback to be called when the event is fired.
-     *
-     * @return {function} unsubscribe function.
-     */
-    const onChatQuestionsChanged = (callback) => {
-        if (angular.isFunction(callback)) {
-            callback(getChatQuestions());
-        }
-        return subscribe(ChatContextEventName.CHAT_QUESTION_CHANGED, (selectedChat) => callback(selectedChat));
-    };
 
     /**
      * @return {ChatModel}
@@ -226,10 +189,6 @@ function ChatContextService(EventEmitterService) {
         getExplainResponse,
         addExplainResponseCache,
         onExplainResponseCacheUpdated,
-        // chat questions
-        getChatQuestions,
-        setChatQuestions,
-        onChatQuestionsChanged
     };
 }
 

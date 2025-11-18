@@ -3,33 +3,6 @@
   width: 100%;
   display: flex;
 
-  .left-sidebar {
-    flex: 0 0 20.5%;
-    display: flex;
-    flex-direction: column;
-    background-color: var(--base-background-color);
-
-    .chat-questions {
-      flex: 1;
-      overflow-y: auto;
-
-      .question-list {
-        padding-top: 0;
-        padding-bottom: 0;
-      }
-    }
-
-    .security-disclaimer {
-      flex: 0;
-      text-align: justify;
-      font-size: 0.8rem;
-      border-top: 1px solid #ddd;
-      padding: 0.5rem;
-      opacity: 0.8;
-      text-indent: 1em;
-    }
-  }
-
   chat-panel {
     flex: 1;
     height: 100%;

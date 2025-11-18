@@ -10,7 +10,6 @@ ChatRestService.$inject = ['$http'];
 
 const CONVERSATIONS_ENDPOINT = 'rest/chat/conversations';
 const EXPLAIN_RESPONSE_ENDPOINT = `${CONVERSATIONS_ENDPOINT}/explain`;
-const LOAD_QUESTIONS_ENDPOINT = 'assets/data/questions.json';
 
 function ChatRestService($http) {
 
@@ -73,16 +72,11 @@ function ChatRestService($http) {
         return $http.post(EXPLAIN_RESPONSE_ENDPOINT, data);
     };
 
-    const getChatQuestions = () => {
-        return $http.get(LOAD_QUESTIONS_ENDPOINT);
-    };
-
     return {
         createConversation,
         askQuestion,
         continueChatRun,
-        explainResponse,
-        getChatQuestions
+        explainResponse
     };
 }
 

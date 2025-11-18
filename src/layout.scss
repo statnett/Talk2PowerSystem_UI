@@ -1,0 +1,145 @@
+.layout {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+
+  .page {
+    flex: 1 1 auto;
+    display: flex;
+    min-height: 0;
+    min-width: 0;
+
+    .left-sidebar-wrapper {
+      position: fixed;
+      height: 100%;
+      z-index: 10;
+      .logo {
+        .logo-small {
+          display: none;
+        }
+      }
+    }
+
+    .left-sidebar-wrapper.collapsed {
+      .logo {
+        .logo-small {
+          display: inline-block;
+        }
+
+        .logo-big {
+          display: none;
+        }
+      }
+
+      .questions .question-categories,
+      .questions .label,
+      .security-disclaimer,
+      .main-menu-item .label {
+        display: none;
+      }
+    }
+
+    .sidebar-toggle-btn {
+      box-shadow: 4px 2px 4px -2px rgba(34, 15, 96, 0.06), 6px 4px 8px -2px rgba(34, 15, 96, 0.10);
+      position: fixed;
+      top: 1.4rem;
+      transition: left 0.25s ease, opacity 0.2s ease;
+      z-index: 9999;
+      opacity: 0;
+      pointer-events: none;
+    }
+
+    .sidebar-toggle-btn.visible {
+      opacity: 1;
+      pointer-events: auto;
+    }
+
+    .sidebar-toggle-btn button {
+      background-color: var(--gw-body-background);
+      border: none;
+      border-top-right-radius: 0.5rem;
+      border-bottom-right-radius: 0.5rem;
+      color: var(--gw-main-primary-text) !important;
+      padding: 1rem 0.5rem 1rem 0.5rem;
+      cursor: pointer;
+
+      .toggle-btn {
+        display: inline-block;
+      }
+    }
+
+    .sidebar-toggle-btn button:hover .toggle-btn {
+      transform: scale(1.2);
+    }
+  }
+
+  .view-content {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    /* allow children to scroll */
+    min-height: 0;
+    min-width: 0;
+    background-color: var(--gw-main-primary-background);
+
+    /* Header stays fixed at top inside main */
+    tt2ps-header {
+      display: block;
+      height: 60px;
+      flex-shrink: 0;
+    }
+
+    .page-body {
+      flex: 1 1 auto;
+      /* required for scroll child */
+      min-height: 0;
+      min-width: 0;
+      /* prevent unwanted scrolling */
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+
+      [ng-view] {
+        flex: 1 1 auto;
+        overflow-y: auto;
+        /* critical for scroll */
+        min-height: 0;
+        min-width: 0;
+      }
+    }
+  }
+}
+
+@media (max-width: 768px) {
+
+  .left-sidebar-wrapper {
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    z-index: 9998;
+    width: 0;
+    transition: width 0.25s ease;
+  }
+
+  .left-sidebar-wrapper.expanded {
+    /* match $scope.widths.expanded */
+    width: 20rem !important;
+  }
+
+  .left-sidebar-wrapper.collapsed {
+    width: 0 !important;
+  }
+
+  /* content should never shift on mobile */
+  .page-body {
+    margin-left: 0 !important;
+  }
+
+  /* show toggle button always on mobile */
+  .sidebar-toggle-btn {
+    opacity: 1 !important;
+    pointer-events: auto !important;
+    left: 0.5rem !important;
+  }
+}

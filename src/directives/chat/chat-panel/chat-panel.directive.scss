@@ -12,7 +12,6 @@
 
   .chat-panel-content {
     width: 96%;
-
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -62,18 +61,32 @@
       }
     }
 
-    .messages-hint {
-      text-align: center;
+    .brand-hint {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 4rem;
 
-      .hint {
-        font-size: 2rem;
+      .brands {
+        display: flex;
+        gap: 1rem;
+        align-items: flex-start;
+
+        img {
+          max-width: 14rem;
+        }
+      }
+
+      .messages-hint {
+        color: var(--gw-main-primary-text);
       }
     }
 
     .new-question {
       width: 100%;
-      padding-top: 3rem;
+      padding-top: 1.5rem;
       padding-bottom: 0.8rem;
+      align-self: center;
 
       .form-control {
         display: flex;
@@ -86,6 +99,10 @@
         display: flex;
         flex-direction: row;
         justify-content: space-between;
+
+        .ask-button {
+          border-radius: var(--border-radius-sm);
+        }
       }
 
       .question-input {

@@ -196,6 +196,6 @@ export class ChatRestServiceFakeBackend {
             loginRedirect: 'http://localhost:3000',
             logoutRedirect: 'http://localhost:3000/login'
         };
-        return new Promise((resolve) => setTimeout(() => resolve({data: securityConfig}), CONFIGURATION_DELAY));
+        return new Promise((resolve) => setTimeout(() => resolve({data: securityConfig}), EXPLAIN_DELAY));
     }
 }

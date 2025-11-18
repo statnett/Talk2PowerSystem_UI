@@ -6,17 +6,22 @@ import {ChatMessageModel} from '../../../models/chat/chat-message';
 import ChatContextServiceModule from '../../../services/chat/chat-context.service';
 import {ChatContextEventName} from '../../../services/chat/chat-context-event-name';
 import ChatItemDetailModule from '../chat-item-details/chat-item-detail.directive';
-import ChatQuestionListModule from "../chat-question-list/chat-question-list.directive";
+import QuestionListModule from "../../question-list/question-list.directive";
+import {
+    QuestionContextEventName as QuestionsContextEventName
+} from '../../../services/questions/question-context-event-name';
+import QuestionsContextServiceModule from '../../../services/questions/question-context.service';
 
 let modules = [
     ChatContextServiceModule.name,
     ChatItemDetailModule.name,
-    ChatQuestionListModule.name
+    QuestionListModule.name,
+    QuestionsContextServiceModule.name
 ];
 const chatPanelModule = angular.module('tt2ps.components.chat.chat-panel', modules);
 chatPanelModule.directive('chatPanel', ChatPanelDirective);
 
-ChatPanelDirective.$inject = ['$translate', 'ChatContextService'];
+ChatPanelDirective.$inject = ['$translate', 'ChatContextService', 'QuestionsContextService'];
 
 /**
  * @ngdoc directive
@@ -28,7 +33,7 @@ ChatPanelDirective.$inject = ['$translate', 'ChatContextService'];
  * @example
  * <chat-panel></chat-panel>
  */
-function ChatPanelDirective($translate, ChatContextService) {
+function ChatPanelDirective($translate, ChatContextService, QuestionsContextService) {
 
     return {
         template,
@@ -153,8 +158,8 @@ function ChatPanelDirective($translate, ChatContextService) {
                 $scope.waitingForLastMessage = false;
             };
 
-            const onSelectChatQuestion = (chatQuestion) => {
-                $scope.chatItem.question.message = chatQuestion;
+            const onSelectQuestion = (question) => {
+                $scope.chatItem.question.message = question;
             }
 
             const getEmptyChatItem = () => {
@@ -214,7 +219,7 @@ function ChatPanelDirective($translate, ChatContextService) {
             subscriptions.push(ChatContextService.onSelectedChatUpdated(onSelectedChatUpdated));
             subscriptions.push(ChatContextService.subscribe(ChatContextEventName.ASK_QUESTION_FAILURE, onQuestionFailure));
             subscriptions.push(ChatContextService.subscribe(ChatContextEventName.CREATE_CHAT_FAILURE, onQuestionFailure));
-            subscriptions.push(ChatContextService.subscribe(ChatContextEventName.SELECT_CHAT_QUESTION, onSelectChatQuestion));
+            subscriptions.push(QuestionsContextService.subscribe(QuestionsContextEventName.SELECT_QUESTION, onSelectQuestion));
 
             // Deregister the watcher when the scope/directive is destroyed
             $scope.$on('$destroy', removeAllSubscribers);

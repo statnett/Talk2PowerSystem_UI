@@ -1,17 +1,6 @@
 .header {
   display: flex;
-  justify-content: space-between;
-
-  .statnett-logo {
-    display: block;
-    max-height: 2rem;
-    padding-top: 1rem;
-    padding-left: 1rem;
-  }
-
-  .title {
-    padding-top: 1rem;
-  }
+  justify-content: end;
 
   .right-menu {
     min-width: 100px;

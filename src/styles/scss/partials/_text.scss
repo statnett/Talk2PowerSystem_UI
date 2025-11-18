@@ -16,7 +16,7 @@
 }
 
 .text-primary {
-  color: var(--primary-color) !important;
+  color: var(--gw-main-primary-text) !important;
 }
 
 .text-secondary {
@@ -25,10 +25,6 @@
 
 .text-tertiary {
   color: var(--tertiary-color-dark) !important;
-}
-
-.text-info {
-  color: var(--tertiary-color) !important;
 }
 
 .text-danger {

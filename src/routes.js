@@ -5,14 +5,14 @@ export default [
         template: './views/chat/chat.html',
         lazyModule: './views/chat/chat.controller.js',
         labelKey: 'chatbot',
-        iconClass: 'fa-message-bot',
+        iconClass: 'ri-robot-2-line ri-xl',
     }, {
         path: '/components',
         controller: 'componentsCtrl',
         template: './views/components/components.html',
         lazyModule: './views/components/components.controller.js',
         labelKey: 'components',
-        iconClass: 'fa-info-circle',
+        iconClass: 'ri-apps-2-line ri-xl',
     }, {
         path: '/login',
         controller: 'loginCtrl',

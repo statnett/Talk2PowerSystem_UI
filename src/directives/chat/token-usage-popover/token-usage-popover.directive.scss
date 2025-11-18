@@ -2,13 +2,8 @@
   padding: 1rem;
   max-width: 500px;
   color: var(--text-color);
-  font-size: 1rem;
   margin-left: 0.7em;
   font-weight: 600;
-
-  h4 {
-    font-size: 1.7rem;
-  }
 
   .title {
     margin-bottom: .5em;
@@ -21,6 +16,6 @@
   }
 
   .token-info-number {
-    color: var(--primary-color);
+    color: var(--gw-primary-color);
   }
 }

@@ -8,7 +8,7 @@
     <div class="answers" ng-repeat="answer in chatItemDetail.answers">
         <div class="assistant">
             <div class="assistant-icon alert-help">
-                <i class="fa fa-lg fa-message-bot"></i>
+                <i class="ri-robot-2-line ri-1x"></i>
             </div>
             <div class="assistant-message">
                 <markdown-content class="answer" content="{{answer.message}}" options="markdownContentOptions"></markdown-content>
@@ -17,7 +17,7 @@
                             ng-click="regenerateQuestion()"
                             ng-disabled="disabled"
                             tt2ps-tooltip="{{'chat_panel.btn.regenerate.tooltip' | translate}}">
-                        <i class="fa fa-arrows-rotate"></i>
+                        <i class="ri-refresh-line ri-1x"></i>
                     </button>
                     <copy-to-clipboard tooltip-text="chat_panel.btn.copy_answer.tooltip"
                                        text-to-copy="{{answer.message}}">
@@ -26,15 +26,15 @@
                          class="btn btn-link btn-sm token-usage-info-btn"
                          ng-click="onTokenUsageInfo($event)"
                             tokens-usage-info tokens-data="answer.tokenUsageInfo">
-                        <i class="fa fa-coin-blank"></i>
+                        <i class="ri-coin-line ri-1x"></i>
                     </button>
                     <button class="btn btn-link btn-link-only-icons btn-sm explain-response-btn"
                             ng-click="explainResponse(answer.id)"
                             ng-disabled="disabled && !explainResponseModel[answer.id]"
                             tt2ps-tooltip="{{'chat_panel.btn.explain_response.tooltip' | translate}}">
-                        <i class="fa fa-wand-magic-sparkles"></i>
-                        <i class="fa fa-chevron-up toggle-explain-response-icon"
-                           ng-class="{expanded: explainResponseModel[answer.id] && explainResponseModel[answer.id].expanded}"></i>
+                        <i class="ri-sparkling-line ri-1x"></i>
+                        <i class="ri-sm toggle-explain-response-icon"
+                           ng-class="explainResponseModel[answer.id] && explainResponseModel[answer.id].expanded ? 'ri-arrow-up-s-line' : 'ri-arrow-down-s-line'"></i>
                     </button>
                 </div>
                 <div class="derived-answer-hint"

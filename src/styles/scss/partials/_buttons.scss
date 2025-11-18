@@ -18,19 +18,17 @@
   user-select: none;
   border: none;
   padding: .5rem 1rem;
-  font-size: 1rem;
   border-radius: 0;
   text-decoration: none;
 
   &:hover [class^="icon-"],
-  &:hover .fa,
-  &:hover .fa-kit {
+  &:hover [class^="ri-"] {
+    display: inline-block;
     transform: scale(1.2);
   }
 
   &.disabled:hover [class^="icon-"],
-  &.disabled:hover .fa,
-  &.disabled:hover .fa-kit {
+  &.disabled:hover [class^="ri-"] {
     transform: scale(1);
   }
 
@@ -41,14 +39,14 @@
 }
 
 .btn-primary {
-  background-color: var(--primary-color);
-  border-color: var(--primary-color);
+  background-color: var(--gw-primary-color);
+  border-color: var(--gw-primary-color);
   color: var(--color-on-primary-background-color);
 }
 
 .btn-link,
 .btn-link a {
-  color: var(--primary-color);
+  color: var(--gw-primary-color);
   padding: .5em .8em;
   background-color: transparent;
   text-decoration: none;

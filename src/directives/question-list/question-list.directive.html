@@ -1,0 +1,23 @@
+<div class="question-list" ng-if="questionsCategories && !questionsCategories.isEmpty()">
+    <div class="title">
+        <i class="ri-questionnaire-line ri-xl"></i>
+        <span class="label text-primary">{{'tt2ps.components.questions.title' | translate}}</span>
+    </div>
+
+    <accordion class="question-categories">
+        <accordion-panel ng-repeat="questionCategory in questionsCategories.items"
+                         class="question-category"
+                         question-title="{{questionCategory.title}}"
+                         icon="{{questionCategory.icon}}">
+            <div class="questions">
+                <button ng-repeat="question in questionCategory.questions.items"
+                        ng-click="onQuestionSelected(question)"
+                        tt2ps-tooltip="{{'tt2ps.components.questions.btn.question.tooltip' | translate}}"
+                        tooltip-placement="right"
+                        class="btn question-item">
+                    {{question.title}}
+                </button>
+            </div>
+        </accordion-panel>
+    </accordion>
+</div>

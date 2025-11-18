@@ -1,6 +1,5 @@
 {
   "tt2ps": {
-    "title": "Talk to Power System",
     "footer": {
       "security_disclaimer": "This is a demo version and we cannot guarantee the accuracy of results, nor the availability or security of the system. Please don't include any kind of sensitive data in your questions"
     },
@@ -149,6 +148,22 @@
       },
       "software-versions": {
         "title": "Software Versions"
+      },
+      "questions": {
+        "title": "Predefined questions",
+        "btn": {
+          "question": {
+            "tooltip": "Use this question"
+          }
+        }
+      },
+      "left-sidebar": {
+        "btn": {
+          "label": {
+            "collapse": "Collapse",
+            "keep-open": "Keep open"
+          }
+        }
       }
     }
   },
