@@ -1,3 +1,24 @@
-<div class="chat-view">
+<div class="chat-view" ng-class="{'diagram-sidebar-open': showDiagramSidebar}">
     <chat-panel></chat-panel>
+    <splitter direction="horizontal" ng-if="showDiagramSidebar"></splitter>
+    <div class="right-sidebar">
+        <div class="diagrams-sidebar-toggle-btn">
+            <button ng-click="toggleDiagramSidebar()"
+                    ng-if="!showDiagramSidebar"
+                    class="btn toggle-btn"
+                    tt2ps-tooltip="{{'tt2ps.components.diagram_sidebar.btn.open.label' | translate}}"
+                    tooltip-placement="left">
+                <i class="ri-lg ri-arrow-left-s-line"></i>
+            </button>
+            <button ng-click="toggleDiagramSidebar()"
+                    ng-if="showDiagramSidebar"
+                    class="btn  toggle-btn"
+                    tt2ps-tooltip="{{'tt2ps.components.diagram_sidebar.btn.close.label' | translate}}"
+                    tooltip-placement="left">
+                <i class="ri-lg ri-arrow-right-s-line"></i>
+            </button>
+        </div>
+        <diagrams-sidebar ng-show="showDiagramSidebar"></diagrams-sidebar>
+    </div>
+
 </div>

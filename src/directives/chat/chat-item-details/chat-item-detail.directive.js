@@ -118,6 +118,19 @@ function ChatItemDetailDirective(toastr, $translate, ChatContextService, ChatSer
                 event.stopPropagation();
             };
 
+            /**
+             * Selects a diagram and optionally displays it in fullscreen mode.
+             *
+             * @param {DiagramModel} diagram - The diagram object to select.
+             * @param {boolean} [fullscreen=false] - If true, emits an event to show the diagram in fullscreen.
+             */
+            $scope.selectDiagram = (diagram, fullscreen= false) => {
+                ChatContextService.selectDiagram(diagram);
+                if (fullscreen) {
+                    ChatContextService.emit(ChatContextEventName.SHOW_SELECTED_DIAGRAM_ON_FULLSCREEN);
+                }
+            }
+
             // =========================
             // Private functions
             // =========================

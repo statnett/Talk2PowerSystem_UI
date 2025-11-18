@@ -28,6 +28,44 @@ function ChatContextService(EventEmitterService) {
     let _explainCache = {};
 
     /**
+     * The currently selected in the UI diagram which shown in sidebar.
+     * @type {undefined}
+     * @private
+     */
+    let _selectDiagram = undefined;
+
+    /**
+     * @return {DiagramModel}
+     */
+    const getSelectedDiagram = () => {
+        return cloneDeep(_selectDiagram);
+    };
+
+    /**
+     * Updates the selected diagram with the provided <code>selectDiagram</code> and emits the 'selectDiagram' event
+     * to notify listeners that a new diagram has been selected.
+     *
+     * @param {DiagramModel} selectDiagram - The diagram object to select.
+     */
+    const selectDiagram = (selectDiagram) => {
+        _selectDiagram = cloneDeep(selectDiagram);
+        emit(ChatContextEventName.SELECT_DIAGRAM, getSelectedDiagram());
+    };
+
+    /**
+     * Subscribes to the 'selectDiagram' event.
+     * @param {function} callback - The callback to be called when the event is fired.
+     *
+     * @return {function} unsubscribe function.
+     */
+    const onSelectedDiagramChanged = (callback) => {
+        if (angular.isFunction(callback)) {
+            callback(getSelectedDiagram());
+        }
+        return subscribe(ChatContextEventName.SELECT_DIAGRAM, (selectDiagram) => callback(selectDiagram));
+    };
+
+    /**
      * @return {ChatModel}
      */
     const getSelectedChat = () => {
@@ -189,6 +227,9 @@ function ChatContextService(EventEmitterService) {
         getExplainResponse,
         addExplainResponseCache,
         onExplainResponseCacheUpdated,
+        getSelectedDiagram,
+        selectDiagram,
+        onSelectedDiagramChanged
     };
 }
 

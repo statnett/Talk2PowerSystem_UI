@@ -1,5 +1,9 @@
 import {ChatAnswerModel} from "../../../models/chat/chat-answer";
 import {ChatMessageModel} from "../../../models/chat/chat-message";
+import {DiagramTypes} from '../../../models/chat/diagrams/diagram-types';
+import {ImageDiagramModel} from '../../../models/chat/diagrams/image-diagram';
+import {FrameDiagramModel} from '../../../models/chat/diagrams/frame-diagram';
+import {SvgDiagramModel} from '../../../models/chat/diagrams/svg-diagram';
 
 /**
  * Converts the response from the server to a list of ChatMessageModel array.
@@ -28,7 +32,8 @@ export const chatMessageModelMapper = (data) => {
         message: data.message,
         timestamp: data.timestamp,
         tokenUsageInfo: data.usage,
-        data: data
+        data: data,
+        diagrams: diagramModelListMapper(data.graphics)
     });
 };
 
@@ -45,6 +50,21 @@ export const chatAnswerModelMapper = (data) => {
         chatId: data.id,
         messages: chatMessageModelListMapper(data.messages),
         continueRunId: data.continueRunId,
-        tokenUsageInfo: data.usage
+        tokenUsageInfo: data.usage,
     });
 };
+
+export const diagramModelListMapper = (data = []) => {
+  return data.map((diagram) => diagramModelMapper(diagram));
+}
+
+export const diagramModelMapper = (data = {}) => {
+  switch (data.type) {
+    case DiagramTypes.SVG:
+      return new SvgDiagramModel(data);
+      case DiagramTypes.IMAGE:
+        return new ImageDiagramModel(data);
+    default:
+      return new FrameDiagramModel(data);
+  }
+}

@@ -27,6 +27,19 @@ export class ChatModel {
         this.hash = this.generateHash();
     }
 
+    getAllMessagesWithDiagrams() {
+        const messages = [];
+        this.chatHistory.items.forEach(item => {
+            const answers = item.answers || [];
+            answers.forEach((answer) => {
+                if (answer.diagrams.length > 0) {
+                    messages.push(answer);
+                }
+            })
+        });
+        return messages;
+    }
+
     generateHash() {
         return this.hashGenerator(JSON.stringify(this));
     }

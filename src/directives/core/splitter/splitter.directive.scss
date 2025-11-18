@@ -1,0 +1,37 @@
+splitter {
+  cursor: col-resize;
+  width: 5px;
+  background-color: var(--divider-color);
+  flex-shrink: 0;
+  user-select: none;
+  position: relative;
+
+  .handle {
+    background-color: white;
+    position: absolute;
+    transform: translate(-50%, -50%);
+    border-radius: var(--splitter-handle-border-radius, 6px);
+    border: 2px solid var(--divider-color);
+  }
+}
+
+splitter[direction="horizontal"] {
+  width: 1px;
+  cursor: col-resize;
+  .handle {
+    width: 8px;
+    height: 24px;
+    top: 50%;
+  }
+}
+
+splitter[direction="vertical"] {
+  height: 1px;
+  cursor: row-resize;
+  width: 100%;
+  .handle {
+    width: 24px;
+    height: 8px;
+    left: 50%;
+  }
+}

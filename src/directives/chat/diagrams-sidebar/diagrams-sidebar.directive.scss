@@ -1,0 +1,82 @@
+.diagrams-sidebar-wrapper {
+  display: flex;
+  padding: 0 1rem 2rem 1rem;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 100%;
+
+  .diagrams {
+    display: flex;
+  }
+
+  .diagram-card {
+    display: flex;
+    padding: 0.5rem 1rem 1rem 1rem;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.5rem;
+    align-self: stretch;
+    background-color: var(--gw-body-background);
+    border-radius: 0.5rem;
+    border: 1px solid var(--divider-color);
+
+    .diagram-header {
+      display: flex;
+      justify-content: end;
+      height: 28px;
+      align-items: center;
+      gap: 16px;
+      align-self: stretch;
+
+      .fullscreen-buton {
+        background-color: inherit;
+      }
+    }
+
+    .selected-diagram {
+      width: 100%;
+      height: 100%;
+
+      .svg-diagram {
+        width: 100%;
+        svg {
+          width: 100%;
+          height: auto;
+          display: block;
+        }
+      }
+
+      .iframe-diagram,
+      .iframe-diagram iframe ,{
+        width: 100%;
+        height: 100%;
+      }
+
+      .image-diagram {
+        width: 100%;
+        height: 100%;
+        img {
+          width: 100%;
+          height: 100%;
+          object-fit: contain;
+        }
+      }
+    }
+  }
+
+  .diagram-card.iframe-flex {
+    flex: 1;
+  }
+
+  &.fullscreen {
+    .diagram-card {
+      position: fixed;
+      inset: 0;
+      min-height: -webkit-fill-available;
+      z-index: 1015;
+      border: none !important;
+      outline: none !important;
+      box-shadow: none !important;
+    }
+  }
+}

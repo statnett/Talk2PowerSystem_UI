@@ -30,6 +30,24 @@
       }
     }
 
+    .generated-diagram-btn {
+      display: flex;
+      flex-direction: row;
+      gap: 0.5rem;
+      justify-content: space-between;
+      align-items: center;
+      background-color: var(--gw-menuitem-hover-background);
+      color: var(--gw-main-secondary-highlight);
+      padding: 0.5rem 1rem;
+      border-radius: var(--border-radius-big);
+      border: 1px solid var(--gw-dark-dark-7);
+
+      .btn {
+        background-color: var(--gw-menuitem-hover-background);
+        color: var(--gw-main-secondary-highlight);
+      }
+    }
+
     .hidden-actions {
       opacity: 0;
     }
