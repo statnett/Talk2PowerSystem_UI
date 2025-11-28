@@ -18,9 +18,9 @@ function AuthenticationInterceptor(SecurityContextService, AuthenticationService
         'request': function (config) {
             const headers = config.headers || {};
             if (securityEnabled && config.url.includes('rest/') && !config.url.includes('rest/authentication/config')) {
-                return AuthenticationService.getIdToken().then(idToken => {
-                    if (idToken) {
-                        headers['Authorization'] = `Bearer ${idToken}`;
+                return AuthenticationService.getAccessToken().then(token => {
+                    if (token) {
+                        headers['Authorization'] = `Bearer ${token}`;
                     }
                     config.headers = headers;
                     return config;

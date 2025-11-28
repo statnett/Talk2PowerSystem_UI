@@ -12,6 +12,8 @@ export const securityConfigModelMapper = (data) => {
     return new SecurityConfigurationModel({
         enabled: data.enabled,
         clientId: data.clientId,
+        frontendAppClientId: data.frontendAppClientId,
+        scopes: data.scopes,
         authority: data.authority,
         logout: data.logout,
         loginRedirect: data.loginRedirect,

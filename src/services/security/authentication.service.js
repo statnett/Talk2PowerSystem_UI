@@ -20,7 +20,6 @@ AuthenticationService.$inject = ['$q', '$rootScope', '$location', '$window', 'Se
  * AuthenticationService handles login, logout, access token acquisition, and tracks authentication state..
  */
 function AuthenticationService($q, $rootScope, $location, $window, SecurityContextService) {
-    const OIDC_SCOPES = ['openid', 'profile'];
     let msalInstance = null;
     let _securityConfiguration = null;
 
@@ -52,7 +51,7 @@ function AuthenticationService($q, $rootScope, $location, $window, SecurityConte
 
             const config = {
                 auth: {
-                    clientId: _securityConfiguration.clientId,
+                    clientId: _securityConfiguration.frontendAppClientId,
                     authority: _securityConfiguration.authority,
                     redirectUri: _securityConfiguration.loginRedirect,
                     postLogoutRedirectUri: _securityConfiguration.logoutRedirect
@@ -109,7 +108,7 @@ function AuthenticationService($q, $rootScope, $location, $window, SecurityConte
             SecurityContextService.updateAuthenticationState(AuthenticationState.AUTHENTICATION_IN_PROGRESS);
             cleanStorage();
             await msalInstance.loginRedirect({
-                scopes: [...OIDC_SCOPES],
+                scopes: _securityConfiguration.scopes,
                 prompt: "login",
                 redirectStartPage: _securityConfiguration.loginRedirect
             });
@@ -128,7 +127,7 @@ function AuthenticationService($q, $rootScope, $location, $window, SecurityConte
             if (account) {
                 await msalInstance.logoutRedirect({
                     account,
-                    onRedirectNavigate: (url) => {
+                    onRedirectNavigate: () => {
                         // Return false so the navigation (and thus server-side logout) is skipped
                         return false;
                     }
@@ -165,6 +164,30 @@ function AuthenticationService($q, $rootScope, $location, $window, SecurityConte
                 throw err;
             }
         });
+
+    /**
+     * Acquires an access token.
+     *
+     * @returns {angular.Promise<string>} Promise resolving with the access token.
+     * @throws Will throw an error if no active account is available or token acquisition fails.
+     */
+    const getAccessToken = () =>
+      wrapAsync(async () => {
+          const account = msalInstance.getActiveAccount();
+          if (!account) throw new Error('No active account');
+
+          const request = {account};
+          try {
+              const res = await msalInstance.acquireTokenSilent(request);
+              return res.accessToken;
+          } catch (err) {
+              if (err instanceof InteractionRequiredAuthError) {
+                  const res = await msalInstance.acquireTokenPopup(request);
+                  return res.accessToken;
+              }
+              throw err;
+          }
+      });
 
     /**
      * Handles the response returned by MSAL redirect login.
@@ -226,7 +249,8 @@ function AuthenticationService($q, $rootScope, $location, $window, SecurityConte
         getActiveAccount,
         login,
         logout,
-        getIdToken
+        getIdToken,
+        getAccessToken
     };
 }
 
