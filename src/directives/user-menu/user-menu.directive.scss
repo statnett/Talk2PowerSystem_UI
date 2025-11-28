@@ -4,41 +4,37 @@
   cursor: pointer;
 
   &.expanded {
-    color: white;
+    color: var(--gw-button-primary-active-color);
 
     .user-menu-toggle {
-      background: var(--primary-color);
-
-      &:hover {
-        background: var(--primary-color);
-      }
+      background: var(--gw-button-primary-active-background);
+      border-color: var(--gw-button-primary-active-background);
 
       .dropdown-icon {
         transform: rotate(180deg);
       }
 
       .user-icon {
-        color: white;
+        color: inherit;
       }
     }
   }
 
   .user-menu-toggle {
     padding: 8px 12px;
-    background: var(--base-dropdown-color);
+    background: var(--gw-button-primary-background);
     display: flex;
     align-items: center;
     max-width: 20rem;
     gap: 6px;
     cursor: pointer;
+    border: solid var(--gw-button-primary-background);
+    border-top-left-radius: var(--border-radius-big);
+    border-bottom-left-radius: var(--border-radius-big);
 
-
-    &:hover {
-      background: var(--base-dropdown-hovered-color);
-    }
     .user-icon {
       padding-right: 5px;
-      color: var(--primary-color);
+      color: var(--gw-primary-color);
     }
 
     .username {
@@ -49,19 +45,31 @@
   }
 
   .user-menu-dropdown {
-    background-color: var(--primary-color);
     position: absolute;
     list-style: none;
     margin: 0;
     z-index: 1000;
     padding: 0;
     width: 100%;
+    border-radius: var(--border-radius-big);
 
     .menu-item {
-      *:hover {
-        background-color: var(--primary-color-dark);
+      .logout {
+        border-top-left-radius: var(--border-radius-big);
+        border-bottom-left-radius: var(--border-radius-big);
       }
-      cursor: pointer;
+    }
+
+    cursor: pointer;
+  }
+
+  .user-menu-dropdown:hover {
+    background-color: var(--gw-menuitem-hover-background);
+    color: var(--gw-primary-color);
+
+    .logout {
+      background-color: var(--gw-menuitem-hover-background);
+      color: var(--gw-primary-color);
     }
   }
 }

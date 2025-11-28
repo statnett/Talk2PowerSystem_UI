@@ -1,0 +1,16 @@
+<div class="accordion-panel"  ng-class="{open: isOpen}">
+  <div class="accordion-header" ng-click="toggle()">
+    <div class="question-title">
+      <div ng-include="icon" class="category-icon"></div>
+      <div>{{questionTitle}}</div>
+    </div>
+    <i class="ri-1x" ng-class="isOpen ? 'ri-arrow-down-s-line' : 'ri-arrow-right-s-line'"></i>
+  </div>
+
+  <div class="accordion-body-wrapper"
+       ng-if="isOpen"
+       ng-animate="'slide'">
+    <div class="accordion-body" ng-transclude></div>
+  </div>
+
+</div>

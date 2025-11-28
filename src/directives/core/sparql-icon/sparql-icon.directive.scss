@@ -1,0 +1,19 @@
+.sparql-icon {
+  display: inline-flex;
+  align-items: center;
+  position: relative;
+
+
+  .left-brace {
+    clip-path: inset(0 50% 0 0);
+  }
+
+  .ellipsis {
+    margin-left: -12px;
+    margin-right: -12px;
+  }
+
+  .right-brace {
+    clip-path: inset(0 0 0 50%);
+  }
+}

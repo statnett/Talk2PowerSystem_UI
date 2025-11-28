@@ -1,5 +1,6 @@
 import './open-in-sparql-editor.directive.scss';
 import template from './open-in-sparql-editor.directive.html';
+import IconsModule from '../sparql-icon/sparql-icon.directive';
 
 /**
  * @ngdoc directive
@@ -29,7 +30,7 @@ import template from './open-in-sparql-editor.directive.html';
  */
 
 const OpenInSparqlEditorModule = angular
-    .module('tt2ps.core.directives.open-in-sparql-editor', []);
+    .module('tt2ps.core.directives.open-in-sparql-editor', [IconsModule.name]);
 OpenInSparqlEditorModule
     .directive('openInSparqlEditor', OpenInSparqlEditorDirective);
 

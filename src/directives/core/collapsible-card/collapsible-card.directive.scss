@@ -1,9 +1,10 @@
 .collapsible-card {
   box-shadow: 0 3px 6px rgba(0, 0, 0, 0.1);
-  border-radius: 0;
+  border-radius: var(--border-radius-big);
   margin-bottom: 1.5rem;
-  border: 1px solid #ccc;
+  border: 1px solid var(--gw-body-background);
   width: 100%;
+  background-color: var(--gw-body-background);
 
   .card-header {
     display: flex;
@@ -11,7 +12,6 @@
     gap: 0.5rem;
     cursor: pointer;
     margin: 1rem;
-    font-size: 1.75rem;
   }
 
   .card-body {

@@ -7,11 +7,16 @@ import chatPanelModule from '../../directives/chat/chat-panel/chat-panel.directi
 import ChatContextServiceModule from '../../services/chat/chat-context.service';
 import ChatServiceModule from "../../services/chat/chat.service";
 import {ContinueChatRun} from "../../models/chat/chat-answer";
+import QuestionsServiceModule from '../../services/questions/questions.service';
+import QuestionsContextServiceModule from '../../services/questions/question-context.service';
+import {QuestionCategoryListModel} from '../../models/questions/question-category-list';
 
 const modules = [
-    chatPanelModule.name,
-    ChatContextServiceModule.name,
-    ChatServiceModule.name
+  chatPanelModule.name,
+  ChatContextServiceModule.name,
+  ChatServiceModule.name,
+  QuestionsContextServiceModule.name,
+  QuestionsServiceModule.name
 ];
 
 const ChatModule = angular.module('tt2ps.controllers.chat-ctrl', modules);
@@ -23,19 +28,21 @@ ChatCtrl.$inject = [
     '$translate',
     'ToastrService',
     'ChatService',
-    'ChatContextService'
+    'ChatContextService',
+    'QuestionsService',
+    'QuestionsContextService'
 ]
 
-function ChatCtrl($scope, $translate, ToastrService, ChatService, ChatContextService) {
+function ChatCtrl($scope, $translate, ToastrService, ChatService, ChatContextService, QuestionsService, QuestionsContextService) {
     const init = () => {
-        loadChatQuestionList();
+        loadQuestions();
         ChatContextService.selectChat(new ChatModel());
     }
 
-    const loadChatQuestionList = () => {
-        return ChatService.getChatQuestions()
-            .then((chatQuestions) => {
-                ChatContextService.setChatQuestions(chatQuestions);
+    const loadQuestions = () => {
+        return QuestionsService.getQuestions()
+            .then((questions) => {
+                QuestionsContextService.setQuestions(questions);
             });
     }
 
@@ -87,7 +94,7 @@ function ChatCtrl($scope, $translate, ToastrService, ChatService, ChatContextSer
             });
     }
 
-    const onConversationExpired = (chatQuestion) => {
+    const onConversationExpired = () => {
         ToastrService.error($translate.instant('chat_panel.error.conversation_not_found'));
         ChatContextService.selectChat(new ChatModel());
     }
@@ -118,6 +125,7 @@ function ChatCtrl($scope, $translate, ToastrService, ChatService, ChatContextSer
 
     const removeAllSubscribers = () => {
         subscriptions.forEach((subscription) => subscription());
+        QuestionsContextService.setQuestions(new QuestionCategoryListModel());
     };
 
     subscriptions.push(ChatContextService.subscribe(ChatContextEventName.CREATE_CHAT, onCreateNewChat));

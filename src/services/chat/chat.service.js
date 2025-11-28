@@ -1,7 +1,6 @@
 import {chatAnswerModelMapper} from "./mappers/chat-message.mapper";
 import ChatRestServiceModule from "./chat.rest.service";
 import {explainResponseMapper} from "./mappers/explain.mapper";
-import {chatQuestionListMapper} from "./mappers/chat-questions.mapper";
 
 const modules = [
     ChatRestServiceModule.name
@@ -63,19 +62,11 @@ function ChatService(ChatRestService) {
             });
     };
 
-    const getChatQuestions = () => {
-        return ChatRestService.getChatQuestions()
-            .then((response) => {
-                return chatQuestionListMapper(response.data);
-            });
-    }
-
     return {
         createConversation,
         askQuestion,
         continueChatRun,
-        explainResponse,
-        getChatQuestions
+        explainResponse
     };
 }
 

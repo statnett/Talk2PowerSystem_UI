@@ -1,4 +1,15 @@
 .logout {
   width: 100%;
   text-align: left;
+  color:  var(--gw-main-primary-text);
+  background-color: var(--gw-button-primary-background);
+
+  .logout-icon {
+    color: var(--gw-button-primary-icon-color);
+  }
+
+  &:hover .logout-icon {
+    display: inline-block;
+    transform: scale(1.2);
+  }
 }

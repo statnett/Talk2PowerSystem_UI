@@ -1,8 +1,9 @@
-.fa, .fa-regular, .fa-light, .fa-thin {
-  /*
-  General fix for FontAwesome icons being somewhat larger than our icons font.
-  font-size-adjust has other ways to do this (ex-height N) but that doesn't work well
-  with this font in Firefox. This magic value works identically in all browsers.
-  */
-  font-size-adjust: ch-width 0.52;
+.ri-spin {
+  display: inline-block;      /* ensure transform works */
+  animation: ri-spin 1s linear infinite;
+}
+
+@keyframes ri-spin {
+  0%   { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
 }

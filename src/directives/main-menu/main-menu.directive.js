@@ -33,14 +33,6 @@ function MainMenu($location) {
     restrict: 'E',
     template,
     link: function ($scope) {
-      // =========================
-      // Public functions
-      // =========================
-      $scope.toggleMainMenu = () => {
-        const mainMenu = document.querySelector('.main-menu');
-        mainMenu.classList.toggle('collapsed');
-      };
-
       $scope.isActive = (path) => {
         return $location.path() === path;
       }

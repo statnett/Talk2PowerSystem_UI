@@ -1,8 +1,9 @@
+import './layout.scss';
 import angular from 'angular';
-import ChatQuestionListModule from './directives/chat/chat-question-list/chat-question-list.directive';
+import QuestionListModule from './directives/question-list/question-list.directive';
 import {AuthenticationState} from './models/security/authentication-state';
 
-const dependencies = [ChatQuestionListModule.name];
+const dependencies = [QuestionListModule.name];
 
 const MainControllerModule = angular.module('tt2ps.controllers.mainCtrl', dependencies);
 
@@ -14,7 +15,46 @@ function MainController($scope, $location, SecurityContextService) {
   // =========================
   // Public variables
   // =========================
-  $scope.showMainMenu = false;
+  $scope.showLeftSidebar = false;
+  $scope.isMobile = false;
+  $scope.widths = {
+    expanded: '20rem',
+    collapsed: '4rem'
+  };
+  $scope.pinned = true;
+  $scope.hover = false;
+
+  // =========================
+  // Public functions
+  // =========================
+  /**
+   * Determines if the left sidebar has to be expanded.
+   */
+  $scope.isExpanded = () => {
+    if ($scope.isMobile) {
+      return $scope.pinned;
+    }
+    return $scope.pinned || $scope.hover;
+  };
+
+  $scope.hovering = (hovered) => {
+    if ($scope.isMobile) {
+      return;
+    }
+    $scope.hover = hovered;
+  };
+
+  $scope.togglePin = () => {
+    $scope.pinned = !$scope.pinned;
+    if ($scope.pinned) $scope.hover = false;
+  };
+
+  $scope.marginLeft = () => {
+    if ($scope.isMobile) {
+      return "0";
+    }
+    return $scope.pinned ? $scope.widths.expanded : $scope.widths.collapsed;
+  };
 
   // =========================
   // Private variables
@@ -40,6 +80,9 @@ function MainController($scope, $location, SecurityContextService) {
   // =========================
   // Private functions
   // =========================
+  const init = () => {
+    updateIsMobile();
+  }
   /**
    * Handles updates to the security configuration.
    * @param {SecurityConfigurationModel} securityConfiguration - The updated security configuration.
@@ -65,7 +108,15 @@ function MainController($scope, $location, SecurityContextService) {
   };
 
   const updateMainMenuVisibility = () => {
-    $scope.showMainMenu = securityConfig && (!securityConfig.enabled || authenticatedUser);
+    $scope.showLeftSidebar = securityConfig && (!securityConfig.enabled || authenticatedUser);
+  }
+
+  const onResize = () => {
+    $scope.$apply(updateIsMobile);
+  }
+
+  const updateIsMobile = () => {
+    $scope.isMobile = window.innerWidth <= 768 || /Mobi|Android|iPhone/i.test(navigator.userAgent);
   }
 
   /**
@@ -73,17 +124,21 @@ function MainController($scope, $location, SecurityContextService) {
    */
   const removeAllSubscribers = () => {
     subscriptions.forEach((unsubscribe) => unsubscribe());
+    window.removeEventListener('resize', onResize);
   };
 
   // =========================
   // Subscriptions
   // =========================
+  window.addEventListener('resize', onResize);
   subscriptions.push(SecurityContextService.onSecurityConfigurationChanged(onSecurityConfigurationChanged));
   subscriptions.push(SecurityContextService.onAuthenticatedUserChanged(onAuthenticatedUserChanged));
   subscriptions.push(SecurityContextService.onAuthenticationStateChanged(onAuthenticationStateChanged));
 
   // Deregister the watcher when the scope/directive is destroyed
   $scope.$on('$destroy', removeAllSubscribers);
+
+  init();
 }
 
 export default MainControllerModule;

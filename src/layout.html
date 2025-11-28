@@ -3,23 +3,48 @@
 <head>
     <meta charset="UTF-8"/>
     <title>Talk to the Power System</title>
+    <link rel="icon" type="image/png" href="/images/favicon.png">
     <base href="/"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 </head>
     <body ng-controller="mainCtrl">
-        <div class="page">
-            <main class="view-content" role="main">
-                <header>
-                    <tt2ps-header></tt2ps-header>
-                </header>
-                <div class="page-body">
-                    <main-menu ng-if="showMainMenu"></main-menu>
-                    <div ng-view></div>
+        <div class="layout">
+            <div class="page">
+                <div class="left-sidebar-wrapper"  ng-if="showLeftSidebar"
+                      ng-mouseenter="hovering(true)"
+                      ng-mouseleave="hovering(false)"
+                      ng-class="{'expanded': isExpanded(), 'collapsed': !isExpanded()}"
+                      ng-style="{ width: (isExpanded() ? widths.expanded : widths.collapsed) }">
+                    <div class="sidebar-toggle-btn"
+                         ng-class="{ 'visible': hover || isMobile }"
+                         ng-style="{ left: (isExpanded() ? widths.expanded : widths.collapsed) }">
+
+                        <button ng-click="togglePin()"
+                                ng-if="pinned"
+                                tt2ps-tooltip="{{'tt2ps.components.left-sidebar.btn.label.collapse' | translate}}"
+                                tooltip-placement="bottom">
+                            <i class="ri-lg ri-arrow-left-line toggle-btn"></i>
+                        </button>
+                        <button ng-click="togglePin()"
+                                ng-if="!pinned"
+                                tt2ps-tooltip="{{'tt2ps.components.left-sidebar.btn.label.keep-open' | translate}}"
+                                tooltip-placement="bottom">
+                            <i class="ri-lg ri-arrow-right-line toggle-btn"></i>
+                        </button>
+
+                    </div>
+                    <left-sidebar></left-sidebar>
                 </div>
-            </main>
+                <main class="view-content" role="main">
+                    <tt2ps-header></tt2ps-header>
+                    <div class="page-body" ng-style="{ 'margin-left': (showLeftSidebar ? (pinned ? widths.expanded : widths.collapsed) : 0)}">
+                        <div ng-view></div>
+                    </div>
+                </main>
+            </div>
+            <footer class="footer">
+                <!-- Footer content/component -->
+            </footer>
         </div>
-        <footer class="footer">
-            <!-- Footer content/component -->
-        </footer>
     </body>
 </html>

@@ -14,7 +14,7 @@ module.exports = {
   "dependencies": [
     {
       "name": "@azure/msal-browser",
-      "version": "4.19.0"
+      "version": "4.26.0"
     },
     {
       "name": "angular",
@@ -51,6 +51,10 @@ module.exports = {
     {
       "name": "oclazyload",
       "version": "1.1.0"
+    },
+    {
+      "name": "remixicon",
+      "version": "4.7.0"
     },
     {
       "name": "tippy.js",

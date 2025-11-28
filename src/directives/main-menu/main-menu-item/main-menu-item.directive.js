@@ -19,7 +19,7 @@ MainMenuItem.$inject = ['$location']
  * @example
  * ```html
  * <main-menu-item
- *   icon-class="fa fa-home"
+ *   icon-class="ri-questionnaire-line"
  *   label="Home"
  *   url="/home">
  * </main-menu-item>
