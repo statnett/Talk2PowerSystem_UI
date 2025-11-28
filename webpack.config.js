@@ -7,6 +7,8 @@ const CssMinimizerPlugin = require('css-minimizer-webpack-plugin');
 const webpack = require('webpack');
 const {BaseHrefWebpackPlugin} = require("base-href-webpack-plugin");
 
+const BACKEND_URL = "http://localhost:8000";
+
 module.exports = (env, argv) => {
     const isProd = argv.mode === 'production';
     const baseHref = env.baseHref || '/';
@@ -76,7 +78,6 @@ module.exports = (env, argv) => {
             new CleanWebpackPlugin(),
             new HtmlWebpackPlugin({
                 template: './src/layout.html',
-                favicon: './src/assets/images/favicon.png',
                 minify: isProd ? {
                     collapseWhitespace: true,
                     removeComments: true,
@@ -133,7 +134,21 @@ module.exports = (env, argv) => {
             historyApiFallback: {
                 index: `${baseHref}index.html`,
             },
-            watchFiles: ['src/**/*']
-        },
+            watchFiles: ['src/**/*'],
+
+            // Proxy only certain paths to real backend
+            proxy: {
+                '/rest': {
+                    target: BACKEND_URL,
+                    secure: false,
+                    changeOrigin: true,
+                },
+                '/__about': {
+                    target: BACKEND_URL,
+                    secure: false,
+                    changeOrigin: true,
+                }
+            }
+        }
     };
 };

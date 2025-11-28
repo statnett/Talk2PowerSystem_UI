@@ -65,7 +65,7 @@ export class ChatRestServiceFakeBackend {
         // return new Promise((resolve, reject) => setTimeout(() => reject({status: 425,}), ASK_DELAY));
     }
 
-    continueChatRun(data) {
+    continueChatRun() {
         alert("continueChatRun() not implemented");
     }
 
@@ -187,8 +187,10 @@ export class ChatRestServiceFakeBackend {
 
     getConfiguration() {
         const securityConfig = {
-            enabled: true,
+            enabled: false,
             clientId: '<client_id>',
+            frontendAppClientId: '<frontendAppClientId>',
+            scopes: ['openid', 'profile'],
             authority: 'https://login.microsoftonline.com/<tenant_id>',
             logout: 'https://login.microsoftonline.com/<tenant_id>/oauth2/logout',
             loginRedirect: 'http://localhost:3000',

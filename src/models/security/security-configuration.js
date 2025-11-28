@@ -27,6 +27,18 @@ export class SecurityConfigurationModel {
         this.clientId = data.clientId;
 
         /**
+         * The front-end application (client) ID registered in Microsoft Entra ID.
+         */
+        this.frontendAppClientId = data.frontendAppClientId;
+
+        /**
+         * The list of OAuth scopes requested by the front-end application.
+         *
+         * @type {string[]}
+         */
+        this.scopes = data.scopes;
+
+        /**
          * The authority URL (tenant-specific or common) used for authentication.
          * Example: "https://login.microsoftonline.com/{tenantId}"
          * @type {string|undefined}
