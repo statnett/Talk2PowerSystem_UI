@@ -12,6 +12,7 @@
     --gw-body-color: #000000;
     --gw-primary-color: #001FFF;
     --gw-main-primary-background: #F7F8FA;
+    --gw-dark-dark-7: #D1D5DB;
 
     /* Primary button */
     --gw-button-primary-active-background: var(--gw-primary-color);
@@ -20,19 +21,22 @@
     --gw-button-primary-color: #111928;
     --gw-button-primary-icon-color: #001FFF;
 
+
     /* main-menu */
     --gw-menuitem-question-color: #1F2A37;
-    --gw-menuitem-hover-background: rgba(0, 31, 255, 0.05);
+    --gw-menuitem-hover-background: #F2F7FF;
     --gw-menuitem-group-selected-background: #F7F8FA;
     --menuitem-active-color: #1D4ED8;
     --menuitem-active-background: #EFF6FF;
 
     --gw-main-primary-text:  #111928;
     --gw-main-secondary-text: #3B5C7F;
-    --divider-color:  rgba(0, 0, 0, 0.15);
+    --gw-main-secondary-highlight: #37189A;
 
-    --border-radius-sm: 4px;
-    --border-radius-big: 8px;
+    --divider-color:  #DEE2E6;
+
+  --border-radius-sm: 4px;
+  --border-radius-big: 8px;
 
     --primary-color-hue: 13.4;
     --primary-color-saturation: 87.9%;

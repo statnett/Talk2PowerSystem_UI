@@ -59,4 +59,14 @@ export const ChatContextEventName = {
      * This event is emitted when the conversation has expired.
      */
     CONVERSATION_EXPIRED: "conversationExpired",
+
+    /**
+     * This event is emitted when a diagram is selected.
+     */
+    SELECT_DIAGRAM: "selectDiagram",
+
+    /**
+     * This event is emitted when the selected diagram has to be displayed in fullscreen.
+     */
+    SHOW_SELECTED_DIAGRAM_ON_FULLSCREEN: 'showSelectedDiagramOnFullscreen',
 };

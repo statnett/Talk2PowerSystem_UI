@@ -1,0 +1,34 @@
+<div class="diagrams-sidebar-wrapper">
+    <div class="diagram-card" ng-if="selectedDiagram"
+    ng-class="{'iframe-flex': selectedDiagram.type !== 'svg'}">
+        <div class="diagram-header">
+            <button class="btn fullscreen-buton"
+                    ng-if="!fullscreen"
+                    ng-click="setFullscreen()">
+                <i class="ri-fullscreen-line"></i>
+            </button>
+            <button class="btn fullscreen-buton"
+                    ng-if="fullscreen"
+                    ng-click="exitFullscreen()">
+                <i class="ri-fullscreen-exit-line"></i>
+            </button>
+        </div>
+        <ng-switch on="selectedDiagram.type" class="selected-diagram">
+            <div ng-switch-when="svg" class="svg-diagram">
+                <div class="diagram" ng-bind-html="selectedDiagram.svg | trustAsHtml"></div>
+            </div>
+
+            <div ng-switch-when="image" class="image-diagram">
+                <img class="diagram" ng-src="{{selectedDiagram.url | trustAsResourceUrl}}"></img>
+            </div>
+
+            <div ng-switch-default class="iframe-diagram">
+                <iframe class="diagram"
+                        id="inlineFrameExample"
+                        title="Inline Frame Example"
+                        ng-src="{{selectedDiagram.url | trustAsResourceUrl}}">
+                </iframe>
+            </div>
+        </ng-switch>
+    </div>
+</div>

@@ -22,6 +22,8 @@ export class ChatMessageModel {
          * @type {TokenUsageInfo}
          */
         this.tokenUsageInfo = data.tokenUsageInfo;
+
+        this.diagrams = data.diagrams || [];
     }
 
     get id() {

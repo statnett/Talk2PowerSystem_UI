@@ -164,6 +164,16 @@
             "keep-open": "Keep open"
           }
         }
+      },
+      "diagram_sidebar": {
+        "btn": {
+          "open": {
+            "label": "Open"
+          },
+          "close": {
+            "label":"Close"
+          }
+        }
       }
     }
   },
@@ -192,6 +202,9 @@
   "chat_panel": {
     "hint": "Simply ask a question!",
     "btn": {
+      "generated_image": {
+        "label": "Generated diagram"
+      },
       "regenerate": {
         "tooltip": "Regenerate"
       },

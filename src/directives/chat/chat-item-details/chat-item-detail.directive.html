@@ -12,6 +12,20 @@
             </div>
             <div class="assistant-message">
                 <markdown-content class="answer" content="{{answer.message}}" options="markdownContentOptions"></markdown-content>
+
+                <div class="generated-diagram-btn"
+                     ng-repeat="diagram in answer.diagrams"
+                     id="{{diagram.hash}}">
+                    <button class="btn view-diagram-btn"
+                            ng-click="selectDiagram(diagram)">
+                        <i class="ri-line-chart-line ri-lg"></i>
+                        {{'chat_panel.btn.generated_image.label' | translate}} {{answer.diagrams.length > 1 ? ($index + 1) : ''}}
+                    </button>
+                    <button class="btn fullscreen-diagram-btn">
+                        <i class="ri-fullscreen-line ri-lg" ng-click="selectDiagram(diagram, true)"></i>
+                    </button>
+                </div>
+
                 <div class="actions" ng-class="{'hidden-actions': !explainResponseModel[answer.id].expanded && (!showActions || !$last)}">
                     <button class="btn btn-link btn-sm regenerate-question-btn"
                             ng-click="regenerateQuestion()"
