@@ -181,7 +181,13 @@ export class ChatRestServiceFakeBackend {
             conversationId: data.conversationId,
             messageId: data.messageId,
             queryMethods: [
-                 {
+                {
+                    name: "display_graphics",
+                    args: {
+                        iri: 'urn:uuid:9577dfa-dfas-fdas325423-23d'
+                    },
+                },
+                {
                     name: "autocomplete_search",
                     args: "SELECT ?character ?height WHERE { ?character voc:height ?height . FILTER (?character = <https://swapi.co/resource/human/1> || ?character = <https://swapi.co/resource/human/5>) }",
                     query: "SELEdCT ?character ?height WHERE { ?character voc:height ?height . FILTER (?character = <https://swapi.co/resource/human/1> || ?character = <https://swapi.co/resource/human/5>) }",

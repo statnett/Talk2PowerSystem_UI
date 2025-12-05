@@ -49,6 +49,10 @@
             "sparql_query": {
               "name": "SPARQL query"
             },
+            "display_graphics": {
+              "name": "Display graphics",
+              "sparql_query_template": "SPARQL query template"
+            },
             "autocomplete_search": {
               "name": "Autocomplete search",
               "property_path": "Property Path",
@@ -258,6 +262,7 @@
     },
     "query_colon": ":",
     "query_name": {
+      "display_graphics": "Display graphics",
       "sparql_query": "SPARQL",
       "fts_search": "Full-text search",
       "similarity_search": "Similarity search",
@@ -271,6 +276,7 @@
       "retrieve_data_points": "Retrieve datapoints from Cognite"
     },
     "query_desc": {
+      "display_graphics": "Returns the diagram specified by the IRI",
       "sparql_query": "Direct query",
       "fts_search": "Full-text search via SPARQL",
       "similarity_search": "Similarity search via SPARQL",

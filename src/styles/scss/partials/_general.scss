@@ -9,4 +9,43 @@ html, body {
   line-height: var(--base-line-height);
   background-color: var(--gw-body-background);
   color: var(--gw-body-color);
+
+  /* Override checkbox and radio button styles because they inherit their look from the OS which makes them ugly and
+  unresponsive to our theme. */
+  /* Base checkbox */
+  input[type="checkbox"] {
+    width: 16px;
+    height: 16px;
+    padding: 0;
+    margin: 0;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    background-color: var(--gw-body-background);
+    border-radius: 3px;
+    display: inline-block;
+    vertical-align: middle;
+    cursor: pointer;
+    position: relative; /* for ::after */
+  }
+
+  /* Checked state */
+  input[type="checkbox"]:checked {
+    background-color: var(--gw-primary-color);
+    border-color: var(--gw-primary-color);
+  }
+
+  /* Checkmark */
+  input[type="checkbox"]:checked::after {
+    content: "";
+    position: absolute;
+    top: 49%;    /* center vertically */
+    left: 50%;   /* center horizontally */
+    width: 3px;
+    height: 5px;
+    border: solid var(--gw-body-background);
+    border-width: 0 2px 2px 0;
+    transform: translate(-50%, -50%) rotate(45deg); /* center + rotate */
+  }
+
 }
