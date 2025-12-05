@@ -1,16 +1,21 @@
 import './diagrams-sidebar.directive.scss';
 import template from './diagrams-sidebar.directive.html';
+import {
+  ChatContextEventName
+} from '../../../services/chat/chat-context-event-name';
 import {DiagramTypes} from '../../../models/chat/diagrams/diagram-types';
-import {ChatContextEventName} from '../../../services/chat/chat-context-event-name';
+import DiagramServiceModule from '../../../services/diagrams/diagram.service';
 
-const dependencies = [];
+const dependencies = [
+  DiagramServiceModule.name
+];
 
 const DiagramsSidebarModule = angular.module('tt2ps.components.chat.diagrams-sidebar', dependencies);
 DiagramsSidebarModule.directive('diagramsSidebar', DiagramsSidebarDirective);
 
-DiagramsSidebarDirective.$inject = ['ChatContextService'];
+DiagramsSidebarDirective.$inject = ['ChatContextService', 'DiagramService'];
 
-function DiagramsSidebarDirective(ChatContextService) {
+function DiagramsSidebarDirective(ChatContextService, DiagramService) {
   return {
     restrict: 'E',
     template,
@@ -20,8 +25,8 @@ function DiagramsSidebarDirective(ChatContextService) {
       ///////////////////////////
       $scope.fullscreen = false;
       $scope.answersWithDiagrams = [];
-      $scope.DiagramTypes = DiagramTypes;
       $scope.selectedDiagram = undefined;
+      $scope.imageDiagram = undefined;
 
       ////////////////////////////
       //  Public functions
@@ -50,6 +55,13 @@ function DiagramsSidebarDirective(ChatContextService) {
 
       const onSelectedDiagramChanged = (diagram) => {
         $scope.selectedDiagram = diagram;
+        if ($scope.selectedDiagram && $scope.selectedDiagram.type === DiagramTypes.IMAGE) {
+          DiagramService.loadImage($scope.selectedDiagram.url)
+            .then((imageDiagram) => {
+              $scope.imageDiagram = imageDiagram;
+            });
+
+        }
       }
 
       const onShowSelectedDiagramOnFullscreen = () => {

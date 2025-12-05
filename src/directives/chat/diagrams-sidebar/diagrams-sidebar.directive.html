@@ -19,7 +19,7 @@
             </div>
 
             <div ng-switch-when="image" class="image-diagram">
-                <img class="diagram" ng-src="{{selectedDiagram.url | trustAsResourceUrl}}"></img>
+                <img ng-if="imageDiagram" class="diagram" ng-src="{{imageDiagram}}">
             </div>
 
             <div ng-switch-default class="iframe-diagram">
