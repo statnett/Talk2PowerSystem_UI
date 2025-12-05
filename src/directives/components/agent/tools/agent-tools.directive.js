@@ -1,9 +1,11 @@
 import './agent-tools.directive.scss';
 import template from './agent-tools.directive.html';
 import CollapsibleFieldsetModule from '../../../core/collapsible-fieldset/collapsible-fieldset.directive';
+import PropertyCheckboxModule from '../../../core/property-checkbox/property-checkbox.directive';
 
 const dependencies = [
   CollapsibleFieldsetModule.name,
+  PropertyCheckboxModule.name,
 ];
 const AgentToolsModule = angular.module('tt2ps.directives.components.agent-tools', dependencies);
 

@@ -3,31 +3,35 @@
                     collapsed="true">
         <fieldset class="agent-fieldset" ng-repeat="agentTool in agentTools">
             <legend>{{('tt2ps.components.agent.property.tools.' + agentTool.name + '.name') | translate}}</legend>
-            <property-input label-key="tt2ps.components.agent.property.tools.enabled" value="{{agentTool.enabled}}"></property-input>
+            <property-checkbox label-key="tt2ps.components.agent.property.tools.enabled" value="{{agentTool.enabled}}"></property-checkbox>
+            <!-- Display graphic tool -->
+            <div ng-if="agentTool.name === 'display_graphics'">
+                <property-textarea label-key="tt2ps.components.agent.property.tools.display_graphics.sparql_query_template" value="{{agentTool.sparqlQueryTemplate}}"></property-textarea>
+            </div>
             <!-- Autocomplete search -->
             <div ng-if="agentTool.name === 'autocomplete_search'">
-                <property-input label-key="tt2ps.components.agent.property.tools.autocomplete_search.property_path" value="{{agentTool.property_path}}"></property-input>
-                <property-textarea label-key="tt2ps.components.agent.property.tools.autocomplete_search.sparql_query_template" value="{{agentTool.sparql_query_template}}"></property-textarea>
+                <property-input label-key="tt2ps.components.agent.property.tools.autocomplete_search.property_path" value="{{agentTool.propertyPath}}"></property-input>
+                <property-textarea label-key="tt2ps.components.agent.property.tools.autocomplete_search.sparql_query_template" value="{{agentTool.sparqlQueryTemplate}}"></property-textarea>
             </div>
 
             <!-- Sample SPARQL queries -->
             <div ng-if="agentTool.name === 'sample_sparql_queries'">
-                <property-input label-key="tt2ps.components.agent.property.tools.sample_sparql_queries.connector_name" value="{{agentTool.connector_name}}"></property-input>
-                <property-textarea label-key="tt2ps.components.agent.property.tools.sample_sparql_queries.sparql_query_template" value="{{agentTool.sparql_query_template}}"></property-textarea>
+                <property-input label-key="tt2ps.components.agent.property.tools.sample_sparql_queries.connector_name" value="{{agentTool.connectorName}}"></property-input>
+                <property-textarea label-key="tt2ps.components.agent.property.tools.sample_sparql_queries.sparql_query_template" value="{{agentTool.sparqlQueryTemplate}}"></property-textarea>
             </div>
 
             <!-- Retrieve data points -->
             <div ng-if="agentTool.name === 'retrieve_data_points'">
                 <property-input label-key="tt2ps.components.agent.property.tools.retrieve_data_points.project" value="{{agentTool.project}}"></property-input>
-                <property-input label-key="tt2ps.components.agent.property.tools.retrieve_data_points.base_url" value="{{agentTool.base_url}}"></property-input>
-                <property-input label-key="tt2ps.components.agent.property.tools.retrieve_data_points.client_name" value="{{agentTool.client_name}}"></property-input>
+                <property-input label-key="tt2ps.components.agent.property.tools.retrieve_data_points.base_url" value="{{agentTool.baseUrl}}"></property-input>
+                <property-input label-key="tt2ps.components.agent.property.tools.retrieve_data_points.client_name" value="{{agentTool.clientName}}"></property-input>
             </div>
 
             <!-- Retrieve time series-->
             <div ng-if="agentTool.name === 'retrieve_time_series'">
                 <property-input label-key="tt2ps.components.agent.property.tools.retrieve_time_series.project" value="{{agentTool.project}}"></property-input>
-                <property-input label-key="tt2ps.components.agent.property.tools.retrieve_time_series.base_url" value="{{agentTool.base_url}}"></property-input>
-                <property-input label-key="tt2ps.components.agent.property.tools.retrieve_time_series.client_name" value="{{agentTool.client_name}}"></property-input>
+                <property-input label-key="tt2ps.components.agent.property.tools.retrieve_time_series.base_url" value="{{agentTool.baseUrl}}"></property-input>
+                <property-input label-key="tt2ps.components.agent.property.tools.retrieve_time_series.client_name" value="{{agentTool.clientName}}"></property-input>
             </div>
         </fieldset>
     </collapsible-fieldset>

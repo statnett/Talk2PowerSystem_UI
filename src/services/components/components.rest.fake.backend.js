@@ -435,8 +435,12 @@ const componentsInfo = {
       "seed": 1
     },
     "tools": {
+      "display_graphics": {
+        "enabled": true,
+        "sparql_query_template": "PREFIX cim: <https://cim.ucaiug.io/ns#>\nPREFIX cimr: <https://cim.ucaiug.io/rules#>\nSELECT ?link ?name ?description {{\n    <{iri}> cimr:Diagram.link ?link;\n        cim:IdentifiedObject.name ?name;\n        cim:IdentifiedObject.description ?description.\n}}"
+      },
       "sparql_query": {
-        "enabled": true
+        "enabled": false
       },
       "autocomplete_search": {
         "enabled": true,
@@ -451,13 +455,13 @@ const componentsInfo = {
       "retrieve_data_points": {
         "enabled": true,
         "base_url": "https://statnett.cognitedata.com",
-        "project": "prod",
+        "project": "prod retrieve data points",
         "client_name": "talk2powersystem"
       },
       "retrieve_time_series": {
         "enabled": true,
         "base_url": "https://statnett.cognitedata.com",
-        "project": "prod",
+        "project": "prod retrieve time series",
         "client_name": "talk2powersystem"
       },
       "now": {
