@@ -1,0 +1,14 @@
+.image-diagram {
+  max-width: 100%;
+  height: auto;
+  transform-origin: top left;
+  display: block;
+
+  &.dragging {
+    cursor: grabbing;
+  }
+
+  &:not(.dragging).zoomed {
+    cursor: grab;
+  }
+}
