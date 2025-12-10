@@ -116,7 +116,20 @@ function MainController($scope, $location, SecurityContextService) {
   }
 
   const updateIsMobile = () => {
+    const wasMobile = $scope.isMobile;
+
     $scope.isMobile = window.innerWidth <= 768 || /Mobi|Android|iPhone/i.test(navigator.userAgent);
+
+    // If switched TO mobile mode → auto-collapse
+    if ($scope.isMobile && !wasMobile) {
+      $scope.pinned = false;
+      $scope.hover = false;
+    }
+
+    // If switched FROM mobile to desktop → restore pinned behavior
+    if (!$scope.isMobile && wasMobile) {
+      $scope.pinned = true;
+    }
   }
 
   /**

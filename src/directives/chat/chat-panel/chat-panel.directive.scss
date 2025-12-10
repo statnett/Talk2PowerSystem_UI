@@ -66,14 +66,26 @@
       flex-direction: column;
       align-items: center;
       gap: 4rem;
+      height: auto;
+      min-height: 0;
 
       .brands {
         display: flex;
-        gap: 1rem;
+        flex-wrap: wrap;
+        gap: 4rem;
         align-items: flex-start;
+        max-height: 3.5rem;
 
-        img {
+        .graphwise-logo {
           max-width: 14rem;
+        }
+
+        .big-logo {
+          max-width: 7rem;
+        }
+
+        .statnet-logo {
+          max-width: 9rem;
         }
       }
 
