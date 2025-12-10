@@ -1,94 +1,31 @@
-.diagrams-sidebar-wrapper {
+.diagram-card {
   display: flex;
-  padding: 0 1rem 2rem 1rem;
   flex-direction: column;
-  justify-content: space-between;
-  height: calc(100% - 2rem);
+  padding: 0.5rem 1rem 1rem 1rem;
+  gap: 0.5rem;
+  background-color: var(--gw-body-background);
+  border-radius: 0.5rem;
+  border: 1px solid var(--divider-color);
+  max-height: calc(100% - 28px);
+  height: 100%;
 
-  .diagram-card {
+  .diagram-header {
+    flex: 0 0 28px;
     display: flex;
-    padding: 0.5rem 1rem 1rem 1rem;
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 0.5rem;
-    align-self: stretch;
-    background-color: var(--gw-body-background);
-    border-radius: 0.5rem;
-    border: 1px solid var(--divider-color);
+    justify-content: end;
+    height: 28px;
+    align-items: center;
 
-    .diagram-header {
-      display: flex;
-      justify-content: end;
-      height: 28px;
-      align-items: center;
-      gap: 16px;
-      align-self: stretch;
-
-      .fullscreen-buton {
-        background-color: inherit;
-      }
-    }
-
-    .selected-diagram {
-      width: 100%;
-      height: 100%;
-
-      .svg-diagram {
-        .diagram {
-          width: 100%;
-          height: 100%;
-          svg {
-            width: 100%;
-            height: auto;
-          }
-        }
-      }
-
-      .iframe-diagram,
-      .iframe-diagram iframe ,{
-        width: 100%;
-        height: 100%;
-      }
-
-      .image-diagram {
-        width: 100%;
-        height: 100%;
-        img {
-          width: 100%;
-          height: 100%;
-          object-fit: contain;
-        }
-      }
+    .fullscreen-buton {
+      background-color: inherit;
     }
   }
 
-  .diagram-card.iframe-flex {
-    flex: 1;
-  }
+  .selected-diagram {
+    flex: 1 1 auto;
 
-  &.fullscreen {
-    .diagram-card {
-      position: fixed;
-      inset: 0;
-      min-height: -webkit-fill-available;
-      z-index: 1015;
-      border: none !important;
-      outline: none !important;
-      box-shadow: none !important;
-      overflow: hidden;
-    }
-
-    .svg-diagram {
-      width: 100%;
-      height: 100%;
-
-      svg {
-        width: 100%;
-        height: auto;       /* maintain aspect ratio */
-        max-height: 100%;   /* don’t exceed container */
-        display: block;     /* remove default inline spacing */
-        margin: 0 auto;     /* horizontally center */
-      }
+    &.overflow-auto {
+      overflow: auto;
     }
   }
 }

@@ -1,34 +1,23 @@
-<div class="diagrams-sidebar-wrapper">
-    <div class="diagram-card" ng-if="selectedDiagram"
-    ng-class="{'iframe-flex': selectedDiagram.type !== 'svg'}">
-        <div class="diagram-header">
-            <button class="btn fullscreen-buton"
-                    ng-if="!fullscreen"
-                    ng-click="setFullscreen()">
-                <i class="ri-fullscreen-line"></i>
-            </button>
-            <button class="btn fullscreen-buton"
-                    ng-if="fullscreen"
-                    ng-click="exitFullscreen()">
-                <i class="ri-fullscreen-exit-line"></i>
-            </button>
-        </div>
-        <ng-switch on="selectedDiagram.type" class="selected-diagram">
-            <div ng-switch-when="svg" class="svg-diagram">
-                <div class="diagram" ng-bind-html="selectedDiagram.svg | trustAsHtml"></div>
-            </div>
-
-            <div ng-switch-when="image" class="image-diagram">
-                <img ng-if="imageDiagram" class="diagram" ng-src="{{imageDiagram}}">
-            </div>
-
-            <div ng-switch-default class="iframe-diagram">
-                <iframe class="diagram"
-                        id="inlineFrameExample"
-                        title="Inline Frame Example"
-                        ng-src="{{selectedDiagram.url | trustAsResourceUrl}}">
-                </iframe>
-            </div>
-        </ng-switch>
+<div class="diagram-card" ng-if="selectedDiagram">
+    <div class="diagram-header">
+        <button class="btn fullscreen-buton"
+                ng-if="!fullscreen"
+                ng-click="setFullscreen()">
+            <i class="ri-fullscreen-line"></i>
+        </button>
+        <button class="btn fullscreen-buton"
+                ng-if="fullscreen"
+                ng-click="exitFullscreen()">
+            <i class="ri-fullscreen-exit-line"></i>
+        </button>
     </div>
+    <ng-switch on="selectedDiagram.type"
+               class="selected-diagram"
+               ng-class="{'overflow-auto': (selectedDiagram.type === 'svg' || selectedDiagram.type === 'image')}">
+        <svg-diagram ng-switch-when="svg" diagram="selectedDiagram" fullscreen="fullscreen"></svg-diagram>
+        <image-diagram ng-switch-when="image" diagram="selectedDiagram" fullscreen="fullscreen"></image-diagram>
+        <iframe-diagram ng-switch-default
+                        diagram="selectedDiagram"
+                        fullscreen="fullscreen"></iframe-diagram>
+    </ng-switch>
 </div>
