@@ -7,9 +7,9 @@ const dependencies = [];
 const ImageDiagramModule = angular.module('tt2ps.components.chat.image-diagram', dependencies);
 ImageDiagramModule.directive('imageDiagram', ImageDiagramDirective);
 
-ImageDiagramDirective.$inject = ['DiagramService'];
+ImageDiagramDirective.$inject = ['$translate', 'DiagramService', 'ToastrService'];
 
-function ImageDiagramDirective(DiagramService) {
+function ImageDiagramDirective($translate, DiagramService, ToastrService) {
   return {
     restrict: 'E',
     scope: {
@@ -56,6 +56,10 @@ function ImageDiagramDirective(DiagramService) {
               const imgEl = element[0].querySelector('.image-diagram');
               if (imgEl) initZoomHelper(imgEl);
             });
+          })
+          .catch(() => {
+            $scope.imageDiagram = null;
+            ToastrService.error($translate.instant('chat_panel.error.diagram_not_found'));
           });
       };
 
@@ -69,7 +73,7 @@ function ImageDiagramDirective(DiagramService) {
         }
       };
 
-      subscriptions.push($scope.$watch('fullscreen', (fullscreen, oldVal) => {
+      subscriptions.push($scope.$watch('fullscreen', (fullscreen) => {
         if (!fullscreen && zoomDiagramHelper) {
           zoomDiagramHelper.resetPosition();
         }

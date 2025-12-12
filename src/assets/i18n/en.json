@@ -303,7 +303,10 @@
       "create_chat_failure": "Failed to create chat session.",
       "unprocessable_entity": "Validation failed",
       "conversation_not_found": "Conversation expired: previous questions are not taken into account.",
-      "ask_question_failure": "Failed to ask the question. Please try again."
+      "ask_question_failure": "Failed to ask the question. Please try again.",
+      "diagram_not_found": "Diagram not found.",
+      "chatcreationfailed": "Failed to create conversation.",
+      "askquestionfailure": "An error occurred while submitting your question."
     }
   },
   "copy_to_clipboard": {
