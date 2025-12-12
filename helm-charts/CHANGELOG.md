@@ -1,5 +1,9 @@
 # Talk to the Power System Chatbot UI
 
+## 1.0.2
+
+- Update `appVersion` to `v2.0.0-rc1`
+
 ## 1.0.1
 
 - Fixes the `appVersion` value in the `Chart.yaml`. It should be prefixed with `v` in order to match the version tags
