@@ -15,7 +15,10 @@ RUN npm clean-install && \
 FROM nginx:stable-alpine-slim
 
 # Setting default CONTEXT_PATH
-ENV CONTEXT_PATH=/chat/
+ENV CONTEXT_PATH=/chat/ \
+    PROXY_CONNECT_TIMEOUT=60s \
+    PROXY_READ_TIMEOUT=180s \
+    PROXY_SEND_TIMEOUT=180s
 
 # Copy proxy config templates
 COPY nginx/ /etc/nginx/

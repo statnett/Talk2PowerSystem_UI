@@ -2,7 +2,7 @@ apiVersion: v2
 name: t2ps-chatbot-ui
 description: Web application for the Talk to the Power System Chatbot, served via Nginx Web Server
 type: application
-version: 1.0.2
+version: 1.0.3
 appVersion: "v2.0.0-rc1"
 home: https://github.com/statnett/Talk2PowerSystem_UI
 sources:
