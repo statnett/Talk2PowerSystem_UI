@@ -82,12 +82,12 @@ image:
   # Use this to override the value from .Chart.AppVersion and effectively deploy a custom version.
   tag: ""
 
-  # Expected SHA256 digest of the used image, e.g. "sha256@abc"
+  # Expected SHA256 digest of the used image, e.g. "sha256@abc".
   # Use the digest to make sure you are always deploying the exact same application image.
   # Defining it would override .Chart.AppVersion and image.tag
   digest: ""
 
-  # Defines the policy for pulling images
+  # Defines the policy for pulling images.
   # Ref: https://kubernetes.io/docs/concepts/containers/images/#image-pull-policy
   pullPolicy: IfNotPresent
 
@@ -124,6 +124,23 @@ configuration:
   # The URL of the GraphDB instance. Should include context path as it is used for redirects.
   graphdb:
     url: http://my-domain.com/graphdb
+
+  # Provides a way to control the timeouts for the proxied requests.
+  # The configurations are passed to the container as environment variables and they are used as global settings for the
+  # server directive in the "default.conf" file.
+  proxy:
+    timeout:
+      # Defines a timeout for establishing a connection with a proxied server.
+      # Ref: https://nginx.org/en/docs/http/ngx_http_proxy_module.html#proxy_connect_timeout
+      connect: 60s
+
+      # Defines a timeout for reading a response from the proxied server.
+      # Ref: https://nginx.org/en/docs/http/ngx_http_proxy_module.html#proxy_read_timeout
+      read: 180s
+
+      # Sets a timeout for transmitting a request to the proxied server.
+      # Ref: https://nginx.org/en/docs/http/ngx_http_proxy_module.html#proxy_send_timeout
+      send: 180s
 
 ##########################
 # Ingress Configurations #
@@ -166,7 +183,7 @@ ingress:
 # Configurations for application Service.
 # Ref: https://kubernetes.io/docs/concepts/services-networking/service/
 service:
-  # Enables or disables the Service deployment
+  # Enables or disables the Service deployment.
   enabled: true
 
   # Additional labels to append to the Service resource.
@@ -205,10 +222,10 @@ service:
   # Ref: https://kubernetes.io/docs/concepts/services-networking/service/#load-balancer-class
   loadBalancerClass: ""
 
-  # Source IP ranges for restricting external ingress traffic
+  # Source IP ranges for restricting external ingress traffic.
   loadBalancerSourceRanges: []
 
-  # External IP addresses at which the Service will be exposed
+  # External IP addresses at which the Service will be exposed.
   # Ref: https://kubernetes.io/docs/concepts/services-networking/service/#external-ips
   externalIPs: []
 

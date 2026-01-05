@@ -7,6 +7,10 @@ map "${CONTEXT_PATH}" $context_path_trimmed {
 server {
   listen 8080 default_server;
 
+  proxy_connect_timeout ${PROXY_CONNECT_TIMEOUT};
+  proxy_read_timeout ${PROXY_READ_TIMEOUT};
+  proxy_send_timeout ${PROXY_SEND_TIMEOUT};
+
   # Handles missing trailing slash at the end of the application root path
   if ($context_path_trimmed = $uri) {
     return 301 $scheme://$host${CONTEXT_PATH};

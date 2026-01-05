@@ -123,6 +123,12 @@ spec:
           env:
             - name: CONTEXT_PATH
               value: {{ .Values.configuration.contextPath }}
+            - name: PROXY_CONNECT_TIMEOUT
+              value: {{ .Values.configuration.proxy.timeout.connect }}
+            - name: PROXY_READ_TIMEOUT
+              value: {{ .Values.configuration.proxy.timeout.read }}
+            - name: PROXY_SEND_TIMEOUT
+              value: {{ .Values.configuration.proxy.timeout.send }}
           {{- with .Values.extraEnv }}
             {{- tpl (toYaml .) $ | nindent 12 }}
           {{- end }}
