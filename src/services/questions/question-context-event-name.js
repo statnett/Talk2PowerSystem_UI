@@ -5,7 +5,7 @@ export const QuestionContextEventName = {
   QUESTION_CHANGED: "questionsChanged",
 
   /**
-   * This event will be emitted when a question is selected.
+   * This event is emitted when the selected question changes.
    */
-  SELECT_QUESTION: "selectQuestion"
+  SELECTED_QUESTION_CHANGED: "selectedQuestionChanged"
 }

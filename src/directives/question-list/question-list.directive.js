@@ -1,22 +1,19 @@
 import './question-list.directive.scss';
 import template from './question-list.directive.html';
 import QuestionsContextServiceModule from '../../services/questions/question-context.service';
-import {
-    QuestionContextEventName as QuestionsContextEventName
-} from '../../services/questions/question-context-event-name';
 import {QuestionCategoryListModel} from '../../models/questions/question-category-list';
 import AccordionModule from '../core/accordion/accordion.directive';
 
 const modules = [
     QuestionsContextServiceModule.name,
-    AccordionModule.name
+    AccordionModule.name,
 ];
 
 const QuestionListModule = angular.module('tt2ps.directives.questions.question-list', modules);
 
 QuestionListModule.directive('questions', QuestionListComponent);
 
-QuestionListComponent.$inject = ['QuestionsContextService'];
+QuestionListComponent.$inject = ['$location', 'QuestionsContextService'];
 
 /**
  * @module tt2ps.directives.chat.question-list
@@ -28,7 +25,7 @@ QuestionListComponent.$inject = ['QuestionsContextService'];
  * <questions></questions>
  */
 
-function QuestionListComponent(QuestionsContextService) {
+function QuestionListComponent($location, QuestionsContextService) {
     return {
         restrict: 'E',
         template,
@@ -47,7 +44,10 @@ function QuestionListComponent(QuestionsContextService) {
              * @param {QuestionModel} selectedQuestion
              */
             $scope.onQuestionSelected = (selectedQuestion) => {
-                QuestionsContextService.emit(QuestionsContextEventName.SELECT_QUESTION, selectedQuestion.question);
+                QuestionsContextService.setSelectedQuestion(selectedQuestion);
+                if ($location.path() !== '/chat' && $location.path() !== '/') {
+                    $location.path('/chat');
+                }
             };
 
             // =========================
