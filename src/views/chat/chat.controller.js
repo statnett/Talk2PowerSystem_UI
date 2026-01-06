@@ -7,8 +7,6 @@ import chatPanelModule from '../../directives/chat/chat-panel/chat-panel.directi
 import ChatContextServiceModule from '../../services/chat/chat-context.service';
 import ChatServiceModule from "../../services/chat/chat.service";
 import {ContinueChatRun} from "../../models/chat/chat-answer";
-import QuestionsServiceModule from '../../services/questions/questions.service';
-import QuestionsContextServiceModule from '../../services/questions/question-context.service';
 import {QuestionCategoryListModel} from '../../models/questions/question-category-list';
 import SplitterModule from '../../directives/core/splitter/splitter.directive';
 import DiagramsSidebarModule from '../../directives/chat/diagrams-sidebar/diagrams-sidebar.directive';
@@ -17,8 +15,6 @@ const modules = [
   chatPanelModule.name,
   ChatContextServiceModule.name,
   ChatServiceModule.name,
-  QuestionsContextServiceModule.name,
-  QuestionsServiceModule.name,
   SplitterModule.name,
   DiagramsSidebarModule.name
 ];
@@ -32,12 +28,10 @@ ChatCtrl.$inject = [
     '$translate',
     'ToastrService',
     'ChatService',
-    'ChatContextService',
-    'QuestionsService',
-    'QuestionsContextService'
+    'ChatContextService'
 ]
 
-function ChatCtrl($scope, $translate, ToastrService, ChatService, ChatContextService, QuestionsService, QuestionsContextService) {
+function ChatCtrl($scope, $translate, ToastrService, ChatService, ChatContextService) {
     // =========================
     // Public variables
     // =========================
@@ -63,19 +57,7 @@ function ChatCtrl($scope, $translate, ToastrService, ChatService, ChatContextSer
      * Initializes the controller state and loads questions.
      */
     const init = () => {
-        loadQuestions();
         ChatContextService.selectChat(new ChatModel());
-    };
-
-    /**
-     * Loads available questions.
-     *
-     */
-    const loadQuestions = () => {
-        QuestionsService.getQuestions()
-          .then((questions) => {
-              QuestionsContextService.setQuestions(questions);
-          });
     };
 
     /**
@@ -216,7 +198,6 @@ function ChatCtrl($scope, $translate, ToastrService, ChatService, ChatContextSer
      */
     const removeAllSubscribers = () => {
         subscriptions.forEach((unsubscribe) => unsubscribe());
-        QuestionsContextService.setQuestions(new QuestionCategoryListModel());
     };
 
     subscriptions.push(ChatContextService.subscribe(ChatContextEventName.CREATE_CHAT, onCreateNewChat));

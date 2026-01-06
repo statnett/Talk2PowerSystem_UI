@@ -7,9 +7,6 @@ import ChatContextServiceModule from '../../../services/chat/chat-context.servic
 import {ChatContextEventName} from '../../../services/chat/chat-context-event-name';
 import ChatItemDetailModule from '../chat-item-details/chat-item-detail.directive';
 import QuestionListModule from "../../question-list/question-list.directive";
-import {
-    QuestionContextEventName as QuestionsContextEventName
-} from '../../../services/questions/question-context-event-name';
 import QuestionsContextServiceModule from '../../../services/questions/question-context.service';
 
 let modules = [
@@ -158,8 +155,14 @@ function ChatPanelDirective($translate, ChatContextService, QuestionsContextServ
                 $scope.waitingForLastMessage = false;
             };
 
-            const onSelectQuestion = (question) => {
-                $scope.chatItem.question.message = question;
+            /**
+             * Sets the chat item question message from the selected question.
+             * @param {QuestionModel} selectedQuestion
+             */
+            const selectQuestion = (selectedQuestion) => {
+                if (selectedQuestion) {
+                    $scope.chatItem.question.message = selectedQuestion.question;
+                }
             }
 
             const getEmptyChatItem = () => {
@@ -201,6 +204,8 @@ function ChatPanelDirective($translate, ChatContextService, QuestionsContextServ
             const init = () => {
                 $scope.chatItem = getEmptyChatItem();
                 $scope.askingChatItem = undefined;
+                // Applies the selected question from the QuestionsContextService to the chat item.
+                selectQuestion(QuestionsContextService.getSelectedQuestion());
                 scrollToBottom();
                 focusQuestionInput();
             };
@@ -219,10 +224,15 @@ function ChatPanelDirective($translate, ChatContextService, QuestionsContextServ
             subscriptions.push(ChatContextService.onSelectedChatUpdated(onSelectedChatUpdated));
             subscriptions.push(ChatContextService.subscribe(ChatContextEventName.ASK_QUESTION_FAILURE, onQuestionFailure));
             subscriptions.push(ChatContextService.subscribe(ChatContextEventName.CREATE_CHAT_FAILURE, onQuestionFailure));
-            subscriptions.push(QuestionsContextService.subscribe(QuestionsContextEventName.SELECT_QUESTION, onSelectQuestion));
+            subscriptions.push(QuestionsContextService.onSelectedQuestionChanged(selectQuestion));
 
             // Deregister the watcher when the scope/directive is destroyed
-            $scope.$on('$destroy', removeAllSubscribers);
+            $scope.$on('$destroy', () => {
+                removeAllSubscribers();
+                // Removes the question from the context so that the page is not populated with a question
+                // on the next visit unless it is explicitly set.
+                QuestionsContextService.clearSelectedQuestion();
+            });
 
             // =========================
             // Initialization

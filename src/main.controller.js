@@ -2,16 +2,28 @@ import './layout.scss';
 import angular from 'angular';
 import QuestionListModule from './directives/question-list/question-list.directive';
 import {AuthenticationState} from './models/security/authentication-state';
+import QuestionsContextServiceModule from "./services/questions/question-context.service";
+import QuestionsServiceModule from "./services/questions/questions.service";
+import {QuestionCategoryListModel} from "./models/questions/question-category-list";
 
-const dependencies = [QuestionListModule.name];
+const dependencies = [
+  QuestionListModule.name,
+  QuestionsContextServiceModule.name,
+  QuestionsServiceModule.name,
+];
 
 const MainControllerModule = angular.module('tt2ps.controllers.mainCtrl', dependencies);
 
 MainControllerModule.controller('mainCtrl', MainController);
 
-MainController.$inject = ['$scope', '$location', 'SecurityContextService'];
+MainController.$inject = [
+  '$scope',
+  '$location',
+  'SecurityContextService',
+  'QuestionsService',
+  'QuestionsContextService'];
 
-function MainController($scope, $location, SecurityContextService) {
+function MainController($scope, $location, SecurityContextService, QuestionsService, QuestionsContextService) {
   // =========================
   // Public variables
   // =========================
@@ -81,8 +93,21 @@ function MainController($scope, $location, SecurityContextService) {
   // Private functions
   // =========================
   const init = () => {
+    loadQuestions();
     updateIsMobile();
   }
+
+  /**
+   * Loads available questions.
+   *
+   */
+  const loadQuestions = () => {
+    QuestionsService.getQuestions()
+        .then((questions) => {
+          QuestionsContextService.setQuestions(questions);
+        });
+  };
+
   /**
    * Handles updates to the security configuration.
    * @param {SecurityConfigurationModel} securityConfiguration - The updated security configuration.
@@ -137,6 +162,7 @@ function MainController($scope, $location, SecurityContextService) {
    */
   const removeAllSubscribers = () => {
     subscriptions.forEach((unsubscribe) => unsubscribe());
+    QuestionsContextService.setQuestions(new QuestionCategoryListModel());
     window.removeEventListener('resize', onResize);
   };
 

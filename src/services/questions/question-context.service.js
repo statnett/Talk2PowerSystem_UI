@@ -19,6 +19,55 @@ function QuestionsContextService(EventEmitterService) {
   let _questions = new QuestionCategoryListModel();
 
   /**
+   * Holds the currently selected question, if any.
+   * @type {QuestionModel|undefined}
+   */
+  let _selectedQuestion = undefined;
+
+  /**
+   * Returns the last selected question, if any.
+   *
+   * @returns {QuestionModel|undefined}
+   */
+  const getSelectedQuestion = () => {
+    return cloneDeep(_selectedQuestion);
+  }
+
+  /**
+   * Sets the selected question and emits the 'selectedQuestionChanged' event
+   * to notify listeners that the selected chat question has changed.
+   *
+   * @param {QuestionModel} question - The newly selected question.
+   */
+  const setSelectedQuestion = (question) => {
+    _selectedQuestion = cloneDeep(question);
+    emit(QuestionContextEventName.SELECTED_QUESTION_CHANGED, getSelectedQuestion());
+  };
+
+  /**
+   * Clears the selected question from the context.
+   */
+  const clearSelectedQuestion = () => {
+    setSelectedQuestion(undefined);
+  }
+
+  /**
+   * Subscribes to the 'selectedQuestionChanged' event.
+   *
+   * The callback is immediately invoked with the current selected question,
+   * if one exists.
+   *
+   * @param {Function} callback - Called when the selected question changes.
+   * @returns {Function} Unsubscribe function.
+   */
+  const onSelectedQuestionChanged = (callback) => {
+    if (angular.isFunction(callback)) {
+      callback(getSelectedQuestion());
+    }
+    return subscribe(QuestionContextEventName.SELECTED_QUESTION_CHANGED, (selectedQuestion) => callback(selectedQuestion));
+  };
+
+  /**
    * @return {QuestionCategoryListModel}
    */
   const getQuestions = () => {
@@ -75,7 +124,11 @@ function QuestionsContextService(EventEmitterService) {
     subscribe,
     getQuestions,
     setQuestions,
-    onQuestionsChanged
+    onQuestionsChanged,
+    getSelectedQuestion,
+    setSelectedQuestion,
+    clearSelectedQuestion,
+    onSelectedQuestionChanged
   };
 }
 
