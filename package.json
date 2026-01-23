@@ -20,7 +20,7 @@
     "angular-toastr": "^2.1.1",
     "angular-translate": "^2.19.1",
     "angular-translate-loader-static-files": "^2.19.1",
-    "lodash": "^4.17.21",
+    "lodash": "^4.17.23",
     "markdown-it": "^14.1.0",
     "markdown-it-code-copy": "^0.2.2",
     "oclazyload": "^1.1.0",
