@@ -21,7 +21,7 @@
     "angular-translate": "^2.19.1",
     "angular-translate-loader-static-files": "^2.19.1",
     "lodash": "^4.17.21",
-    "markdown-it": "^14.1.0",
+    "markdown-it": "^14.1.1",
     "markdown-it-code-copy": "^0.2.2",
     "oclazyload": "^1.1.0",
     "remixicon": "^4.7.0",
