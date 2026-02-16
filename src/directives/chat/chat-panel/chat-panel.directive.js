@@ -143,7 +143,7 @@ function ChatPanelDirective($translate, ChatContextService, QuestionsContextServ
             const onSelectedChatChanged = (chat) => {
                 $scope.chat = chat;
                 if ($scope.chat) {
-                    init();
+                    initNewChat();
                 } else {
                     reset();
                 }
@@ -152,7 +152,7 @@ function ChatPanelDirective($translate, ChatContextService, QuestionsContextServ
             const onSelectedChatUpdated = (chat) => {
                 $scope.chat = chat;
                 if ($scope.chat) {
-                    init();
+                    initNewChat();
                 } else {
                     reset();
                 }
@@ -215,13 +215,17 @@ function ChatPanelDirective($translate, ChatContextService, QuestionsContextServ
             };
 
             const init = () => {
-                $scope.chatItem = getEmptyChatItem();
-                $scope.askingChatItem = undefined;
+                initNewChat();
                 // Applies the selected question from the QuestionsContextService to the chat item.
                 selectQuestion(QuestionsContextService.getSelectedQuestion());
+            };
+
+            const initNewChat = () => {
+                $scope.chatItem = getEmptyChatItem();
+                $scope.askingChatItem = undefined;
                 scrollToBottom();
                 focusQuestionInput();
-            };
+            }
 
             // =========================
             // Subscriptions
