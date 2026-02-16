@@ -1,12 +1,12 @@
 <div class="chat-item-detail">
-    <div class="user-message" ng-if="chatItemDetail.question">
+    <div class="user-message" ng-if="chatItemDetail.type === 'ASK' && chatItemDetail.question">
         <div class="question alert-help">
             <markdown-content class="question-text"
                               content="{{chatItemDetail.question.message}}"></markdown-content>
         </div>
     </div>
     <div class="answers" ng-repeat="answer in chatItemDetail.answers">
-        <div class="assistant">
+        <div ng-if="chatItemDetail.type === 'ASK' || (answer && answer.message && answer.message.trim())" class="assistant">
             <div class="assistant-icon alert-help">
                 <i class="ri-robot-2-line ri-1x"></i>
             </div>

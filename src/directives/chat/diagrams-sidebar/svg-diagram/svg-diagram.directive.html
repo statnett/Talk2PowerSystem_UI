@@ -1,4 +1,9 @@
-<div ng-if="diagram"
+<div ng-if="diagram && diagram.svg"
      ng-bind-html="diagram.svg | trustAsHtml"
+     class="svg-diagram diagram">
+</div>
+
+<div ng-if="diagram && svgDiagram"
+     ng-bind-html="svgDiagram | trustAsHtml"
      class="svg-diagram diagram">
 </div>

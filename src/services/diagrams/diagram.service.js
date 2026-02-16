@@ -19,8 +19,14 @@ function DiagramService(DiagramRestService) {
             });
     };
 
+    const loadSVG = (url) => {
+        return DiagramRestService.loadSVG(url)
+            .then((response) => response.data);
+    };
+
     return {
-        loadImage
+        loadImage,
+        loadSVG
     };
 }
 

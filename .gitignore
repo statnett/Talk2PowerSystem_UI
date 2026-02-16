@@ -5,3 +5,5 @@ node_modules
 
 # Helm
 /helm-charts/output.yaml
+
+/src/assets/images/test/

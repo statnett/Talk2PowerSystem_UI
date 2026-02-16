@@ -1,4 +1,5 @@
 import {ChatMessageModel} from "./chat-message";
+import {ChatItemType} from "./chat-item-type";
 
 /**
  *
@@ -22,6 +23,13 @@ export class ChatItemModel {
         this._chatId = chatId;
 
         /**
+         *
+         * @type @type {'ASK' | 'DESCRIBE_DIAGRAM_ELEMENT'} see {@link ChatItemType}
+         * @private
+         */
+        this._type = ChatItemType.ASK;
+
+        /**
          * @type {ChatMessageModel}
          * @private
          */
@@ -41,6 +49,14 @@ export class ChatItemModel {
 
     set chatId(value) {
         this._chatId = value;
+    }
+
+    get type() {
+        return this._type;
+    }
+
+    set type(value) {
+        this._type = value;
     }
 
     get question() {
