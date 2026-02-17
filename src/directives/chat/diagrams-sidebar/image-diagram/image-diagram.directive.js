@@ -74,7 +74,7 @@ function ImageDiagramDirective($translate, DiagramService, ToastrService) {
       };
 
       subscriptions.push($scope.$watch('fullscreen', (fullscreen) => {
-        if (!fullscreen && zoomDiagramHelper) {
+        if (zoomDiagramHelper) {
           zoomDiagramHelper.resetPosition();
         }
       }));

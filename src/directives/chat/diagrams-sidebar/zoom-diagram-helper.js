@@ -68,17 +68,15 @@ export class ZoomDiagramHelper {
    */
   registerWheelHandler() {
     const wheelHandler = (e) => {
-      if (e.ctrlKey) {
-        e.preventDefault();
-        this.zoom += e.deltaY * -0.002;
-        this.zoom = Math.min(Math.max(1, this.zoom), 5);
-        this.applyTransform();
+      e.preventDefault();
+      this.zoom += e.deltaY * -0.002;
+      this.zoom = Math.min(Math.max(1, this.zoom), 5);
+      this.applyTransform();
 
-        if (this.zoom > 1) {
-          this.el.classList.add('zoomed');
-        } else {
-          this.resetPosition();
-        }
+      if (this.zoom > 1) {
+        this.el.classList.add('zoomed');
+      } else {
+        this.resetPosition();
       }
     };
 

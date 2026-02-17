@@ -75,7 +75,7 @@ function SvgDiagramDirective(ChatContextService, DiagramService) {
       };
 
       subscriptions.push($scope.$watch('fullscreen', (fullscreen) => {
-        if (!fullscreen && zoomDiagramHelper) {
+        if (zoomDiagramHelper) {
           zoomDiagramHelper.resetPosition();
         }
       }));
