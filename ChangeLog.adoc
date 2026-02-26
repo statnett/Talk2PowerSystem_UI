@@ -20,6 +20,18 @@
 
 * [Miscellaneous change list]
 
+== [2.0.0]
+
+=== ⚠ BREAKING CHANGES
+
+* The Authorization header now sends the accessToken instead of the idToken. Backend integrations relying on the previous token type must ensure compatibility with access tokens.
+
+=== Features
+
+* Implemented a right-side panel for displaying diagrams and external resources (SVG, image, iframe).
+* Added interactive SVG support for PowSyBl and VizGraph diagrams.
+* Added a Questions List component in the left sidebar with predefined grouped questions.
+* Full chatbot rebranding by updating typography to Inter, replacing FontAwesome with Remix Icons, swapping logos with official branding assets and refining the layout and sidebar behavior for improved visual consistency.
 
 == [1.0.0] (2025-11-14)
 
