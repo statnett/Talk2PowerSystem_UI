@@ -12,8 +12,13 @@ function DiagramRestService($http) {
       });
   };
 
+  const loadSVG = (url) => {
+    return $http.get(url);
+  };
+
   return {
-    loadImage
+    loadImage,
+    loadSVG
   }
 }
 

@@ -41,6 +41,11 @@ export const ChatContextEventName = {
     ASK_QUESTION_FAILURE: 'askQuestionFailure',
 
     /**
+     * This event is emitted when a user clicks on a diagram element that has an id attribute, allowing us to request additional details from the LLM.
+     */
+    ASK_FOR_DIAGRAM_ELEMENT: 'askForDiagramElement',
+
+    /**
      * Emitting the "continueChatRun" event triggers a request to the backend to retrieve more remaining answers from the same chat run.
      */
     CONTINUE_CHAT_RUN: 'continueChatRun',

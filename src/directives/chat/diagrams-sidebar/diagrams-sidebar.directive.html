@@ -11,13 +11,40 @@
             <i class="ri-fullscreen-exit-line"></i>
         </button>
     </div>
+<!--
+    Problem:
+        ng-switch reuses the same DOM subtree when selectedDiagram.type does not change.
+        If a new selectedDiagram has the same type (e.g., "svg"), AngularJS will NOT destroy and recreate the directive — it only updates bindings.
+
+        This prevents $destroy from firing, so any listeners registered inside the directive (DOM events, $document, $window, third-party libs, etc.) are not removed.
+    Fix:
+       Wrap each switch case directive in an ng-repeat over a single-element array and use "track by d.hash". This forces Angular to
+       treat each selectedDiagram as a distinct instance. When the hash changes, Angular destroys the old scope (triggering $destroy)
+       and creates a fresh directive instance.
+-->
     <ng-switch on="selectedDiagram.type"
                class="selected-diagram"
                ng-class="{'overflow-auto': (selectedDiagram.type === 'svg' || selectedDiagram.type === 'image')}">
-        <svg-diagram ng-switch-when="svg" diagram="selectedDiagram" fullscreen="fullscreen"></svg-diagram>
-        <image-diagram ng-switch-when="image" diagram="selectedDiagram" fullscreen="fullscreen"></image-diagram>
-        <iframe-diagram ng-switch-default
-                        diagram="selectedDiagram"
-                        fullscreen="fullscreen"></iframe-diagram>
+        <svg-diagram
+                ng-switch-when="svg"
+                ng-repeat="d in [selectedDiagram] track by d.hash"
+                diagram="d"
+                fullscreen="fullscreen">
+        </svg-diagram>
+
+        <image-diagram
+                ng-switch-when="image"
+                ng-repeat="d in [selectedDiagram] track by d.hash"
+                diagram="d"
+                fullscreen="fullscreen">
+        </image-diagram>
+
+        <iframe-diagram
+                ng-switch-default
+                ng-repeat="d in [selectedDiagram] track by d.hash"
+                diagram="d"
+                fullscreen="fullscreen">
+        </iframe-diagram>
+
     </ng-switch>
 </div>

@@ -122,7 +122,6 @@ function ChatCtrl($scope, $translate, ToastrService, ChatService, ChatContextSer
      */
     const onConversationExpired = () => {
         ToastrService.error($translate.instant('chat_panel.error.conversation_not_found'));
-        ChatContextService.selectChat(new ChatModel());
     };
 
     /**

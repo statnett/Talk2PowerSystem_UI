@@ -2,6 +2,10 @@
   transform-origin: top left;
   display: block;
 
+  [iri] {
+    cursor: pointer;
+  }
+
   svg {
     width: 100%;
     height: 100%;

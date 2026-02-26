@@ -8,6 +8,7 @@ import {ChatContextEventName} from '../../../services/chat/chat-context-event-na
 import ChatItemDetailModule from '../chat-item-details/chat-item-detail.directive';
 import QuestionListModule from "../../question-list/question-list.directive";
 import QuestionsContextServiceModule from '../../../services/questions/question-context.service';
+import {ChatItemType} from "../../../models/chat/chat-item-type";
 
 let modules = [
     ChatContextServiceModule.name,
@@ -117,6 +118,18 @@ function ChatPanelDirective($translate, ChatContextService, QuestionsContextServ
             ////////////////////////////
             //  private functions
             ///////////////////////////
+            /**
+             *
+             * @param {DiagramElementModel} diagramElement
+             */
+            const onAskForDiagramElement = (diagramElement) => {
+                if (diagramElement && !$scope.waitingForLastMessage ) {
+                    $scope.chatItem.question.message = `CLICKED_ON ${diagramElement.elementIRI}`;
+                    $scope.chatItem.type = ChatItemType.DESCRIBE_DIAGRAM_ELEMENT;
+                    $scope.ask();
+                }
+            };
+
             const createNewChat = (chatItem) => {
                 $scope.waitingForLastMessage = true;
                 ChatContextService.emit(ChatContextEventName.CREATE_CHAT, chatItem);
@@ -130,7 +143,7 @@ function ChatPanelDirective($translate, ChatContextService, QuestionsContextServ
             const onSelectedChatChanged = (chat) => {
                 $scope.chat = chat;
                 if ($scope.chat) {
-                    init();
+                    initNewChat();
                 } else {
                     reset();
                 }
@@ -139,7 +152,7 @@ function ChatPanelDirective($translate, ChatContextService, QuestionsContextServ
             const onSelectedChatUpdated = (chat) => {
                 $scope.chat = chat;
                 if ($scope.chat) {
-                    init();
+                    initNewChat();
                 } else {
                     reset();
                 }
@@ -202,13 +215,17 @@ function ChatPanelDirective($translate, ChatContextService, QuestionsContextServ
             };
 
             const init = () => {
-                $scope.chatItem = getEmptyChatItem();
-                $scope.askingChatItem = undefined;
+                initNewChat();
                 // Applies the selected question from the QuestionsContextService to the chat item.
                 selectQuestion(QuestionsContextService.getSelectedQuestion());
+            };
+
+            const initNewChat = () => {
+                $scope.chatItem = getEmptyChatItem();
+                $scope.askingChatItem = undefined;
                 scrollToBottom();
                 focusQuestionInput();
-            };
+            }
 
             // =========================
             // Subscriptions
@@ -224,6 +241,7 @@ function ChatPanelDirective($translate, ChatContextService, QuestionsContextServ
             subscriptions.push(ChatContextService.onSelectedChatUpdated(onSelectedChatUpdated));
             subscriptions.push(ChatContextService.subscribe(ChatContextEventName.ASK_QUESTION_FAILURE, onQuestionFailure));
             subscriptions.push(ChatContextService.subscribe(ChatContextEventName.CREATE_CHAT_FAILURE, onQuestionFailure));
+            subscriptions.push(ChatContextService.subscribe(ChatContextEventName.ASK_FOR_DIAGRAM_ELEMENT, onAskForDiagramElement));
             subscriptions.push(QuestionsContextService.onSelectedQuestionChanged(selectQuestion));
 
             // Deregister the watcher when the scope/directive is destroyed

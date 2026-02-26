@@ -1,5 +1,6 @@
 // Delay for askQuestion()
 const ASK_DELAY = 2;
+const ASK_FOR_ELEMENT_DIAGRAM_DELAY = 2000;
 const EXPLAIN_DELAY = 2;
 const CONFIGURATION_DELAY = 2;
 
@@ -123,6 +124,20 @@ export class ChatRestServiceFakeBackend {
     }
 
     askQuestion(askRequestData) {
+        if (askRequestData.question.startsWith('CLICKED_ON ')) {
+            const answer = {
+                id: askRequestData.conversationId,
+                messages: [
+                    {
+                        id: "msg_Bn07kVDCYT1qmgu1G7Zw0KNe_" + Date.now(),
+                        conversationId: askRequestData.conversationId,
+                        message: `Reply to '${askRequestData.question}'`
+                    }
+                ]
+            }
+            return new Promise((resolve) => setTimeout(() => resolve({data: answer}), ASK_FOR_ELEMENT_DIAGRAM_DELAY));
+        }
+
         const answer = {
             id: askRequestData.conversationId,
             messages: [
@@ -136,16 +151,22 @@ export class ChatRestServiceFakeBackend {
 
     },
                       {
-                        type: "image",
-                        url: "https://images.pexels.com/photos/45201/kitty-cat-kitten-pet-45201.jpeg"
+                        type: "svg",
+                        url: "images/test/diagram-2.svg"
                     },
                         {
-                        type: "frame",
+                        type: "iframe",
                         url: "https://images.pexels.com/photos/45201/kitty-cat-kitten-pet-45201.jpeg"
                     }, {
-                        type: "frame",
-                        url: "https://www.openstreetmap.org/export/embed.html?bbox=-0.004017949104309083%2C51.47612752641776%2C0.00030577182769775396%2C51.478569861898606&amp;layer=mapnik"
-                    }],
+                        type: "iframe",
+                        url: "images/test/diagram-1.svg"
+                    },{
+                            type: "svg",
+                            url: "images/test/diagram-3.svg"
+                        },{
+                            type: "svg",
+                            url: "images/test/diagram-4.svg"
+                        }],
                     "usage": {
                         "completionTokens": 32,
                         "promptTokens": 428,
