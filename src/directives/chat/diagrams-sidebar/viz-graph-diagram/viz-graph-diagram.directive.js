@@ -1,17 +1,17 @@
-import './iframe-diagram.directive.scss';
-import template from './iframe-diagram.directive.html';
+import './viz-graph-diagram.directive.scss';
+import template from './viz-graph-diagram.directive.html';
 import {SvgDiagramManager} from "../svg-diagram-manager";
 import {ChatContextEventName} from "../../../../services/chat/chat-context-event-name";
 import {DiagramElementModel} from "../../../../models/chat/diagrams/diagram-element";
 
 const dependencies = [];
 
-const IframeDiagramModule = angular.module('tt2ps.components.chat.iframe-diagram', dependencies);
-IframeDiagramModule.directive('iframeDiagram', IframeDiagramDirective);
+const VizGraphDiagramModel = angular.module('tt2ps.components.chat.viz-graph-diagram', dependencies);
+VizGraphDiagramModel.directive('vizGraphDiagram', VizGraphDiagramDirective);
 
-IframeDiagramDirective.$inject = ['ChatContextService'];
+VizGraphDiagramDirective.$inject = ['ChatContextService'];
 
-function IframeDiagramDirective(ChatContextService) {
+function VizGraphDiagramDirective(ChatContextService) {
     return {
         restrict: 'E',
         scope: {
@@ -20,7 +20,6 @@ function IframeDiagramDirective(ChatContextService) {
         },
         template,
         link: function ($scope, element, attrs) {
-
             let iframe = undefined;
             let svgDiagramManager = undefined;
 
@@ -30,13 +29,13 @@ function IframeDiagramDirective(ChatContextService) {
             const init = () => {
                 // Set time out to be sure the iframe is loaded before we try to access its content
                 setTimeout(() => {
-                    iframe = element[0].querySelector('.iframe-diagram');
-                    svgDiagramManager = new SvgDiagramManager(iframe, 'iri', onDiagramElementClicked, true);
+                    iframe = element[0].querySelector('.viz-graph-diagram');
+                    svgDiagramManager = new SvgDiagramManager(iframe, 'id', onDiagramElementClicked, true);
                 });
             }
 
-            const onDiagramElementClicked = (iri) => {
-                ChatContextService.emit(ChatContextEventName.ASK_FOR_DIAGRAM_ELEMENT, new DiagramElementModel($scope.diagram.type, iri));
+            const onDiagramElementClicked = (id) => {
+                ChatContextService.emit(ChatContextEventName.ASK_FOR_DIAGRAM_ELEMENT, new DiagramElementModel($scope.diagram.type, id));
             }
 
 
@@ -58,4 +57,4 @@ function IframeDiagramDirective(ChatContextService) {
     }
 }
 
-export default IframeDiagramModule;
+export default VizGraphDiagramModel;

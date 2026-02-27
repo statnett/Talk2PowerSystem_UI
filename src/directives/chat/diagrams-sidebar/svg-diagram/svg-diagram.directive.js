@@ -41,7 +41,7 @@ function SvgDiagramDirective(ChatContextService, DiagramService) {
           setTimeout(() => {
             const svgEl = element[0].querySelector('.svg-diagram');
             zoomDiagramHelper = new ZoomDiagramHelper(svgEl);
-            svgDiagramManager = new SvgDiagramManager(svgEl, onDiagramElementClicked);
+            svgDiagramManager = new SvgDiagramManager(svgEl, 'iri', onDiagramElementClicked);
           });
         });
       }

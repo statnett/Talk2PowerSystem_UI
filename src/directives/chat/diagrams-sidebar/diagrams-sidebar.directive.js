@@ -5,12 +5,14 @@ import DiagramServiceModule from '../../../services/diagrams/diagram.service';
 import ImageDiagramModule from './image-diagram/image-diagram.directive';
 import SvgDiagramModule from './svg-diagram/svg-diagram.directive';
 import IframeDiagramModule from './iframe-diagram/iframe-diagram.directive';
+import VizGraphDiagramModel from "./viz-graph-diagram/viz-graph-diagram.directive";
 
 const dependencies = [
   DiagramServiceModule.name,
   ImageDiagramModule.name,
   SvgDiagramModule.name,
-  IframeDiagramModule.name
+  IframeDiagramModule.name,
+  VizGraphDiagramModel.name
 ];
 
 const DiagramsSidebarModule = angular.module('tt2ps.components.chat.diagrams-sidebar', dependencies);
