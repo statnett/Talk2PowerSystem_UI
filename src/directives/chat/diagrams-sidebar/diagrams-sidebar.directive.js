@@ -82,14 +82,21 @@ function DiagramsSidebarDirective(ChatContextService) {
        * Exits fullscreen and removes the wheel-prevention handler.
        */
       $scope.exitFullscreen = () => {
-        $scope.fullscreen = false;
-        removeMouseWheelHandler();
-
         if (document.fullscreenElement) {
           document.exitFullscreen();
         }
       };
 
+      const handleFullscreenChange = () => {
+        const isFullscreen = !!document.fullscreenElement;
+        $scope.$applyAsync(() => {
+          $scope.fullscreen = isFullscreen;
+
+          if (!isFullscreen) {
+            removeMouseWheelHandler();
+          }
+        });
+      }
 
       //////////////////////////////
       // Private functions
@@ -138,12 +145,14 @@ function DiagramsSidebarDirective(ChatContextService) {
       subscriptions.push(ChatContextService.onSelectedDiagramChanged(onSelectedDiagramChanged));
 
       subscriptions.push(ChatContextService.subscribe(ChatContextEventName.SHOW_SELECTED_DIAGRAM_ON_FULLSCREEN, onShowSelectedDiagramOnFullscreen));
+      document.addEventListener('fullscreenchange', handleFullscreenChange);
 
       /**
        * Cleans up all listeners/subscriptions when directive is destroyed.
        */
       const removeAllSubscribers = () => {
         subscriptions.forEach((fn) => fn());
+        document.removeEventListener('fullscreenchange', handleFullscreenChange);
         removeMouseWheelHandler();
       };
 
