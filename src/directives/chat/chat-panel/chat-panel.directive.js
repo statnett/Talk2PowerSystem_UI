@@ -124,7 +124,7 @@ function ChatPanelDirective($translate, ChatContextService, QuestionsContextServ
              */
             const onAskForDiagramElement = (diagramElement) => {
                 if (diagramElement && !$scope.waitingForLastMessage ) {
-                    $scope.chatItem.question.message = `CLICKED_ON ${diagramElement.elementIRI}`;
+                    $scope.chatItem.question.message = `CLICKED_ON ${diagramElement.value}`;
                     $scope.chatItem.type = ChatItemType.DESCRIBE_DIAGRAM_ELEMENT;
                     $scope.ask();
                 }

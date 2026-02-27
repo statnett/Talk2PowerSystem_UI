@@ -1,6 +1,6 @@
 {
   "name": "talk-2-power-system-ui",
-  "version": "2.0.0-rc4",
+  "version": "2.0.0-rc5",
   "description": "The web application for Talk 2 Power System APIs",
   "scripts": {
     "start": "webpack serve --mode development --env baseHref=/",
