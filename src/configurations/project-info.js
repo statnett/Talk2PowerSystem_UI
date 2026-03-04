@@ -1,7 +1,7 @@
 module.exports = {
   "project": {
     "name": "talk-2-power-system-ui",
-    "version": "2.0.0-rc4"
+    "version": "2.0.0-rc5"
   },
   "framework": {
     "name": "AngularJS",

@@ -2,10 +2,10 @@ export class DiagramElementModel {
     /**
      *
      * @param {string} diagramType - the type of diagram this element belongs to (e.g. "svg", "iframe", etc.)
-     * @param elementIRI - the Iri of the element.
+     * @param value - the value of the element.
      */
-    constructor(diagramType, elementIRI) {
+    constructor(diagramType, value) {
         this.diagramType = diagramType;
-        this.elementIRI = elementIRI;
+        this.value = value;
     }
 }

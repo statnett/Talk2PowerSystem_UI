@@ -158,7 +158,7 @@ export class ChatRestServiceFakeBackend {
                         type: "iframe",
                         url: "https://images.pexels.com/photos/45201/kitty-cat-kitten-pet-45201.jpeg"
                     }, {
-                        type: "iframe",
+                        type: "vizGraph",
                         url: "images/test/diagram-1.svg"
                     },{
                             type: "svg",

@@ -4,6 +4,7 @@ import {DiagramTypes} from '../../../models/chat/diagrams/diagram-types';
 import {ImageDiagramModel} from '../../../models/chat/diagrams/image-diagram';
 import {FrameDiagramModel} from '../../../models/chat/diagrams/frame-diagram';
 import {SvgDiagramModel} from '../../../models/chat/diagrams/svg-diagram';
+import {VizGraphDiagramModel} from "../../../models/chat/diagrams/viz-graph-disgram";
 
 /**
  * Converts the response from the server to a list of ChatMessageModel array.
@@ -64,6 +65,8 @@ export const diagramModelMapper = (data = {}) => {
       return new SvgDiagramModel(data);
       case DiagramTypes.IMAGE:
         return new ImageDiagramModel(data);
+      case DiagramTypes.VIZ_GRAPH:
+          return new VizGraphDiagramModel(data);
     default:
       return new FrameDiagramModel(data);
   }

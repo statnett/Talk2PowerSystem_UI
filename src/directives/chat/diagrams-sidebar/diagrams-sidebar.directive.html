@@ -32,6 +32,13 @@
                 fullscreen="fullscreen">
         </svg-diagram>
 
+        <viz-graph-diagram
+                ng-switch-when="vizGraph"
+                ng-repeat="d in [selectedDiagram] track by d.hash"
+                diagram="d"
+                fullscreen="fullscreen">
+        </viz-graph-diagram>
+
         <image-diagram
                 ng-switch-when="image"
                 ng-repeat="d in [selectedDiagram] track by d.hash"

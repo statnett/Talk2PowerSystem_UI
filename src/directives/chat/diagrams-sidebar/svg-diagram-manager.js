@@ -10,7 +10,7 @@ export class SvgDiagramManager {
      * @param {boolean} [isIframe=false]
      *        Indicates whether `el` is an iframe element.
      */
-    constructor(el, onSVGElementClickCallback = () => {}, isIframe = false) {
+    constructor(el, attributeName,  onSVGElementClickCallback = () => {}, isIframe = false) {
 
         /**
          * @type {HTMLElement|null}
@@ -35,6 +35,11 @@ export class SvgDiagramManager {
          * @private
          */
         this.iframeDoc = null;
+
+        /**
+         * @type {string} attributeName to be used to identify the element of interest.
+         */
+        this.attributeName = attributeName;
 
         this.onSVGElementClick = onSVGElementClickCallback;
 
@@ -118,39 +123,39 @@ export class SvgDiagramManager {
      * @private
      */
     _svgClick(event) {
-        const clickedElementIRI = this._getIRI(event);
-        if (clickedElementIRI && this.onSVGElementClick) {
-            this.onSVGElementClick(clickedElementIRI);
+        const clickedElementValue = this._getAttributeValue(event);
+        if (clickedElementValue && this.onSVGElementClick) {
+            this.onSVGElementClick(clickedElementValue);
         }
     }
 
     /**
-     * Retrieves the `iri` attribute from a target element or its closest parent that has it.
+     * Retrieves the attribute value from a target element or its closest parent that has it.
      *
      * @param {Event | { target: HTMLElement }} element - The event or object containing the target element.
-     * @returns {string | null} The `iri` attribute value, or null if not found.
+     * @returns {string | null} The attribute value, or null if not found.
      */
-    _getIRI(element) {
+    _getAttributeValue(element) {
         if (!element?.target) {
             return null;
         }
 
-        return this._getIRIAttribute(element.target);
+        return this._getValue(element.target);
     }
 
     /**
-     * Recursively retrieves the `iri` attribute from the element or its parent elements.
+     * Recursively retrieves the attribute value from the element or its parent elements.
      *
      * @param {HTMLElement | null} element - The DOM element to check for an `iri` attribute.
      * @returns {string | null} The `iri` attribute value, or null if none is found up the parent chain.
      */
-    _getIRIAttribute(element) {
+    _getValue(element) {
         if (element) {
-            const iri = element.getAttribute('iri');
-            if (iri) {
-                return iri;
+            const attributeValue = element.getAttribute(this.attributeName);
+            if (attributeValue) {
+                return attributeValue;
             }
-            return this._getIRIAttribute(element.parentElement);
+            return this._getValue(element.parentElement);
         }
     }
 
