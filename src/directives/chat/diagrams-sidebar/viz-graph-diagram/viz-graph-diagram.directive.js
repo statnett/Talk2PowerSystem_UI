@@ -22,6 +22,7 @@ function VizGraphDiagramDirective(ChatContextService) {
         link: function ($scope, element, attrs) {
             let iframe = undefined;
             let svgDiagramManager = undefined;
+            const VIZGRAPH_EMBED_STYLE_OVERRIDE = 'onto-layout.wb-layout.is-embedded {grid-template-columns: 1fr;}';
 
             // =========================
             // Private functions
@@ -30,7 +31,7 @@ function VizGraphDiagramDirective(ChatContextService) {
                 // Set time out to be sure the iframe is loaded before we try to access its content
                 setTimeout(() => {
                     iframe = element[0].querySelector('.viz-graph-diagram');
-                    svgDiagramManager = new SvgDiagramManager(iframe, 'id', onDiagramElementClicked, true);
+                    svgDiagramManager = new SvgDiagramManager(iframe, 'id', onDiagramElementClicked, true, VIZGRAPH_EMBED_STYLE_OVERRIDE);
                 });
             }
 
