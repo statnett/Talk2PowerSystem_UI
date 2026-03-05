@@ -10,7 +10,7 @@ export class SvgDiagramManager {
      * @param {boolean} [isIframe=false]
      *        Indicates whether `el` is an iframe element.
      */
-    constructor(el, attributeName,  onSVGElementClickCallback = () => {}, isIframe = false) {
+    constructor(el, attributeName,  onSVGElementClickCallback = () => {}, isIframe = false, iframeStyle) {
 
         /**
          * @type {HTMLElement|null}
@@ -25,6 +25,11 @@ export class SvgDiagramManager {
         this.isIframe = isIframe;
 
         /**
+         * @type {string | undefined}
+         */
+        this.iframeStyle = iframeStyle;
+
+        /**
          * @type {SVGSVGElement|null}
          * @private
          */
@@ -35,6 +40,14 @@ export class SvgDiagramManager {
          * @private
          */
         this.iframeDoc = null;
+
+        /**
+         * ID of the interval timer used to repeatedly check for the SVG element.
+         * Stored so it can be cleared when the class instance is destroyed.
+         *
+         * @type {number|null}
+         */
+        this.timerId = null;
 
         /**
          * @type {string} attributeName to be used to identify the element of interest.
@@ -72,17 +85,56 @@ export class SvgDiagramManager {
     }
 
     /**
-     * Searches for an <svg> inside the provided root and attaches click listener if found.
+     * Attempts to locate an <svg> element inside the given root element. Polls periodically until the element is found
+     * or the timeout is reached.
      *
-     * @param {HTMLElement|Document} root
-     * @private
+     * @param {HTMLElement} root - The root element to search within.
+     * @param {number} [maxDuration=10000] - Maximum time in milliseconds to keep searching.
+     * @param {number} [interval=200] - Polling interval in milliseconds.
+     * @returns {Promise<SVGElement>} Resolves with the found SVG element.
+     * @throws {Error} Rejects if no SVG is found within the specified timeout.
+     */
+    _findSvg(root, maxDuration = 4000, interval = 200) {
+        return new Promise((resolve, reject) => {
+            const startTime = Date.now();
+            const check = () => {
+                const svg = root.querySelector("svg");
+
+                if (svg) {
+                    clearInterval(this.timerId);
+                    this.timerId = null;
+                    resolve(svg);
+                    return;
+                }
+
+                if (Date.now() - startTime >= maxDuration) {
+                    clearInterval(this.timerId);
+                    this.timerId = null;
+                    reject(new Error("SVG not found within timeout."));
+                }
+            };
+
+            this.timerId = setInterval(check, interval);
+            // immediate first attempt
+            check();
+        });
+    }
+
+    /**
+     * Initializes the SVG by locating it within the provided root element and attaching the click event handler once available.
+     *
+     * @param {HTMLElement} root - The root element containing the SVG.
+     * @returns {Promise<void>} Resolves when initialization completes.
      */
     _setupSVG(root) {
-        this.svg = root.querySelector("svg");
-
-        if (this.svg) {
-            this.svg.addEventListener("click", this._onSvgClick);
-        }
+        this._findSvg(root)
+            .then(svg => {
+                this.svg = svg;
+                this.svg.addEventListener("click", this._onSvgClick);
+            })
+            .catch(err => {
+                console.warn(err.message);
+            });
     }
 
     /**
@@ -96,7 +148,16 @@ export class SvgDiagramManager {
             return;
         }
 
+        this._addStyleToFrame();
         this._setupSVG(this.iframeDoc);
+    }
+
+    _addStyleToFrame() {
+        if (this.iframeStyle) {
+            const style = document.createElement('style');
+            style.textContent = this.iframeStyle;
+            this.iframeDoc.head?.appendChild(style);
+        }
     }
 
     /**
@@ -173,6 +234,10 @@ export class SvgDiagramManager {
 
         if (this.svg) {
             this.svg.removeEventListener("click", this._onSvgClick);
+        }
+
+        if (this.timerId) {
+            clearInterval(this.timerId);
         }
 
         this.svg = null;
