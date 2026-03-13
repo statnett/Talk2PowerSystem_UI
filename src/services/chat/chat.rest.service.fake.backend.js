@@ -218,18 +218,21 @@ export class ChatRestServiceFakeBackend {
                     args: "SELECT ?character ?height WHERE { ?character voc:height ?height . FILTER (?character = <https://swapi.co/resource/human/1> || ?character = <https://swapi.co/resource/human/5>) }",
                     query: "SELEdCT ?character ?height WHERE { ?character voc:height ?height . FILTER (?character = <https://swapi.co/resource/human/1> || ?character = <https://swapi.co/resource/human/5>) }",
                     queryType: "sparql",
+                    graphdbRepositoryId: "cim",
                     errorOutput: null
                 }, {
                     name: "sample_sparql_queries",
                     args: "SELECT ?character ?height WHERE { ?character voc:height ?height . FILTER (?character = <https://swapi.co/resource/human/1> || ?character = <https://swapi.co/resource/human/5>) }",
                     query: "SELEdCT ?character ?height WHERE { ?character voc:height ?height . FILTER (?character = <https://swapi.co/resource/human/1> || ?character = <https://swapi.co/resource/human/5>) }",
                     queryType: "sparql",
+                    graphdbRepositoryId: "qa_dataset",
                     errorOutput: null
                 }, {
                     name: "retrieve_time_series",
                     args: "SELECT ?character ?height WHERE { ?character voc:height ?height . FILTER (?character = <https://swapi.co/resource/human/1> || ?character = <https://swapi.co/resource/human/5>) }",
                     query: "SELEdCT ?character ?height WHERE { ?character voc:height ?height . FILTER (?character = <https://swapi.co/resource/human/1> || ?character = <https://swapi.co/resource/human/5>) }",
                     queryType: "sparql",
+                    graphdbRepositoryId: "cim",
                     errorOutput: null
                 }, {
                     name: "retrieve_data_points",

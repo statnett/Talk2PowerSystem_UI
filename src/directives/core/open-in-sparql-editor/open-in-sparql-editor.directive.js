@@ -42,12 +42,17 @@ function OpenInSparqlEditorDirective() {
         restrict: 'E',
         scope: {
             query: '@',
-            executeQuery: '@'
+            executeQuery: '@',
+            repositoryId: '@'
         },
         link: function($scope) {
             if (!$scope.executeQuery) {
                 $scope.executeQuery = false;
             }
+            if (!$scope.repositoryId) {
+                $scope.repositoryId = '';
+            }
+            console.log($scope.repositoryId);
             $scope.encodedQuery = encodeURIComponent($scope.query);
         }
     };

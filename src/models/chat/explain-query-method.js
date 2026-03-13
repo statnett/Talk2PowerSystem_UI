@@ -13,6 +13,11 @@ export class ExplainQueryMethodModel {
         /**
          * @type {string}
          */
+        this._repositoryId = data.graphdbRepositoryId || '';
+
+        /**
+         * @type {string}
+         */
         this._query = data.query;
 
         /**
@@ -56,6 +61,14 @@ export class ExplainQueryMethodModel {
 
     set args(value) {
         this._args = value;
+    }
+
+    get repositoryId() {
+        return this._repositoryId;
+    }
+
+    set repositoryId(value) {
+        this._repositoryId = value;
     }
 
     get query() {
