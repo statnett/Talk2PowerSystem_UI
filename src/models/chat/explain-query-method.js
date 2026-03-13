@@ -15,6 +15,10 @@ export class ExplainQueryMethodModel {
          */
         this._repositoryId = data.graphdbRepositoryId || '';
 
+        this._advanced = data.advanced || false;
+
+        this._hideArgs = data.hideArgs || false;
+
         /**
          * @type {string}
          */
@@ -93,5 +97,21 @@ export class ExplainQueryMethodModel {
 
     set errorMessage(value) {
         this._errorMessage = value;
+    }
+
+    get advanced() {
+        return this._advanced;
+    }
+
+    set advanced(value) {
+        this._advanced = value;
+    }
+
+    get hideArgs() {
+        return this._hideArgs;
+    }
+
+    set hideArgs(value) {
+        this._hideArgs = value;
     }
 }

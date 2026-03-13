@@ -17,6 +17,12 @@ export class ExplainResponseModel {
         this._queryMethods = data.queryMethods;
 
         this._expanded = data.expanded !== undefined ? data.expanded : true;
+
+        this._showAdvanced = false;
+    }
+
+    toggleAdvanced() {
+        this._showAdvanced = !this._showAdvanced;
     }
 
     get chatId() {
@@ -49,5 +55,13 @@ export class ExplainResponseModel {
 
     set expanded(value) {
         this._expanded = value;
+    }
+
+    get showAdvanced() {
+        return this._showAdvanced;
+    }
+
+    set showAdvanced(value) {
+        this._showAdvanced = value;
     }
 }

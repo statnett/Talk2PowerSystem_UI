@@ -131,6 +131,10 @@ function ChatItemDetailDirective(toastr, $translate, ChatContextService, ChatSer
                 }
             }
 
+            $scope.toggleExplainAdvanced = (answer) => {
+                $scope.explainResponseModel[answer.id]?.toggleAdvanced();
+            }
+
             // =========================
             // Private functions
             // =========================

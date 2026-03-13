@@ -245,7 +245,9 @@
       },
       "close_sidebar": {
         "tooltip": "Hide question list"
-      }
+      },
+      "explain_show_more": "Show more",
+      "explain_show_less": "Show less"
     },
     "placeholder": {
       "ask-input": "Ask anything"

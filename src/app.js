@@ -31,6 +31,7 @@ import {UserModel} from "./models/security/user";
 import ToastrServiceModule from "./services/toast.service";
 import MainMenuModule from './directives/main-menu/main-menu.directive';
 import LeftSidebarModule from './directives/left-sidebar/left-sidebar.directive';
+import ToggleButtonModule from "./directives/core/toggle-button/toggle-button.directive";
 
 // $translate.instant converts <b> from strings to &lt;b&gt
 // and $sce.trustAsHtml could not recognise that this is valid html
@@ -61,6 +62,7 @@ let dependencies = [
     ToastrServiceModule.name,
     MainMenuModule.name,
     LeftSidebarModule.name,
+    ToggleButtonModule.name
 ];
 
 const TT2PSModule = angular.module('tt2ps', dependencies);
