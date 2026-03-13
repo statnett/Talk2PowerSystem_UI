@@ -13,6 +13,15 @@ export class ExplainQueryMethodModel {
         /**
          * @type {string}
          */
+        this._repositoryId = data.graphdbRepositoryId || '';
+
+        this._advanced = data.advanced || false;
+
+        this._hideArgs = data.hideArgs || false;
+
+        /**
+         * @type {string}
+         */
         this._query = data.query;
 
         /**
@@ -58,6 +67,14 @@ export class ExplainQueryMethodModel {
         this._args = value;
     }
 
+    get repositoryId() {
+        return this._repositoryId;
+    }
+
+    set repositoryId(value) {
+        this._repositoryId = value;
+    }
+
     get query() {
         return this._query;
     }
@@ -80,5 +97,21 @@ export class ExplainQueryMethodModel {
 
     set errorMessage(value) {
         this._errorMessage = value;
+    }
+
+    get advanced() {
+        return this._advanced;
+    }
+
+    set advanced(value) {
+        this._advanced = value;
+    }
+
+    get hideArgs() {
+        return this._hideArgs;
+    }
+
+    set hideArgs(value) {
+        this._hideArgs = value;
     }
 }

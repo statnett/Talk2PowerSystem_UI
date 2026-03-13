@@ -218,24 +218,32 @@ export class ChatRestServiceFakeBackend {
                     args: "SELECT ?character ?height WHERE { ?character voc:height ?height . FILTER (?character = <https://swapi.co/resource/human/1> || ?character = <https://swapi.co/resource/human/5>) }",
                     query: "SELEdCT ?character ?height WHERE { ?character voc:height ?height . FILTER (?character = <https://swapi.co/resource/human/1> || ?character = <https://swapi.co/resource/human/5>) }",
                     queryType: "sparql",
+                    graphdbRepositoryId: "cim",
+                    advanced: true,
+                    hideArgs: true,
                     errorOutput: null
                 }, {
                     name: "sample_sparql_queries",
                     args: "SELECT ?character ?height WHERE { ?character voc:height ?height . FILTER (?character = <https://swapi.co/resource/human/1> || ?character = <https://swapi.co/resource/human/5>) }",
                     query: "SELEdCT ?character ?height WHERE { ?character voc:height ?height . FILTER (?character = <https://swapi.co/resource/human/1> || ?character = <https://swapi.co/resource/human/5>) }",
                     queryType: "sparql",
+                    graphdbRepositoryId: "qa_dataset",
+                    hideArgs: true,
                     errorOutput: null
                 }, {
                     name: "retrieve_time_series",
                     args: "SELECT ?character ?height WHERE { ?character voc:height ?height . FILTER (?character = <https://swapi.co/resource/human/1> || ?character = <https://swapi.co/resource/human/5>) }",
                     query: "SELEdCT ?character ?height WHERE { ?character voc:height ?height . FILTER (?character = <https://swapi.co/resource/human/1> || ?character = <https://swapi.co/resource/human/5>) }",
                     queryType: "sparql",
+                    graphdbRepositoryId: "cim",
+                    advanced: true,
                     errorOutput: null
                 }, {
                     name: "retrieve_data_points",
                     args: "SELECT ?character ?height WHERE { ?character voc:height ?height . FILTER (?character = <https://swapi.co/resource/human/1> || ?character = <https://swapi.co/resource/human/5>) }",
                     query: "SELEdCT ?character ?height WHERE { ?character voc:height ?height . FILTER (?character = <https://swapi.co/resource/human/1> || ?character = <https://swapi.co/resource/human/5>) }",
                     queryType: "sparql",
+                    advanced: true,
                     errorOutput: null
                 },
                 {
@@ -256,6 +264,7 @@ export class ChatRestServiceFakeBackend {
                     args: "{\"queries\":[{\"query\":\"pilots that work with Luke Skywalker\",\"filter\":{\"document_id\":\"https://swapi.co/resource/human/1\"},\"top_k\":3}]}",
                     query: "{\n  \"queries\" : [ {\n    \"query\" : \"pilots that work with Luke Skywalker\",\n    \"filter\" : {\n      \"document_id\" : \"https://swapi.co/resource/human/1\"\n    },\n    \"top_k\" : 3\n  } ]\n}",
                     queryType: "json",
+                    advanced: true,
                     errorOutput: null
                 },
                 {
@@ -263,6 +272,7 @@ export class ChatRestServiceFakeBackend {
                     args: "Luke Skywalker",
                     query: "PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>\nPREFIX skos: <http://www.w3.org/2004/02/skos/core#>\nPREFIX onto: <http://www.ontotext.com/>\nSELECT ?label ?iri {\n    ?label onto:fts ('''Luke~ Skywalker~''' '*') .\n    ?iri rdfs:label|skos:prefLabel ?label .\n}",
                     queryType: "sparql",
+                    advanced: true,
                     errorOutput: null
                 },
                 {
@@ -284,18 +294,21 @@ export class ChatRestServiceFakeBackend {
                     args: 'Second Luke',
                     query: 'PREFIX onto: <http://www.ontotext.com/>\nDESCRIBE ?iri {\n\t?x onto:fts \'\'\'Second Luke\'\'\' .\n\t{\n\t\t?x ?p ?iri .\n\t} union {\n\t\t?iri ?p ?x .\n\t}\n}',
                     queryType: "sparql",
+                    advanced: true,
                     errorOutput: null
                 }, {
                     name: 'similarity_search',
                     args: 'Second Luke',
                     query: 'PREFIX onto: <http://www.ontotext.com/>\nDESCRIBE ?iri {\n\t?x onto:fts \'\'\'Second Luke\'\'\' .\n\t{\n\t\t?x ?p ?iri .\n\t} union {\n\t\t?iri ?p ?x .\n\t}\n}',
                     queryType: "sparql",
+                    advanced: true,
                     errorOutput: null
                 }, {
                     name: "iri_discovery",
                     args: "Luke Skywalker",
                     query: "PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>\nPREFIX skos: <http://www.w3.org/2004/02/skos/core#>\nPREFIX onto: <http://www.ontotext.com/>\nSELECT ?label ?iri {\n    ?label onto:fts ('''Luke~ Skywalker~''' '*') .\n    ?iri rdfs:label|skos:prefLabel ?label .\n}",
                     queryType: "sparql",
+                    advanced: true,
                     errorOutput: null
                 }, {
                     name: "sparql_query",
