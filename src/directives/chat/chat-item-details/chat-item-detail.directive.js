@@ -16,7 +16,7 @@ const ChatItemDetailModule = angular
     .module('tt2ps.directives.chat.chat-item-detail', modules)
     .directive('chatItemDetail', ChatItemDetailDirective);
 
-ChatItemDetailDirective.$inject = ['ToastrService', '$translate', 'ChatContextService', 'ChatService', '$filter'];
+ChatItemDetailDirective.$inject = ['ToastrService', '$translate', 'ChatContextService', 'ChatService', 'LocalStorageContextService'];
 
 /**
  * @ngdoc directive
@@ -29,7 +29,7 @@ ChatItemDetailDirective.$inject = ['ToastrService', '$translate', 'ChatContextSe
  * @example
  * <chat-item-detail chat-item-details="chatItemDetail"></chat-item-detail>
  */
-function ChatItemDetailDirective(toastr, $translate, ChatContextService, ChatService, $filter) {
+function ChatItemDetailDirective(toastr, $translate, ChatContextService, ChatService, LocalStorageContextService) {
     return {
         restrict: 'E',
         template,
@@ -49,6 +49,7 @@ function ChatItemDetailDirective(toastr, $translate, ChatContextService, ChatSer
 
             $scope.ExplainQueryType = ExplainQueryType;
             $scope.markdownContentOptions = undefined;
+            $scope.explainResponseAdvancedMode = false;
 
             /**
              * @type {{[key: string]: ExplainResponseModel}}
@@ -131,6 +132,10 @@ function ChatItemDetailDirective(toastr, $translate, ChatContextService, ChatSer
                 }
             }
 
+            $scope.toggleExplainAdvanced = () => {
+                LocalStorageContextService.updateExplainResponseAdvancedMode(!$scope.explainResponseAdvancedMode)
+            }
+
             // =========================
             // Private functions
             // =========================
@@ -142,6 +147,10 @@ function ChatItemDetailDirective(toastr, $translate, ChatContextService, ChatSer
             const onExplainResponseCacheUpdated = () => {
                 updateExplainResponseModel();
             };
+
+            const onExplainResponseAdvancedModeChanged = (explainResponseAdvancedMode) => {
+                $scope.explainResponseAdvancedMode = explainResponseAdvancedMode;
+            }
 
             const updateExplainResponseModel = () => {
                 $scope.chatItemDetail.answers.forEach((answer) => {
@@ -159,6 +168,7 @@ function ChatItemDetailDirective(toastr, $translate, ChatContextService, ChatSer
             };
 
             subscriptions.push(ChatContextService.onExplainResponseCacheUpdated(onExplainResponseCacheUpdated));
+            subscriptions.push(LocalStorageContextService.onExplainResponseAdvancedModeChanged(onExplainResponseAdvancedModeChanged));
 
             // Deregister the watcher when the scope/directive is destroyed
             $scope.$on('$destroy', removeAllSubscribers);

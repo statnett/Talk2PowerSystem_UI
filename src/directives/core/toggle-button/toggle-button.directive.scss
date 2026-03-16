@@ -1,0 +1,32 @@
+.toggle-switch {
+  width: 30px;
+  height: 17px;
+  background-color: #ccc;
+  border-radius: 34px;
+  border: none;
+  position: relative;
+  cursor: pointer;
+  outline: none;
+  transition: background-color 0.3s;
+  padding: 0;
+}
+
+.toggle-switch .handle {
+  width: 13px;
+  height: 13px;
+  background-color: #fff;
+  border-radius: 50%;
+  position: absolute;
+  top: 2px;
+  left: 4px;
+  transition: transform 0.3s;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+}
+
+.toggle-switch.active {
+  background-color: var(--gw-primary-color);
+}
+
+.toggle-switch.active .handle {
+  transform: translateX(10px);
+}

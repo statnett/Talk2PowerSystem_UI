@@ -21,5 +21,10 @@ export const TT2PSEventName = {
     /**
      * Emitted when the components information has changed.
      */
-    COMPONENTS_INFO_CHANGED: 'componentsInfoChanged'
+    COMPONENTS_INFO_CHANGED: 'componentsInfoChanged',
+
+    /**
+     * Emitted when the explain response advanced mode flag has changed.
+     */
+    EXPLAIN_RESPONSE_ADVANCED_MODE_CHANGED: 'explainResponseAdvancedModeChanged'
 };
