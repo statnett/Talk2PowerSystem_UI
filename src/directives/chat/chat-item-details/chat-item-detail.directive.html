@@ -66,12 +66,12 @@
                     </div>
                     <div class="explain-advanced" ng-if="explainResponseModel[answer.id].queryMethods.items.length">
                         <toggle-button
-                                active="explainResponseModel[answer.id].showAdvanced"
-                                tooltip="{{(explainResponseModel[answer.id].showAdvanced ? 'chat_panel.btn.explain_show_less' : 'chat_panel.btn.explain_show_more') | translate}}"
-                                ng-click="toggleExplainAdvanced(answer)">
+                                active="explainResponseAdvancedMode"
+                                tooltip="{{(explainResponseAdvancedMode ? 'chat_panel.btn.explain_show_less' : 'chat_panel.btn.explain_show_more') | translate}}"
+                                ng-click="toggleExplainAdvanced()">
                         </toggle-button>
                     </div>
-                    <div ng-if="explainResponseModel[answer.id].queryMethods.items && explainResponseModel[answer.id].showAdvanced || !queryMethod.advanced"
+                    <div ng-if="explainResponseModel[answer.id].queryMethods.items && explainResponseAdvancedMode || !queryMethod.advanced"
                          class="explain-response"
                          ng-repeat="queryMethod in explainResponseModel[answer.id].queryMethods.items">
                         <div class="explain-call">
@@ -95,7 +95,7 @@
                             <div class="query">
                                 <pre ng-if="queryMethod.query"><code>{{queryMethod.query}}</code></pre>
                             </div>
-                            <div ng-if="queryMethod.args && (explainResponseModel[answer.id].showAdvanced || !queryMethod.hideArgs)" class="raw-query">
+                            <div ng-if="queryMethod.args && (explainResponseAdvancedMode || !queryMethod.hideArgs)" class="raw-query">
                                 <span class="label">{{'chat_panel.labels.args' | translate}}:</span>
                                 <markdown-content class="content" content="{{queryMethod.args}}" options="markdownContentOptions"></markdown-content>
                                 <copy-to-clipboard class="copy-to-clipboard-btn" tooltip-text="chat_panel.btn.copy_raw_query.tooltip"
