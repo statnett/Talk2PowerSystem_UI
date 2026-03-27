@@ -1,5 +1,9 @@
 # Talk to the Power System Chatbot UI
 
+## 1.1.0
+
+- Update `appVersion` to `v2.0.0`
+
 ## 1.0.3
 
 - Introduces new configurations allowing control over the proxied request timeouts for the Nginx. The configurations are
