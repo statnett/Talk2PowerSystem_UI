@@ -1,8 +1,26 @@
 <div class="agent">
     <property-input label-key="tt2ps.components.agent.property.llm.type" value="{{agent.llm.type}}"></property-input>
     <property-input label-key="tt2ps.components.agent.property.llm.model" value="{{agent.llm.model}}"></property-input>
-    <property-input label-key="tt2ps.components.agent.property.llm.temperature" value="{{agent.llm.temperature}}"></property-input>
-    <property-input label-key="tt2ps.components.agent.property.llm.seed" value="{{agent.llm.seed}}"></property-input>
+    <property-input
+        ng-if="agent.llm.temperature !== null && agent.llm.temperature !== undefined"
+        label-key="tt2ps.components.agent.property.llm.temperature"
+        value="{{agent.llm.temperature}}">
+    </property-input>
+    <property-checkbox
+        ng-if="agent.llm.use_responses_api !== null && agent.llm.use_responses_api !== undefined"
+        label-key="tt2ps.components.agent.property.llm.use_responses_api"
+        value="{{agent.llm.use_responses_api}}">
+    </property-checkbox>
+    <property-input
+        ng-if="agent.llm.reasoning_effort !== null && agent.llm.reasoning_effort !== undefined"
+        label-key="tt2ps.components.agent.property.llm.reasoning_effort"
+        value="{{agent.llm.reasoning_effort}}">
+    </property-input>
+    <property-input
+        ng-if="agent.llm.seed !== null && agent.llm.seed !== undefined"
+        label-key="tt2ps.components.agent.property.llm.seed"
+        value="{{agent.llm.seed}}">
+    </property-input>
     <property-textarea label-key="tt2ps.components.agent.property.assistantInstructions" value="{{agent.assistantInstructions}}"></property-textarea>
     <agent-tools></agent-tools>
 </div>

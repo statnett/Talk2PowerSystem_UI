@@ -1,3 +1,11 @@
+v2.1.0-rc1
+============
+
+* [#358](https://github.com/statnett/Talk2PowerSystem_PM/issues/358):
+  Update the agent info in the components page:
+  - seed and temperature fields are optional
+  - introduce new optional fields use_responses_api and reasoning_effort
+
 v2.0.0
 ============
 
