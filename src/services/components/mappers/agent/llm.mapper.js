@@ -8,7 +8,8 @@ import {LLMModel} from '../../../../models/components/agent/llm';
  * @param {string} data.type - The LLM type identifier (e.g., "openai", "azure").
  * @param {string} data.model - The model name or ID (e.g., "gpt-4-turbo").
  * @param {number} [data.temperature] - The sampling temperature for response generation.
- * @param {number} [data.seed] - Optional seed value used for deterministic outputs.
+ * @param {number|null} [data.seed] - Optional seed value used for deterministic outputs.
+ * @param {boolean|null} [data.use_responses_api] - For OpenAI and Azure OpenAI whether to use the Responses API instead of the Completions API.
  *
  * @returns {LLMModel} A new {@link LLMModel} instance populated with the provided data.
  *
