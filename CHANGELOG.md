@@ -1,3 +1,10 @@
+v2.1.0-rc1
+============
+
+* [#358](https://github.com/statnett/Talk2PowerSystem_PM/issues/358):
+  Update the agent info in the components page - seed is optional,
+  and a new optional use_responses_api is introduced.
+
 v2.0.0
 ============
 

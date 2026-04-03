@@ -21,8 +21,15 @@ export class LLMModel {
     this.temperature = data.temperature;
 
     /**
-     * @type {number}
+     * @type {number|null}
      */
-    this.seed = data.seed;
+    this.seed = data.seed !== undefined ? data.seed : null;
+
+    /**
+     * @type {boolean|null}
+     */
+    this.use_responses_api = (data.use_responses_api !== undefined && data.use_responses_api !== null)
+        ? !!data.use_responses_api
+        : null;
   }
 }
