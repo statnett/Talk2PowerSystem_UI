@@ -41,7 +41,9 @@
             "type": "Type",
             "model": "Model",
             "temperature": "Temperature",
-            "seed": "Seed"
+            "seed": "Seed",
+            "use_responses_api": "Use Responses API",
+            "reasoning_effort": "Reasoning Effort"
           },
           "tools": {
             "label": "Agent tools",
