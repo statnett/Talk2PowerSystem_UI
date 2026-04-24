@@ -104,3 +104,10 @@ items:
             question: "Show me a vis graph of KARLSH 420 L1"
           - title: "Visual Graph of a CIM Class (model diagram)."
             question: "Show me a diagram of the kinds of equipment in the CIM"
+    - title: "Timeseries"
+      icon: "images/timeseries.svg"
+      questions:
+        - title: "Energy prices in EUR for NO1"
+          question: "Energy prices in EUR for NO1; for the second half of 2024, monthly average and standard deviation"
+        - title: "Power flow from NO1 to NO3"
+          question: "Power flow from NO1 to NO3; for 2025, weekly average, min, max"

@@ -206,6 +206,20 @@
     }
   },
   "chat_panel": {
+    "logo": {
+      "cognite": {
+        "tooltip": "Secure and fast timeseries access and storage served by Cognite"
+      },
+      "statnet": {
+        "tooltip": "Norwegian TSO"
+      },
+      "tt2ps": {
+        "tooltip": "Talk to the power system"
+      },
+      "graphwise": {
+        "tooltip": "AI thrives on Whole Data"
+      }
+    },
     "hint": "Simply ask a question!",
     "btn": {
       "generated_image": {
