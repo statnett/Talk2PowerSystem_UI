@@ -2,9 +2,18 @@
     <div class="chat-panel-content">
         <div class="brand-hint" ng-if="chat.chatHistory.isEmpty() && !waitingForLastMessage">
             <div class="brands">
-                <img class="graphwise-logo" src="images/graphwise-logo.png" alt="Graph wise logo"/>
-                <img class="big-logo" src="images/logo-big.png" alt="Talk to power system big logo"/>
-                <img class="statnet-logo" src="images/statnet-logo.png" alt="Talk to power system big logo"/>
+                <img class="graphwise-logo"
+                     src="images/graphwise-logo.png"
+                     alt="Graphwise logo"
+                     tt2ps-tooltip="{{'chat_panel.logo.graphwise.tooltip' | translate}}"/>
+                <img class="big-logo"
+                     src="images/logo-big.png"
+                     alt="Talk to power system big logo"
+                     tt2ps-tooltip="{{'chat_panel.logo.tt2ps.tooltip' | translate}}"/>
+                <img class="statnet-logo"
+                     src="images/statnet-logo.png"
+                     alt="Statnett logo"
+                     tt2ps-tooltip="{{'chat_panel.logo.statnet.tooltip' | translate}}"/>
             </div>
             <div class="messages-hint" ng-cloak>
                 <h4 class="hint" ng-bind="'chat_panel.hint' | translate"></h4>

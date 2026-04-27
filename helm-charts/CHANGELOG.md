@@ -1,5 +1,9 @@
 # Talk to the Power System Chatbot UI
 
+## 1.1.2
+
+- Update `appVersion` to `v2.2.0-rc1`
+
 ## 1.1.1
 
 - Update `appVersion` to `v2.1.0-rc1`
