@@ -1,3 +1,9 @@
+v2.2.0-rc1
+============
+
+* [#363](https://github.com/statnett/Talk2PowerSystem_PM/issues/363):
+  Add Cognite logo & timeseries questions
+
 v2.1.0-rc1
 ============
 
