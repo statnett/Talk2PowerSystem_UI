@@ -1,3 +1,8 @@
+v2.2.0
+============
+
+* Change the sample questions
+
 v2.2.0-rc1
 ============
 

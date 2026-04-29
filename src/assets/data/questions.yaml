@@ -121,4 +121,4 @@ items:
       - title: "Power flow from NO1 to NO3"
         question: "Power flow from NO1 to NO3; for 2025, weekly average, min, max"
       - title: "Daily max price comparison between zones"
-        question: "Hi, i would like to get the maximum power price for each day in March 2026, for the price area NO1 and NO2. Listed as a table"
+        question: "Hi, I would like to get the maximum power price for each day in March 2026, for the price area NO1 and NO2. Listed as a table"
