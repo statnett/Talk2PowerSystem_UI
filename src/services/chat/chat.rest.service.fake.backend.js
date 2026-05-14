@@ -160,7 +160,16 @@ export class ChatRestServiceFakeBackend {
                     }, {
                         type: "vizGraph",
                         url: "images/test/diagram-1.svg"
-                    },{
+                    },
+                        {
+                            type: "geoMap",
+                            url: "http://localhost:9000/sparql?repositoryId=cim&name=ALL&query=PREFIX+geo%3A+%3Chttp%3A%2F%2Fwww.opengis.net%2Font%2Fgeosparql%23%3E%0ASELECT+*%0AWHERE+%7B%0A++++%3Fs+geo%3AasWKT+%3Fgeometry+.%0A++++BIND%28RAND%28%29+AS+%3Fid%29%0A%7D&infer=true&sameAs=true&execute=true&embedded&pluginName=geo&yasguiOperation=externalClickHandler"
+                        },
+                        {
+                            type: "geoMap",
+                            url: "http://localhost:9000/sparql?repositoryId=cim&name=Unnamed&query=PREFIX+geo%3A+%3Chttp%3A%2F%2Fwww.opengis.net%2Font%2Fgeosparql%23%3E%0ASELECT+*%0AWHERE+%7B%0A++++%3Fs+geo%3AasWKT+%3Fgeometry+.%0A++++FILTER%28STRSTARTS%28STR%28%3Fgeometry%29%2C+%22POINT%22%29%29%0A%7D+LIMIT+1&infer=true&sameAs=true&execute=true&embedded&pluginName=geo&yasguiOperation=externalClickHandler"
+                        },
+                        {
                             type: "svg",
                             url: "images/test/diagram-3.svg"
                         },{

@@ -39,6 +39,13 @@
                 fullscreen="fullscreen">
         </viz-graph-diagram>
 
+        <geo-map-diagram
+                ng-switch-when="geoMap"
+                ng-repeat="d in [selectedDiagram] track by d.hash"
+                diagram="d"
+                fullscreen="fullscreen">
+        </geo-map-diagram>
+
         <image-diagram
                 ng-switch-when="image"
                 ng-repeat="d in [selectedDiagram] track by d.hash"
