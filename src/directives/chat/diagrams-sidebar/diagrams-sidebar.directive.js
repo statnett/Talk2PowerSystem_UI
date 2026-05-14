@@ -5,7 +5,7 @@ import DiagramServiceModule from '../../../services/diagrams/diagram.service';
 import ImageDiagramModule from './image-diagram/image-diagram.directive';
 import SvgDiagramModule from './svg-diagram/svg-diagram.directive';
 import IframeDiagramModule from './iframe-diagram/iframe-diagram.directive';
-import VizGraphDiagramModel from "./viz-graph-diagram/viz-graph-diagram.directive";
+import VizGraphDiagramModule from './viz-graph-diagram/viz-graph-diagram.directive';
 import GeoMapDiagramModule from './geo-map-diagram/geo-map-diagram';
 
 const dependencies = [
@@ -13,7 +13,7 @@ const dependencies = [
   ImageDiagramModule.name,
   SvgDiagramModule.name,
   IframeDiagramModule.name,
-  VizGraphDiagramModel.name,
+  VizGraphDiagramModule.name,
   GeoMapDiagramModule.name
 ];
 

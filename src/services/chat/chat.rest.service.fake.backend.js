@@ -159,7 +159,7 @@ export class ChatRestServiceFakeBackend {
                         url: "https://images.pexels.com/photos/45201/kitty-cat-kitten-pet-45201.jpeg"
                     }, {
                         type: "vizGraph",
-                        url: "images/test/diagram-1.svg"
+                        url: "http://localhost:9000/graphs-visualizations?uri=http:%2F%2Facademy.ontotext.com%2Fimdb%2Fperson%2FLucy&repositoryId=movies&linksLimit=100&embedded&visgraphOperation=externalClickHandler"
                     },
                         {
                             type: "geoMap",
