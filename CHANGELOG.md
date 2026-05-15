@@ -1,3 +1,8 @@
+v2.3.0
+============
+
+* Change the sample questions by adding schema model questions
+
 v2.2.0
 ============
 
