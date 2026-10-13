@@ -140,18 +140,14 @@ module.exports = (env, argv) => {
             watchFiles: ['src/**/*'],
 
             // Proxy only certain paths to real backend
-            proxy: {
-                '/rest': {
+            proxy: [
+                {
+                    context: ['/rest', '/__about'],
                     target: BACKEND_URL,
                     secure: false,
                     changeOrigin: true,
                 },
-                '/__about': {
-                    target: BACKEND_URL,
-                    secure: false,
-                    changeOrigin: true,
-                }
-            }
+            ]
         }
     };
 };

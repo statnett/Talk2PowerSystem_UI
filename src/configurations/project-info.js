@@ -38,11 +38,11 @@ module.exports = {
     },
     {
       "name": "lodash",
-      "version": "4.17.21"
+      "version": "4.18.1"
     },
     {
       "name": "markdown-it",
-      "version": "14.1.0"
+      "version": "14.3.2"
     },
     {
       "name": "markdown-it-code-copy",
