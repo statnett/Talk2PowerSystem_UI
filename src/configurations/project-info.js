@@ -9,7 +9,7 @@ module.exports = {
   },
   "runtime": {
     "name": "Node.js",
-    "version": ">=22.0.0"
+    "version": ">=22.15.0"
   },
   "dependencies": [
     {
@@ -38,11 +38,11 @@ module.exports = {
     },
     {
       "name": "lodash",
-      "version": "4.17.21"
+      "version": "4.18.1"
     },
     {
       "name": "markdown-it",
-      "version": "14.1.0"
+      "version": "14.3.3"
     },
     {
       "name": "markdown-it-code-copy",
