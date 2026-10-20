@@ -5,9 +5,26 @@ const CopyWebpackPlugin = require('copy-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const CssMinimizerPlugin = require('css-minimizer-webpack-plugin');
 const webpack = require('webpack');
-const {BaseHrefWebpackPlugin} = require("base-href-webpack-plugin");
 
 const BACKEND_URL = "http://localhost:8000";
+
+/**
+ * Sets the href of the <base> tag from the layout template to the configured base href.
+ */
+class BaseHrefPlugin {
+    constructor(baseHref) {
+        this.baseHref = baseHref;
+    }
+
+    apply(compiler) {
+        compiler.hooks.compilation.tap('BaseHrefPlugin', (compilation) => {
+            HtmlWebpackPlugin.getHooks(compilation).beforeEmit.tap('BaseHrefPlugin', (data) => {
+                data.html = data.html.replace(/<base href="[^"]*"\s*\/?>/, `<base href="${this.baseHref}">`);
+                return data;
+            });
+        });
+    }
+}
 
 module.exports = (env, argv) => {
     const isProd = argv.mode === 'production';
@@ -81,13 +98,15 @@ module.exports = (env, argv) => {
             new CleanWebpackPlugin(),
             new HtmlWebpackPlugin({
                 template: './src/layout.html',
+                inject: 'body',
+                scriptLoading: 'blocking',
                 minify: isProd ? {
                     collapseWhitespace: true,
                     removeComments: true,
                     minifyJS: true,
                 } : false,
             }),
-            new BaseHrefWebpackPlugin({ baseHref: baseHref }),
+            new BaseHrefPlugin(baseHref),
             new CopyWebpackPlugin({
                 patterns: [
                     {
@@ -140,18 +159,14 @@ module.exports = (env, argv) => {
             watchFiles: ['src/**/*'],
 
             // Proxy only certain paths to real backend
-            proxy: {
-                '/rest': {
-                    target: BACKEND_URL,
-                    secure: false,
-                    changeOrigin: true,
-                },
-                '/__about': {
+            proxy: [
+                {
+                    context: ['/rest', '/__about'],
                     target: BACKEND_URL,
                     secure: false,
                     changeOrigin: true,
                 }
-            }
+            ]
         }
     };
 };

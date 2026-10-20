@@ -7,3 +7,4 @@ node_modules
 /helm-charts/output.yaml
 
 /src/assets/images/test/
+/tasks/
