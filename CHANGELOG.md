@@ -1,3 +1,9 @@
+v2.3.1
+============
+
+* [#373](https://github.com/statnett/Talk2PowerSystem_PM/issues/373):
+  Fix vulnerable 3rd party libraries
+
 v2.3.0
 ============
 
